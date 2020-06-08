@@ -19,7 +19,7 @@ httpsServer.listen(4443);
 
 
 app.get('/',function (req,res) {
-	res.send("Hello World from the HTTPS Server");
+	res.send("Hello World from the HTTPS Server for Cesium");
 });
 
 // adding functionality to log the requests
