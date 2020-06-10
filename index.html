@@ -1,26 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <script src="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Cesium.js"></script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+<DOCTYPE html>
+  <html lang="en">
+  <head>
+    <!-- Use correct character set. -->
+    <meta charset="utf-8">
 
-  <title>Editing in 3D</title>
+    <!-- Tell IE to use the latest, best version. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-</head>
-<body>
+
+    <!-- custom fonts and styles for the bootstrap template -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" type="text/css" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  crossorigin="anonymous">
+
+    <link href="css/sb-admin-2.css" type="text/css" rel="stylesheet">
+
+
+    <!-- cesium -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
+
+    <title>Editing in 3D</title>
+    <!-- adapted from: https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
+
+  </head>
+  <body id="page-top">
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" >
+          <div class="sidebar-brand-text mx-3">CEGE0043 App</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item d-none d-lg-block" >
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="" onclick="alert('menu1');" aria-expanded="true" aria-controls="collapseOne">
+            <!-- the next line is the cog image -->
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Menu 1</span>
+          </a>
+
+        </li>
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item d-lg-none" >
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Menu 2</span>
+          </a>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="#" onclick="alert('menu 3')";>Menu 3</a>
+              <a class="collapse-item" href="#" 
+              onclick="alert('menu 4');">Menu 4</a>
+            </div>
+          </div>
+        </li>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Menu 5</span>
+          </a>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Menu 6</h6>
+              <a class="collapse-item"  onclick="alert('menu 7');">Menu 7</a>
+            </div>
+          </div>
+        </li>
+
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Menu 8</span>
+          </a>
+          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+             <a class="collapse-item" href="#" onclick="alert('menu 9');">Menu 9</a>          
+
+             <a class="collapse-item" href="#" onclick="alert('menu 10');">Menu 10</a>          </div>
+
+           </div>
+         </li>
+
+
+        <!-- cursor latlng goes to here, put "hidden" to hide it when needed-->
+        <a class="sidebar-header d-flex align-items-center justify-content-center" >
+          <a style="color: white">Cursor Latlng: </a>
+          <div id="demo" style="z-index: 2000; color: white"></div> 
+        </a>
+
+
+
+       </ul>
+       <!-- End of Sidebar -->
+
+       <div id="content-wrapper" class="d-flex flex-column">
+        <!-- cesium div -->
+        <div id="cesiumContainer" style="height: :50%"></div>
+      </div>
+      <!-- End of Main Content -->
+    </div>
+    <!-- end of wrapper -->
+
+  </body>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>  
+
+
   
-  <div id="cesiumContainer" style="width:80%"></div>
-  <!-- to show latlng on the bottom right of the page -->
-  <div id="demo" style="z-index: 2000; position: absolute; height:100px; width:200px; right: 10px; bottom: 0px; text-color: white"></div>
-  
+  <!-- Bootstrap core JavaScript-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="js/sb-admin-2.js"></script>
 
-  <script>
+
+
+<script>
     
     // Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzMjhmNWJlYy05OGM4LTQ2MTgtOTFlZC1mZTE0YmEzNDNhZmMiLCJpZCI6Mjc2MDgsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODk4MDk2NDV9.lPVb7dzHnqA6dSc14wNlbNTiiwNecYhMRdXub1delsk';
 
     // Use clipping planes to selectively hide parts of the globe surface.
-
     var viewer = new Cesium.Viewer('cesiumContainer', {
         skyAtmosphere: false,
         shouldAnimate : true,
@@ -69,6 +183,9 @@
     });
 
 
+
+    // The function to show cursor latlng
+
     // adapted from: https://stackoverflow.com/questions/52342073/i-want-to-get-latitude-longitude-height-of-my-mouse-at-the-bottom-of-the-cesium
     viewer.scene.canvas.addEventListener('mousemove', function(e) {
         var entity = viewer.entities.getById('mou');
@@ -94,6 +211,6 @@
 
 
 
-  </script>
-</body>
+</script>
+
 </html>
