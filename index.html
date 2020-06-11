@@ -20,6 +20,10 @@
     <link href="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 
 
+    <!-- js to track user location --> 
+    <script src="js/trackLocationMap.js"></script>
+
+
     <title>Editing in 3D</title>
     <!-- adapted from: https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
 
@@ -32,7 +36,7 @@
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" >
-          <div class="sidebar-brand-text mx-3">CEGE0043 App</div>
+          <div class="sidebar-brand-text mx-3" style="color: white">Web 3D GIS</div>
         </a>
 
         <!-- Divider -->
@@ -101,6 +105,19 @@
         <a class="sidebar-header d-flex align-items-center justify-content-center" >
           <a style="color: white">Cursor Latlng: </a>
           <div id="demo" style="z-index: 2000; color: white"></div> 
+        </a>
+        <hr>
+
+        <!-- user lat goes to here, put "hidden" to hide it when needed-->
+        <a class="sidebar-header d-flex align-items-center justify-content-center" >
+          <a style="color: white">User Latitude: </a>
+          <div id="showUserLocationLat" style="z-index: 2000; color: white"></div> 
+        </a>
+        <hr>
+        <!-- user lng goes to here, put "hidden" to hide it when needed-->
+        <a class="sidebar-header d-flex align-items-center justify-content-center" >
+          <a style="color: white">User Longitude: </a>
+          <div id="showUserLocationLng" style="z-index: 2000; color: white"></div> 
         </a>
 
 
@@ -209,6 +226,16 @@
     });
 
 
+
+    //load the Leaflet map and then add the data AFTER the page has loaded
+    document.addEventListener('DOMContentLoaded', function() { 
+      loadMap(); 
+    }, false); 
+
+    // to load map and add earthquake data
+    function loadMap() { 
+      trackLocation(); // to get user current location
+    } 
 
 
 </script>
