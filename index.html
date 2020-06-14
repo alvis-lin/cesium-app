@@ -33,7 +33,6 @@
 
       <!-- Sidebar -->
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" >
           <div class="sidebar-brand-text mx-3" style="color: white">Web 3D GIS</div>
@@ -227,6 +226,64 @@
 
 
 
+
+
+    // var viewer = new Cesium.Viewer('cesiumContainer');
+    // function to zoom to user location
+    // from: https://groups.google.com/forum/#!topic/cesium-dev/VDaXd0oODhs
+    function fly(position) {
+        var source = new Cesium.CustomDataSource();
+        viewer.dataSources.add(source);
+        var entity = source.entities.add({
+            position : Cesium.Cartesian3.fromDegrees(position.coords.longitude, position.coords.latitude),
+            ellipse : {
+                semiMajorAxis : 100.0,
+                semiMinorAxis : 100.0,
+                material : new Cesium.ColorMaterialProperty(new Cesium.Color(0.2, 0.2, 1.0, 0.5))
+            },
+
+            // Can't load images for some reasons
+            billboard : {
+                image : '../Cesium Code/image/pin.png',
+                imageSubRegion : new Cesium.BoundingRectangle(49, 43, 18, 18),
+                color : Cesium.Color.LIME
+            },
+
+            // This worked but is at the bottom of the ellipse
+            label : {
+                text: 'You are here',
+                verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                show: false
+            }
+        });
+
+        function showLabel() {
+            entity.label.show = true;
+        }
+
+        viewer.camera.flyTo({
+            destination : Cesium.Cartesian3.fromDegrees(position.coords.longitude, position.coords.latitude, 1005.0),
+            complete: showLabel
+        });
+    }
+
+    // Ask browser for location, and fly there.
+    navigator.geolocation.getCurrentPosition(fly);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //load the Leaflet map and then add the data AFTER the page has loaded
     document.addEventListener('DOMContentLoaded', function() { 
       loadMap(); 
@@ -234,7 +291,8 @@
 
     // to load map and add earthquake data
     function loadMap() { 
-      trackLocation(); // to get user current location
+      // trackLocation(); // to get user current location
+      fly();
     } 
 
 
