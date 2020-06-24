@@ -38,6 +38,18 @@ function formValidation() {
     flag = false;
   }
 
+  // validate correct answer by limiting user to only enter number 1-4
+  if (isNaN(document.getElementById("altitude").value)) {
+    alert("Enter a number!");
+    flag = false;
+  }
+
+  // // validate correct answer by limiting user to only enter number 1-4
+  // if (!/^[1-4]*$/g.test(document.getElementById("correct_answer").value)) {
+  //   alert("Enter a number between 1 to 4!");
+  //   flag = false;
+  // }
+
   return flag;
 }
 
