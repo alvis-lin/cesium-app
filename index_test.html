@@ -20,8 +20,14 @@
     <link href="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 
 
+
+    <!-- js functionality to get ports -->
+    <script src="js/utilities.js"></script> 
+
     <!-- js to track user location --> 
     <script src="js/cesiumCheckForm.js"></script>
+
+
 
 
     <title>Editing in 3D-TESTING PAGE</title>
@@ -354,8 +360,8 @@
 
     // to load map and add earthquake data
     function loadMap() { 
-      // trackLocation(); // to get user current location
-      fly();
+      getPorts(); 
+      fly(); //get user locaiton and zoom in
     } 
 
 
