@@ -32,6 +32,12 @@ function formValidation() {
     flag = false;
   }  
 
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("altitude").value == "") {
+    alert("Please fill in Altitude!");
+    flag = false;
+  }
+
   return flag;
 }
 
@@ -43,7 +49,6 @@ function insertData() {
 
   // getting text values
   var model_name = document.getElementById("model_name").value;
-  alert(model_name + " ");
 
   // PostString will hold all the parameters to pass to the server
   var postString = "model_name=" + model_name;
@@ -53,10 +58,14 @@ function insertData() {
   var longitude = document.getElementById("longitude").value;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude;
 
+  var altitude = document.getElementById("altitude").value;
+  postString = postString + "&altitude=" + altitude;
+
   alert(postString);
 
   processData(postString);
 }
+
 
 
 // post the data of the question setting form to database quizquestoin table
