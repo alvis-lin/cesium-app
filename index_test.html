@@ -247,27 +247,27 @@
     // });
 
 
-    var dataSource1 = Cesium.GeoJsonDataSource.load('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson').then(
-      function(dataSource1) {
-        // var p = dataSource1.entities.values;
-        // for (var i = 0; i < p.length; i++) {
-        //   p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
-        // }
-        viewer.dataSources.add(dataSource1);
-        viewer.zoomTo(dataSource1);
+    // var dataSource1 = Cesium.GeoJsonDataSource.load('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson').then(
+    //   function(dataSource1) {
+    //     // var p = dataSource1.entities.values;
+    //     // for (var i = 0; i < p.length; i++) {
+    //     //   p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
+    //     // }
+    //     viewer.dataSources.add(dataSource1);
+    //     viewer.zoomTo(dataSource1);
 
-        var entities = dataSource.entities.values;
+    //     var entities = dataSource.entities.values;
 
-        for (var i = 0; i < entities.length; i++) {
-            var entity = entities[i];
-            // entity.billboard = undefined;
-            entity.point = new Cesium.PointGraphics({
-                color: Cesium.Color.FORESTGREEN.withAlpha(0.7),
-                pixelSize: 10
-            });
-        }
-      }
-    );
+    //     for (var i = 0; i < entities.length; i++) {
+    //         var entity = entities[i];
+    //         // entity.billboard = undefined;
+    //         entity.point = new Cesium.PointGraphics({
+    //             color: Cesium.Color.FORESTGREEN.withAlpha(0.7),
+    //             pixelSize: 10
+    //         });
+    //     }
+    //   }
+    // );
 
     var dataSource2 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/cesiumtest').then(
       function(dataSource2) {
@@ -277,6 +277,29 @@
         // }
         viewer.dataSources.add(dataSource2);
         viewer.zoomTo(dataSource2);
+
+        var entities = dataSource.entities.values;
+
+        for (var i = 0; i < entities.length; i++) {
+            var entity = entities[i];
+            // entity.billboard = undefined;
+            entity.point = new Cesium.PointGraphics({
+                color: Cesium.Color.FORESTGREEN.withAlpha(0.9),
+                pixelSize: 10
+            });
+        }
+      }
+    );
+
+
+    var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location').then(
+      function(dataSource3) {
+        // var p = dataSource1.entities.values;
+        // for (var i = 0; i < p.length; i++) {
+        //   p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
+        // }
+        viewer.dataSources.add(dataSource3);
+        viewer.zoomTo(dataSource3);
 
         var entities = dataSource.entities.values;
 
