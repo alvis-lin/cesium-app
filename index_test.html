@@ -350,8 +350,8 @@
       var cartesian = viewer.camera.pickEllipsoid(mousePosition, ellipsoid);
       if (cartesian) {
           var cartographic = ellipsoid.cartesianToCartographic(cartesian);
-          var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
-          var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
+          var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(8);
+          var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(8);
    
           // alert(longitudeString + ', ' + latitudeString);
           document.getElementById("latitude").value = latitudeString;
