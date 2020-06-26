@@ -12,7 +12,7 @@ function getPorts(){
 		httpsPortNumberAPI = result.getElementsByTagName("node-port-https-api").item(0).textContent;
 		console.log("Port API: ", httpsPortNumberAPI)
 		console.log("Port APP: ", httpsPortNumberApp)
-		alert("TESGING")
+		//alert("Got Port Numbers")
 		}, // end of the inner function
 	async: false
 	}); // end of the ajax request
