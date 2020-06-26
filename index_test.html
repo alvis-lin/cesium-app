@@ -57,12 +57,12 @@
         <!-- hold form to set up quiz questions and only show on big screen (question)-->
         <!-- Adapted code for creating form: https://www.w3schools.com/tags/att_input_required.asp -->
         <li class="nav-item d-none d-lg-block" >
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <!-- the next line is the cog image -->
             <i class="fas fa-fw fa-cog"></i>
-            <span>Create Quiz</span>
+            <span>Create Model</span>
           </a>
-          <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
             <div class="bg-white py-2 collapse-inner rounded">
               <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
               <form name="questionForm" data-toggle="validator" role="form">
@@ -91,6 +91,30 @@
         </li>
 
 
+        <li class="nav-item d-none d-lg-block" >
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <!-- the next line is the cog image -->
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Delete Model</span>
+          </a>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
+            <div class="bg-white py-2 collapse-inner rounded">
+              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
+              <form name="questionForm" data-toggle="validator" role="form">
+                <div class="form-group">
+                  <label for="model_id" class="control-label">Model ID</label><br>
+                  <input type="text" size="20" class="form-control" id="model_id" placeholder="e.g. Pokemon Centre" required>
+                </div>
+                <div class="form-group">
+                  <button id="startDelete" type="button" class="btn btn-primary" onclick="deleteClick()">Delete</button><br>
+                  <div id="dataDeleteResult">The result of the upload goes here</div>   
+                </div>
+              </form>
+            </div>
+          </div>
+        </li>
+
+
         <!-- Divider -->
         <hr class="sidebar-divider">
         <!-- Nav Item - Pages Collapse Menu -->
@@ -110,11 +134,11 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-          <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
             <i class="fas fa-fw fa-cog"></i>
             <span>Menu 5</span>
           </a>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Menu 6</h6>
               <a class="collapse-item"  onclick="alert('menu 7');">Menu 7</a>
@@ -125,11 +149,11 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
             <i class="fas fa-fw fa-cog"></i>
             <span>Model Layer</span>
           </a>
-          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
              <h6 class="collapse-header" color="white">Model</h6>
              <button id="showModelLayer" type="button" class="btn btn-primary" width="100%" onclick="showModels()">Show Models</button><br>
@@ -215,60 +239,8 @@
       },
     });
 
-    // var greenBox = viewer.entities.add({
-    //   name: "Green box with black outline",
-    //   position: Cesium.Cartesian3.fromDegrees(-107.0, 40.0, 300000.0),
-    //   box: {
-    //     dimensions: new Cesium.Cartesian3(400000.0, 300000.0, 500000.0),
-    //     material: Cesium.Color.GREEN.withAlpha(0.5),
-    //     outline: true,
-    //     outlineColor: Cesium.Color.BLACK,
-    //   },
-    // });
 
-    // var outlineOnly = viewer.entities.add({
-    //   name: "Yellow box outline",
-    //   position: Cesium.Cartesian3.fromDegrees(-100.0, 40.0, 300000.0),
-    //   box: {
-    //     dimensions: new Cesium.Cartesian3(400000.0, 300000.0, 500000.0),
-    //     fill: false,
-    //     outline: true,
-    //     outlineColor: Cesium.Color.YELLOW,
-    //   },
-    // });
-
-    // viewer.zoomTo(viewer.entities);
-    // viewer.entities.add({
-    //     id: 'mou',
-    //     label: {
-    //         // position : Cesium.Cartesian2.ZERO, 
-    //         show: true,
-    //     }
-    // });
-
-
-    // var dataSource1 = Cesium.GeoJsonDataSource.load('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson').then(
-    //   function(dataSource1) {
-    //     // var p = dataSource1.entities.values;
-    //     // for (var i = 0; i < p.length; i++) {
-    //     //   p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
-    //     // }
-    //     viewer.dataSources.add(dataSource1);
-    //     viewer.zoomTo(dataSource1);
-
-    //     var entities = dataSource.entities.values;
-
-    //     for (var i = 0; i < entities.length; i++) {
-    //         var entity = entities[i];
-    //         // entity.billboard = undefined;
-    //         entity.point = new Cesium.PointGraphics({
-    //             color: Cesium.Color.FORESTGREEN.withAlpha(0.7),
-    //             pixelSize: 10
-    //         });
-    //     }
-    //   }
-    // );
-
+    //This does not work for some resaon
     var dataSource2 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/cesiumtest').then(
       function(dataSource2) {
         // var p = dataSource1.entities.values;
@@ -404,12 +376,8 @@
             complete: showLabel
         });
     }
-
     // Ask browser for location, and fly there.
     navigator.geolocation.getCurrentPosition(fly);
-
-
-
 
 
 
