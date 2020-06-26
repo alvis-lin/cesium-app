@@ -24,7 +24,10 @@
     <!-- js functionality to get ports -->
     <script src="js/utilities.js"></script> 
 
-    <!-- js to track user location --> 
+    <!-- js functionality to add/remove model layer to cesium globe -->
+    <!-- <script src="js/modelMapLayer.js"></script>  -->
+
+    <!-- js to check and upload form --> 
     <script src="js/cesiumCheckForm.js"></script>
 
 
@@ -124,12 +127,13 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Menu 8</span>
+            <span>Model Layer</span>
           </a>
           <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-             <a class="collapse-item" href="#" onclick="alert('menu 9');">Menu 9</a>          
-             <a class="collapse-item" href="#" onclick="alert('menu 10');">Menu 10</a>          
+             <h6 class="collapse-header" color="white">Model</h6>
+             <button id="showModelLayer" type="button" class="btn btn-primary" width="100%" onclick="showModels()">Show Models</button><br>
+             <button id="hideModelLayer" type="button" class="btn btn-primary" onclick="removeModels()">Hide Models</button><br>       
             </div>
            </div>
          </li>
@@ -173,7 +177,6 @@
   crossorigin="anonymous"></script>  
 
 
-  
   <!-- Bootstrap core JavaScript-->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/sb-admin-2.js"></script>
@@ -198,9 +201,9 @@
         animation : false
     });
 
-    var dataSource = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/30281');
-    viewer.dataSources.add(dataSource);
-    viewer.zoomTo(dataSource);
+    // var dataSource = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/30281');
+    // viewer.dataSources.add(dataSource);
+    // viewer.zoomTo(dataSource);
 
 
     var blueBox = viewer.entities.add({
@@ -208,40 +211,40 @@
       position: Cesium.Cartesian3.fromDegrees(-114.0, 40.0, 300000.0),
       box: {
         dimensions: new Cesium.Cartesian3(400000.0, 300000.0, 500000.0),
-        material: Cesium.Color.BLUE,
+        material: Cesium.Color.RED,
       },
     });
 
-    var greenBox = viewer.entities.add({
-      name: "Green box with black outline",
-      position: Cesium.Cartesian3.fromDegrees(-107.0, 40.0, 300000.0),
-      box: {
-        dimensions: new Cesium.Cartesian3(400000.0, 300000.0, 500000.0),
-        material: Cesium.Color.GREEN.withAlpha(0.5),
-        outline: true,
-        outlineColor: Cesium.Color.BLACK,
-      },
-    });
+    // var greenBox = viewer.entities.add({
+    //   name: "Green box with black outline",
+    //   position: Cesium.Cartesian3.fromDegrees(-107.0, 40.0, 300000.0),
+    //   box: {
+    //     dimensions: new Cesium.Cartesian3(400000.0, 300000.0, 500000.0),
+    //     material: Cesium.Color.GREEN.withAlpha(0.5),
+    //     outline: true,
+    //     outlineColor: Cesium.Color.BLACK,
+    //   },
+    // });
 
-    var outlineOnly = viewer.entities.add({
-      name: "Yellow box outline",
-      position: Cesium.Cartesian3.fromDegrees(-100.0, 40.0, 300000.0),
-      box: {
-        dimensions: new Cesium.Cartesian3(400000.0, 300000.0, 500000.0),
-        fill: false,
-        outline: true,
-        outlineColor: Cesium.Color.YELLOW,
-      },
-    });
+    // var outlineOnly = viewer.entities.add({
+    //   name: "Yellow box outline",
+    //   position: Cesium.Cartesian3.fromDegrees(-100.0, 40.0, 300000.0),
+    //   box: {
+    //     dimensions: new Cesium.Cartesian3(400000.0, 300000.0, 500000.0),
+    //     fill: false,
+    //     outline: true,
+    //     outlineColor: Cesium.Color.YELLOW,
+    //   },
+    // });
 
-    viewer.zoomTo(viewer.entities);
-    viewer.entities.add({
-        id: 'mou',
-        label: {
-            // position : Cesium.Cartesian2.ZERO, 
-            show: true,
-        }
-    });
+    // viewer.zoomTo(viewer.entities);
+    // viewer.entities.add({
+    //     id: 'mou',
+    //     label: {
+    //         // position : Cesium.Cartesian2.ZERO, 
+    //         show: true,
+    //     }
+    // });
 
 
 
@@ -295,10 +298,6 @@
 
     
 
-
-
-
-
     // var viewer = new Cesium.Viewer('cesiumContainer');
     // function to zoom to user location
     // from: https://groups.google.com/forum/#!topic/cesium-dev/VDaXd0oODhs
@@ -346,24 +345,14 @@
 
 
 
-
-
-
-
-
-
-
-
-
-    //load the Leaflet map and then add the data AFTER the page has loaded
+    // //load the Leaflet map and then add the data AFTER the page has loaded
     document.addEventListener('DOMContentLoaded', function() { 
       loadMap(); 
     }, false); 
 
     // to load map and add earthquake data
     function loadMap() { 
-      getPorts(); 
-      fly(); //get user locaiton and zoom in
+      //getPorts(); 
     } 
 
 
