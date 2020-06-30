@@ -78,7 +78,7 @@
                   <input type="text" size="20" id="longitude"/><br />
                   <label for="altitude" class="control-label">Altitude</label><br>
                   <input type="text" size="20" id="altitude"/><br />
-                  <div class="help-block with-errors">Please click on the map to get coordinates</div> 
+                  <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
                 </div>
 
                 <div class="form-group">
@@ -316,18 +316,23 @@
     // The function to get latlng when click on map
     // Adapted from: http://www.phpmind.com/blog/2015/11/cesiumjs-how-to-get-longitude-and-latitude-on-click/ [Accessed: 24 Jun, 2020]
     viewer.canvas.addEventListener('click', function(e){
-      var mousePosition = new Cesium.Cartesian2(e.clientX, e.clientY);
+      var mousePosition = new Cesium.Cartesian3(e.clientX, e.clientY, e.clientZ);
    
       var ellipsoid = viewer.scene.globe.ellipsoid;
       var cartesian = viewer.camera.pickEllipsoid(mousePosition, ellipsoid);
+      
       if (cartesian) {
           var cartographic = ellipsoid.cartesianToCartographic(cartesian);
+          var cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic(cartesian); // this also works
           var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(8);
           var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(8);
+          //var altitudeString = Cesium.Math.toDegrees(cartographic.height).toFixed(10);
+          var altitudeString = cartographic.height.toFixed(5); // The unit for height is metre, so no need to convert to degrees
    
-          // alert(longitudeString + ', ' + latitudeString);
+          //alert(longitudeString + ', ' + latitudeString + ', ' + altitudeString);
           document.getElementById("latitude").value = latitudeString;
           document.getElementById("longitude").value = longitudeString;
+          document.getElementById("altitude").value = altitudeString;
       } else {
           alert('Globe was not picked');
       }
