@@ -105,7 +105,7 @@ function dataUploaded(data) {
 //TESTING CODE FOR LINESTRING
 
 function submitLineClick() {
-  insertData();
+  insertLineData();
   alert("Thank you for your time! Your linestring have been submitted!");
 }
 
