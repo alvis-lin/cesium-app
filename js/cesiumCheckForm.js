@@ -7,7 +7,7 @@
 function submitClick() {
   if (formValidation()) {
   	insertData();
-    	alert("Thank you for your time! Your quiz questions have been submitted!");
+    	alert("Thank you for your time! Your model have been submitted!");
     	return true;
   } else {
     	return false;
@@ -32,24 +32,6 @@ function formValidation() {
     flag = false;
   }  
 
-  // make sure the user fill in the blank, or an alert will show up
-  if (document.getElementById("altitude").value == "") {
-    alert("Please fill in Altitude!");
-    flag = false;
-  }
-
-  // validate correct answer by limiting user to only enter number 1-4
-  if (isNaN(document.getElementById("altitude").value)) {
-    alert("Enter a number!");
-    flag = false;
-  }
-
-  // // validate correct answer by limiting user to only enter number 1-4
-  // if (!/^[1-4]*$/g.test(document.getElementById("correct_answer").value)) {
-  //   alert("Enter a number between 1 to 4!");
-  //   flag = false;
-  // }
-
   return flag;
 }
 
@@ -61,6 +43,7 @@ function insertData() {
 
   // getting text values
   var model_name = document.getElementById("model_name").value;
+  alert(model_name + " ");
 
   // PostString will hold all the parameters to pass to the server
   var postString = "model_name=" + model_name;
@@ -70,14 +53,10 @@ function insertData() {
   var longitude = document.getElementById("longitude").value;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude;
 
-  var altitude = document.getElementById("altitude").value;
-  postString = postString + "&altitude=" + altitude;
-
   alert(postString);
 
   processData(postString);
 }
-
 
 
 // post the data of the question setting form to database quizquestoin table
@@ -102,4 +81,73 @@ function processData(postString) {
 function dataUploaded(data) { 
 	// change the DIV to show the response 
 	document.getElementById("dataUploadResult").innerHTML = JSON.stringify(data); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//TESTING CODE FOR LINESTRING
+
+function submitLineClick() {
+  insertData();
+  alert("Thank you for your time! Your linestring have been submitted!");
+}
+
+
+
+// converting the data of the question setting form to postString to pass to the server
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function insertLineData() { 
+  alert ("start line data upload"); 
+
+  // getting text values
+  var model_name = document.getElementById("model_name").value;
+  alert(model_name + " ");
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_name=" + model_name;
+  alert(postString);
+
+  processLineData(postString);
+}
+
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processLineData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/insertLinestring" 
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "POST", 
+    success: function(data){
+      console.log(data); 
+      lineDataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function lineDataUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("lineDataUploadResult").innerHTML = JSON.stringify(data); 
 }

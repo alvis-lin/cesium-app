@@ -92,6 +92,45 @@
 
 
         <li class="nav-item d-none d-lg-block" >
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+            <!-- the next line is the cog image -->
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Create Line</span>
+          </a>
+          <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
+            <div class="bg-white py-2 collapse-inner rounded">
+              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
+              <form name="questionForm" data-toggle="validator" role="form">
+                <div class="form-group">
+                  <label for="model_name" class="control-label">Model Name</label><br>
+                  <input type="text" size="20" class="form-control" id="model_name" placeholder="e.g. Pokemon Centre" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="latitude" class="control-label">Latitude</label><br>
+                  <input type="text" size="20" id="latitude"/><br /> 
+                  <label for="longitude" class="control-label">Longitude</label><br>
+                  <input type="text" size="20" id="longitude"/><br />
+                  <label for="altitude" class="control-label">Altitude</label><br>
+                  <input type="text" size="20" id="altitude"/><br />
+                  <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
+                </div>
+
+                <div class="form-group">
+                  <button id="startUpload" type="button" class="btn btn-primary" onclick="submitLineClick()">Submit</button><br>
+                  <div id="lineDataUploadResult">The result of the line upload goes here</div>   
+                </div>
+              </form>
+            </div>
+          </div>
+        </li>
+
+
+
+
+
+
+        <li class="nav-item d-none d-lg-block" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <!-- the next line is the cog image -->
             <i class="fas fa-fw fa-cog"></i>
@@ -315,6 +354,7 @@
 
     // The function to get latlng when click on map
     // Adapted from: http://www.phpmind.com/blog/2015/11/cesiumjs-how-to-get-longitude-and-latitude-on-click/ [Accessed: 24 Jun, 2020]
+    // Adapted from: https://groups.google.com/forum/#!topic/cesium-dev/kDIs_j9zKNI [Accessed: 30 Jun, 2020]
     viewer.canvas.addEventListener('click', function(e){
       var mousePosition = new Cesium.Cartesian3(e.clientX, e.clientY, e.clientZ);
    
