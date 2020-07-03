@@ -121,7 +121,7 @@ function insertLineData() {
   alert(model_name + " ");
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "line_name=" + model_name;
+  var postString = "model_name=" + model_name;
   alert(postString);
 
   processLineData(postString);
