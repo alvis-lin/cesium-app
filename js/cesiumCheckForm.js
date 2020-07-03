@@ -117,11 +117,11 @@ function insertLineData() {
   alert ("start line data upload"); 
 
   // getting text values
-  var model_name = document.getElementById("model_name").value;
+  var model_name = document.getElementById("line_name").value;
   alert(model_name + " ");
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "model_name=" + model_name;
+  var postString = "line_name=" + model_name;
   alert(postString);
 
   processLineData(postString);

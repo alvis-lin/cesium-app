@@ -102,11 +102,11 @@
               <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
               <form name="questionForm" data-toggle="validator" role="form">
                 <div class="form-group">
-                  <label for="model_name" class="control-label">Model Name</label><br>
-                  <input type="text" size="20" class="form-control" id="model_name" placeholder="e.g. Pokemon Centre" required>
+                  <label for="line_name" class="control-label">Line Name</label><br>
+                  <input type="text" size="20" class="form-control" id="line_name" placeholder="e.g. Route 1" required>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="latitude" class="control-label">Latitude</label><br>
                   <input type="text" size="20" id="latitude"/><br /> 
                   <label for="longitude" class="control-label">Longitude</label><br>
@@ -115,9 +115,9 @@
                   <input type="text" size="20" id="altitude"/><br />
                   <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
                 </div>
-
+ -->
                 <div class="form-group">
-                  <button id="startUpload" type="button" class="btn btn-primary" onclick="submitLineClick()">Submit</button><br>
+                  <button id="startLineUpload" type="button" class="btn btn-primary" onclick="submitLineClick()">Submit</button><br>
                   <div id="lineDataUploadResult">The result of the line upload goes here</div>   
                 </div>
               </form>
