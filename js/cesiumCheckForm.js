@@ -162,9 +162,9 @@ function lineDataUploaded(data) {
 
 // delete record using datadeleted function in this code
 function deleteRecord(){
-  var deleteID = document.getElementById("model_id").value;
-  //var deleteString = "id="+deleteID+"&port_id="+httpsPortNumberAPI; // original
-  var deleteString = "model_id="+deleteID;
+  var deleteID = document.getElementById("deleteID").value;
+  var deleteString = "model_id="+deleteID+"&port_id="+httpsPortNumberAPI; // original
+  //var deleteString = "model_id="+deleteID;
   var serviceUrl = "https://developer.cege.ucl.ac.uk:"+httpsPortNumberAPI+"/deleteModels";
   $.ajax({
     url: serviceUrl,
