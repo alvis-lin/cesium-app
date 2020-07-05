@@ -104,6 +104,62 @@ function dataUploaded(data) {
 
 //TESTING CODE FOR LINESTRING
 
+function submitPolygonClick() {
+  insertLineData();
+  alert("Thank you for your time! Your polygon have been submitted!");
+}
+
+
+
+// converting the data of the question setting form to postString to pass to the server
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function insertPolygonData() { 
+  alert ("start polygon data upload"); 
+
+  // getting text values
+  var model_name = document.getElementById("polygon_name").value;
+  alert(model_name + " ");
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_name=" + model_name;
+  alert(postString);
+
+  processLineData(postString);
+}
+
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processPolygonData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/insertPolygon" 
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "POST", 
+    success: function(data){
+      console.log(data); 
+      polygonDataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function polygonDataUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("polygonDataUploadResult").innerHTML = JSON.stringify(data); 
+}
+
+
+
+
+
+
+
+//TESTING CODE FOR LINESTRING
+
 function submitLineClick() {
   insertLineData();
   alert("Thank you for your time! Your linestring have been submitted!");
@@ -151,6 +207,12 @@ function lineDataUploaded(data) {
   // change the DIV to show the response 
   document.getElementById("lineDataUploadResult").innerHTML = JSON.stringify(data); 
 }
+
+
+
+
+
+
 
 
 
