@@ -164,7 +164,7 @@ function lineDataUploaded(data) {
 function deleteRecord(){
   var deleteID = document.getElementById("model_id").value;
   //var deleteString = "id="+deleteID+"&port_id="+httpsPortNumberAPI; // original
-  var deleteString = "id="+deleteID;
+  var deleteString = "model_id="+deleteID;
   var serviceUrl = "https://developer.cege.ucl.ac.uk:"+httpsPortNumberAPI+"/deleteModels";
   $.ajax({
     url: serviceUrl,
