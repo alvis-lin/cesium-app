@@ -105,7 +105,7 @@ function dataUploaded(data) {
 //TESTING CODE FOR LINESTRING
 
 function submitPolygonClick() {
-  insertLineData();
+  insertPolygonData();
   alert("Thank you for your time! Your polygon have been submitted!");
 }
 
@@ -124,7 +124,7 @@ function insertPolygonData() {
   var postString = "model_name=" + model_name;
   alert(postString);
 
-  processLineData(postString);
+  processPolygonData(postString);
 }
 
 
