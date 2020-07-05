@@ -151,3 +151,32 @@ function lineDataUploaded(data) {
   // change the DIV to show the response 
   document.getElementById("lineDataUploadResult").innerHTML = JSON.stringify(data); 
 }
+
+
+
+
+
+
+
+
+
+// delete record using datadeleted function in this code
+function deleteRecord(){
+  var deleteID = document.getElementById("model_id").value;
+  //var deleteString = "id="+deleteID+"&port_id="+httpsPortNumberAPI; // original
+  var deleteString = "id="+deleteID;
+  var serviceUrl = "https://developer.cege.ucl.ac.uk:"+httpsPortNumberAPI+"/deleteModels";
+  $.ajax({
+    url: serviceUrl,
+    crossDomain: true,
+    type: "POST",
+    success: function(data){
+      console.log(data);
+      dataDeleted(data);
+    },
+    data: deleteString
+  });
+}
+function dataDeleted(data){
+  document.getElementById("dataDeleteResult").innerHTML = JSON.stringify(data);
+}
