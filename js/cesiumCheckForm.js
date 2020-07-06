@@ -87,7 +87,7 @@ function dataUploaded(data) {
 
 
 
-//TESTING CODE FOR LINESTRING
+// CODE FOR LINESTRING
 function submitLineClick() {
   if (formLineValidation()) {
     insertLineData();
@@ -97,7 +97,6 @@ function submitLineClick() {
       return false;
   }
 }
-
 
 
 // check if all the blanks in the form are filled and data is valid when user clicks submit button
@@ -132,17 +131,17 @@ function insertLineData() {
 
   // getting text values
   var model_name = document.getElementById("line_name").value;
-  alert(model_name + " ");
+  //alert(model_name + " ");
 
 
   // getting text values
   var linestring_coords = document.getElementById("linestring_coords").value;
-  alert(linestring_coords + " ");
+  //alert(linestring_coords + " ");
 
   // PostString will hold all the parameters to pass to the server
   var postString = "model_name=" + model_name;
   postString = postString + "&linestring_coords="+ linestring_coords;
-  alert(postString);
+  //alert(postString);
 
   processLineData(postString);
 }
@@ -191,15 +190,36 @@ function lineDataUploaded(data) {
 
 
 
-
-
-
-
-// Submit polygon data into database
 function submitPolygonClick() {
-  insertPolygonData();
-  alert("Thank you for your time! Your polygon have been submitted!");
+  if (formPolygonValidation()) {
+    insertPolygonData();
+      alert("Thank you for your time! Your polygon have been submitted!");
+      return true;
+  } else {
+      return false;
+  }
 }
+
+
+function formPolygonValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("polygon_name").value == "") {
+    alert("Please fill in Polygon Name!");
+    flag = false;
+  }
+
+  // if one of the blank is not filled in latitude or longitude part, an alert will show up 
+  if (document.getElementById("polygon_coords").value == "") {
+    alert("Please click on the map to set insert polygon coordinates!");
+    flag = false;
+  }  
+
+  return flag;
+}
+
+
 
 
 
@@ -210,10 +230,11 @@ function insertPolygonData() {
 
   // getting text values
   var model_name = document.getElementById("polygon_name").value;
-  alert(model_name + " ");
+  var polygon_coords = document.getElementById("polygon_coords").value;
 
   // PostString will hold all the parameters to pass to the server
   var postString = "model_name=" + model_name;
+  postString = postString + "&polygon_coords="+ polygon_coords;
   alert(postString);
 
   processPolygonData(postString);

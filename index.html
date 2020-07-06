@@ -466,7 +466,15 @@
         innerHtml += coords[i] + ', ';
       }
       innerHtml = innerHtml.slice(0, -2);
+
+      var poly_innerHtml = '';
+      for (i = 0; i < coords.length; i++) {
+        poly_innerHtml += coords[i] + ', ';
+      }
+      poly_innerHtml += coords[0]
+
       document.getElementById("linestring_coords").value = innerHtml;
+      document.getElementById("polygon_coords").value = poly_innerHtml;
       alert(innerHtml);
     }
 
