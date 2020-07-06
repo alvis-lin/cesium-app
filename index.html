@@ -107,6 +107,12 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="linestring" class="control-label">Linestring geometry</label><br>
+                  <input type="text" size="20" id="linestring"/><br /> 
+                  <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
+                </div>
+
+                <div class="form-group">
                   <button id="startLineUpload" type="button" class="btn btn-primary" onclick="submitLineClick()">Submit</button><br>
                   <div id="lineDataUploadResult">The result of the line upload goes here</div>   
                 </div>
@@ -432,8 +438,8 @@
       if (cartesian) {
           var cartographic = ellipsoid.cartesianToCartographic(cartesian); //original
           var cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic(cartesian); // this is for testting
-          var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(9);
-          var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(9);
+          var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(8);
+          var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(8);
           var altitudeString = cartographic.height.toFixed(5); // The unit for height is metre, so no need to convert to degrees
   
 
@@ -454,7 +460,7 @@
         innerHtml += coords[i] + ', ';
       }
       innerHtml = innerHtml.slice(0, -2);
-      document.getElementById("results").innerHTML = innerHtml;
+      document.getElementById("linestring").value = innerHtml;
       alert(innerHtml);
     }
 
