@@ -107,8 +107,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="linestring" class="control-label">Linestring geometry</label><br>
-                  <input type="text" size="20" id="linestring"/><br /> 
+                  <label for="linestring_coords" class="control-label">Linestring coordinates</label><br>
+                  <input type="text" size="20" id="linestring_coords"/><br /> 
                   <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
                 </div>
 
@@ -134,6 +134,12 @@
                 <div class="form-group">
                   <label for="polygon_name" class="control-label">Polygon Name</label><br>
                   <input type="text" size="20" class="form-control" id="polygon_name" placeholder="e.g. Pokemon School" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="polygon_coords" class="control-label">Polygon coordinates</label><br>
+                  <input type="text" size="20" id="polygon_coords"/><br /> 
+                  <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
                 </div>
 
                 <div class="form-group">
@@ -460,7 +466,7 @@
         innerHtml += coords[i] + ', ';
       }
       innerHtml = innerHtml.slice(0, -2);
-      document.getElementById("linestring").value = innerHtml;
+      document.getElementById("linestring_coords").value = innerHtml;
       alert(innerHtml);
     }
 

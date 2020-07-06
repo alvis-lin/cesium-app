@@ -113,8 +113,8 @@ function formLineValidation() {
   }
 
   // if one of the blank is not filled in latitude or longitude part, an alert will show up 
-  if (document.getElementById("linestring").value == "") {
-    alert("Please click on the map to set insert linestring!");
+  if (document.getElementById("linestring_coords").value == "") {
+    alert("Please click on the map to set insert linestring coordinates!");
     flag = false;
   }  
 
@@ -136,12 +136,12 @@ function insertLineData() {
 
 
   // getting text values
-  var linestring = document.getElementById("linestring").value;
-  alert(linestring + " ");
+  var linestring_coords = document.getElementById("linestring_coords").value;
+  alert(linestring_coords + " ");
 
   // PostString will hold all the parameters to pass to the server
   var postString = "model_name=" + model_name;
-  postString = postString + "&linestring="+ linestring;
+  postString = postString + "&linestring_coords="+ linestring_coords;
   alert(postString);
 
   processLineData(postString);
