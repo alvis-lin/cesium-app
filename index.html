@@ -30,10 +30,16 @@
     <!-- js to check and upload form --> 
     <script src="js/cesiumCheckForm.js"></script>
 
+    <!-- js to track latlng clicks --> 
+    <script src="js/getLatlng.js"></script>
 
 
 
-    <title>Editing in 3D-TESTING PAGE</title>
+
+
+
+
+    <title>Editing in 3D</title>
     <!-- adapted from: https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
 
   </head>
@@ -113,6 +119,7 @@
                 </div>
 
                 <div class="form-group">
+                  <button id="clearLineCoordsInput" type="button" class="btn btn-primary" onclick="clearLineCoords()">Clear input field</button>
                   <button id="startLineUpload" type="button" class="btn btn-primary" onclick="submitLineClick()">Submit</button><br>
                   <div id="lineDataUploadResult">The result of the line upload goes here</div>   
                 </div>
@@ -248,6 +255,8 @@
         </a>
 
         <p id="results">Tracking result</p>
+
+        <button id="trackbtn" type="button" class="btn btn-primary" onclick="showCoords()">Show coords</button>
 
 
        </ul>
@@ -419,64 +428,66 @@
 
     viewer.canvas.addEventListener('click', handleClick, false);
 
-    // array to store click coords
-    var clickCoords = [];
+    // // array to store click coords
+    // var clickCoords = [];
 
-    // a point coord
-    var ClickPoint = function(x, y, z) {
-      this.x = x;
-      this.y = y;
-      this.z = z;
-    };
+    // // // a point coord
+    // var ClickPoint = function(x, y, z) {
+    //   this.x = x;
+    //   this.y = y;
+    //   this.z = z;
+    // };
 
-    // change the string format
-    ClickPoint.prototype.toString = function(){
-       return this.x + " " + this.y + " " + this.z;
-    }
+    // // // change the string format
+    // ClickPoint.prototype.toString = function(){
+    //    return this.x + " " + this.y + " " + this.z;
+    // }
 
-    function handleClick(e) {
-      var mousePosition = new Cesium.Cartesian3(e.clientX, e.clientY, e.clientZ);
+    // function handleClick(e) {
+    //   var mousePosition = new Cesium.Cartesian3(e.clientX, e.clientY, e.clientZ);
    
-      var ellipsoid = viewer.scene.globe.ellipsoid;
-      var cartesian = viewer.camera.pickEllipsoid(mousePosition, ellipsoid);
+    //   var ellipsoid = viewer.scene.globe.ellipsoid;
+    //   var cartesian = viewer.camera.pickEllipsoid(mousePosition, ellipsoid);
 
 
-      if (cartesian) {
-          var cartographic = ellipsoid.cartesianToCartographic(cartesian); //original
-          var cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic(cartesian); // this is for testting
-          var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(8);
-          var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(8);
-          var altitudeString = cartographic.height.toFixed(5); // The unit for height is metre, so no need to convert to degrees
+    //   if (cartesian) {
+    //       var cartographic = ellipsoid.cartesianToCartographic(cartesian); //original
+    //       var cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic(cartesian); // this is for testting
+    //       var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(8);
+    //       var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(8);
+    //       var altitudeString = cartographic.height.toFixed(5); // The unit for height is metre, so no need to convert to degrees
   
 
-          // create click point and store it in array
-          var aClick = new ClickPoint(longitudeString, latitudeString, altitudeString);
-          clickCoords.push(aClick); // added comma to seperate 
+    //       // create click point and store it in array
+    //       var aClick = new ClickPoint(longitudeString, latitudeString, altitudeString);
+    //       clickCoords.push(aClick); // added comma to seperate 
 
-          // update results
-          showArrayCoords(clickCoords);
-          } else {
-            alert('Globe was not picked');
-         }
-    }
+    //       // update results
+    //       showArrayCoords(clickCoords);
+    //       } else {
+    //         alert('Globe was not picked');
+    //      }
+    // }
 
-    function showArrayCoords(coords) {
-      var innerHtml = '';
-      for (i = 0; i < coords.length; i++) {
-        innerHtml += coords[i] + ', ';
-      }
-      innerHtml = innerHtml.slice(0, -2);
+    // function showArrayCoords(coords) {
+    //   // To update coords for linestring
+    //   var innerHtml = '';
+    //   for (i = 0; i < coords.length; i++) {
+    //     innerHtml += coords[i] + ', ';
+    //   }
+    //   innerHtml = innerHtml.slice(0, -2);
 
-      var poly_innerHtml = '';
-      for (i = 0; i < coords.length; i++) {
-        poly_innerHtml += coords[i] + ', ';
-      }
-      poly_innerHtml += coords[0]
+    //   // To update coords for polygon
+    //   var poly_innerHtml = '';
+    //   for (i = 0; i < coords.length; i++) {
+    //     poly_innerHtml += coords[i] + ', ';
+    //   }
+    //   poly_innerHtml += coords[0] // The first and last point of polygon should be the same point
 
-      document.getElementById("linestring_coords").value = innerHtml;
-      document.getElementById("polygon_coords").value = poly_innerHtml;
-      alert(innerHtml);
-    }
+    //   document.getElementById("linestring_coords").value = innerHtml; //parse linestring coords back to webpage
+    //   document.getElementById("polygon_coords").value = poly_innerHtml; //parse polygon coords back to webpage
+    //   alert(innerHtml);
+    // }
 
 
 
