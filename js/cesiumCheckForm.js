@@ -27,7 +27,7 @@ function formValidation() {
   }
 
   // if one of the blank is not filled in latitude or longitude part, an alert will show up 
-  if (document.getElementById("latitude").value == "" || document.getElementById("longitude").value == "") {
+  if (document.getElementById("latitude").value == "" || document.getElementById("longitude").value == "" || document.getElementById("altitude").value == "") {
     alert("Please click on the map to set question location!");
     flag = false;
   }  
@@ -51,7 +51,8 @@ function insertData() {
   //getting geometry values
   var latitude = document.getElementById("latitude").value;
   var longitude = document.getElementById("longitude").value;
-  postString = postString + "&latitude="+ latitude + "&longitude="+longitude;
+  var altitude = document.getElementById("altitude").value;
+  postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
 
   alert(postString);
 
