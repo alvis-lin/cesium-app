@@ -274,6 +274,57 @@ function polygonDataUploaded(data) {
 
 
 
+function submitEditClick() {
+  insertEditData();
+  alert("Thank you for your time! Your model have been edited!");
+}
+
+
+function insertEditData() { 
+  alert ("start Edit data upload"); 
+
+  // getting text values
+  var model_name = document.getElementById("polygon_name").value;
+  var polygon_coords = document.getElementById("polygon_coords").value;
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_name=" + model_name;
+  postString = postString + "&polygon_coords="+ polygon_coords;
+  alert(postString);
+
+  processEditData(postString);
+}
+
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processEditData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/editModels" 
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "POST", 
+    success: function(data){
+      console.log(data); 
+      editDataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function editDataUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("dataEditResult").innerHTML = JSON.stringify(data); 
+}
+
+
+
+
+      
+
 
 
 

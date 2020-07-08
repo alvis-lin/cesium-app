@@ -189,34 +189,6 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider">
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item d-lg-none" >
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Menu 2</span>
-          </a>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="#" onclick="alert('menu 3')";>Menu 3</a>
-              <a class="collapse-item" href="#" 
-              onclick="alert('menu 4');">Menu 4</a>
-            </div>
-          </div>
-        </li>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-          <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Menu 5</span>
-          </a>
-          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Menu 6</h6>
-              <a class="collapse-item"  onclick="alert('menu 7');">Menu 7</a>
-            </div>
-          </div>
-        </li>
 
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -242,21 +214,10 @@
         </a>
         <hr>
 
-        <!-- user lat goes to here, put "hidden" to hide it when needed-->
-        <a class="sidebar-header d-flex align-items-center justify-content-center" >
-          <a style="color: white">User Latitude: </a>
-          <div id="showUserLocationLat" style="z-index: 2000; color: white"></div> 
-        </a>
-        <hr>
-        <!-- user lng goes to here, put "hidden" to hide it when needed-->
-        <a class="sidebar-header d-flex align-items-center justify-content-center" >
-          <a style="color: white">User Longitude: </a>
-          <div id="showUserLocationLng" style="z-index: 2000; color: white"></div> 
-        </a>
+        <button id="trackBtn" type="button" class="btn btn-primary" onclick="showCoords()">Show coords</button>
 
-        <p id="results">Tracking result</p>
-
-        <button id="trackbtn" type="button" class="btn btn-primary" onclick="showCoords()">Show coords</button>
+        <button id="editBtn" type="button" class="btn btn-primary" onclick="submitEditClick()">Edit Model</button>
+        <div id="dataEditResult" style="color: white">The result of the edit goes here</div>
 
 
        </ul>
@@ -316,30 +277,8 @@
     });
 
 
-    //This does not work for some resaon
-    var dataSource2 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/cesiumtest').then(
-      function(dataSource2) {
-        // var p = dataSource1.entities.values;
-        // for (var i = 0; i < p.length; i++) {
-        //   p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
-        // }
-        viewer.dataSources.add(dataSource2);
-        viewer.zoomTo(dataSource2);
 
-        var entities = dataSource.entities.values;
-
-        for (var i = 0; i < entities.length; i++) {
-            var entity = entities[i];
-            // entity.billboard = undefined;
-            entity.point = new Cesium.PointGraphics({
-                color: Cesium.Color.FORESTGREEN.withAlpha(0.9),
-                pixelSize: 10
-            });
-        }
-      }
-    );
-
-
+    // Loads data to map
     var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location').then(
       function(dataSource3) {
         // var p = dataSource1.entities.values;
@@ -412,8 +351,7 @@
           document.getElementById("altitude").value = altitudeString;
       } else {
           alert('Globe was not picked');
-      }
-    
+      }  
     }, false);
 
 
@@ -429,65 +367,65 @@
     viewer.canvas.addEventListener('click', handleClick, false);
 
     // // array to store click coords
-    // var clickCoords = [];
+    var clickCoords = [];
 
     // // // a point coord
-    // var ClickPoint = function(x, y, z) {
-    //   this.x = x;
-    //   this.y = y;
-    //   this.z = z;
-    // };
+    var ClickPoint = function(x, y, z) {
+      this.x = x;
+      this.y = y;
+      this.z = z;
+    };
 
     // // // change the string format
-    // ClickPoint.prototype.toString = function(){
-    //    return this.x + " " + this.y + " " + this.z;
-    // }
+    ClickPoint.prototype.toString = function(){
+       return this.x + " " + this.y + " " + this.z;
+    }
 
-    // function handleClick(e) {
-    //   var mousePosition = new Cesium.Cartesian3(e.clientX, e.clientY, e.clientZ);
+    function handleClick(e) {
+      var mousePosition = new Cesium.Cartesian3(e.clientX, e.clientY, e.clientZ);
    
-    //   var ellipsoid = viewer.scene.globe.ellipsoid;
-    //   var cartesian = viewer.camera.pickEllipsoid(mousePosition, ellipsoid);
+      var ellipsoid = viewer.scene.globe.ellipsoid;
+      var cartesian = viewer.camera.pickEllipsoid(mousePosition, ellipsoid);
 
 
-    //   if (cartesian) {
-    //       var cartographic = ellipsoid.cartesianToCartographic(cartesian); //original
-    //       var cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic(cartesian); // this is for testting
-    //       var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(8);
-    //       var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(8);
-    //       var altitudeString = cartographic.height.toFixed(5); // The unit for height is metre, so no need to convert to degrees
+      if (cartesian) {
+          var cartographic = ellipsoid.cartesianToCartographic(cartesian); //original
+          var cartographic = Cesium.Ellipsoid.WGS84.cartesianToCartographic(cartesian); // this is for testting
+          var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(8);
+          var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(8);
+          var altitudeString = cartographic.height.toFixed(5); // The unit for height is metre, so no need to convert to degrees
   
 
-    //       // create click point and store it in array
-    //       var aClick = new ClickPoint(longitudeString, latitudeString, altitudeString);
-    //       clickCoords.push(aClick); // added comma to seperate 
+          // create click point and store it in array
+          var aClick = new ClickPoint(longitudeString, latitudeString, altitudeString);
+          clickCoords.push(aClick); // added comma to seperate 
 
-    //       // update results
-    //       showArrayCoords(clickCoords);
-    //       } else {
-    //         alert('Globe was not picked');
-    //      }
-    // }
+          // update results
+          showArrayCoords(clickCoords);
+          } else {
+            alert('Globe was not picked');
+         }
+    }
 
-    // function showArrayCoords(coords) {
-    //   // To update coords for linestring
-    //   var innerHtml = '';
-    //   for (i = 0; i < coords.length; i++) {
-    //     innerHtml += coords[i] + ', ';
-    //   }
-    //   innerHtml = innerHtml.slice(0, -2);
+    function showArrayCoords(coords) {
+      // To update coords for linestring
+      var innerHtml = '';
+      for (i = 0; i < coords.length; i++) {
+        innerHtml += coords[i] + ', ';
+      }
+      innerHtml = innerHtml.slice(0, -2);
 
-    //   // To update coords for polygon
-    //   var poly_innerHtml = '';
-    //   for (i = 0; i < coords.length; i++) {
-    //     poly_innerHtml += coords[i] + ', ';
-    //   }
-    //   poly_innerHtml += coords[0] // The first and last point of polygon should be the same point
+      // To update coords for polygon
+      var poly_innerHtml = '';
+      for (i = 0; i < coords.length; i++) {
+        poly_innerHtml += coords[i] + ', ';
+      }
+      poly_innerHtml += coords[0] // The first and last point of polygon should be the same point
 
-    //   document.getElementById("linestring_coords").value = innerHtml; //parse linestring coords back to webpage
-    //   document.getElementById("polygon_coords").value = poly_innerHtml; //parse polygon coords back to webpage
-    //   alert(innerHtml);
-    // }
+      document.getElementById("linestring_coords").value = innerHtml; //parse linestring coords back to webpage
+      document.getElementById("polygon_coords").value = poly_innerHtml; //parse polygon coords back to webpage
+      alert(innerHtml);
+    }
 
 
 
@@ -498,43 +436,43 @@
     // var viewer = new Cesium.Viewer('cesiumContainer');
     // function to zoom to user location
     // from: https://groups.google.com/forum/#!topic/cesium-dev/VDaXd0oODhs
-    function fly(position) {
-        var source = new Cesium.CustomDataSource();
-        viewer.dataSources.add(source);
-        var entity = source.entities.add({
-            position : Cesium.Cartesian3.fromDegrees(position.coords.longitude, position.coords.latitude),
-            ellipse : {
-                semiMajorAxis : 100.0,
-                semiMinorAxis : 100.0,
-                material : new Cesium.ColorMaterialProperty(new Cesium.Color(0.2, 0.2, 1.0, 0.5))
-            },
+    // function fly(position) {
+    //     var source = new Cesium.CustomDataSource();
+    //     viewer.dataSources.add(source);
+    //     var entity = source.entities.add({
+    //         position : Cesium.Cartesian3.fromDegrees(position.coords.longitude, position.coords.latitude),
+    //         ellipse : {
+    //             semiMajorAxis : 100.0,
+    //             semiMinorAxis : 100.0,
+    //             material : new Cesium.ColorMaterialProperty(new Cesium.Color(0.2, 0.2, 1.0, 0.5))
+    //         },
 
-            // Can't load images for some reasons
-            // billboard : {
-            //     image : '../Cesium Code/image/pin.png',
-            //     imageSubRegion : new Cesium.BoundingRectangle(49, 43, 18, 18),
-            //     color : Cesium.Color.LIME
-            // },
+    //         // Can't load images for some reasons
+    //         // billboard : {
+    //         //     image : '../Cesium Code/image/pin.png',
+    //         //     imageSubRegion : new Cesium.BoundingRectangle(49, 43, 18, 18),
+    //         //     color : Cesium.Color.LIME
+    //         // },
 
-            // This worked but is at the bottom of the ellipse
-            label : {
-                text: 'You are here',
-                verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
-                show: false
-            }
-        });
+    //         // This worked but is at the bottom of the ellipse
+    //         label : {
+    //             text: 'You are here',
+    //             verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+    //             show: false
+    //         }
+    //     });
 
-        function showLabel() {
-            entity.label.show = true;
-        }
+    //     function showLabel() {
+    //         entity.label.show = true;
+    //     }
 
-        viewer.camera.flyTo({
-            destination : Cesium.Cartesian3.fromDegrees(position.coords.longitude, position.coords.latitude, 1005.0),
-            complete: showLabel
-        });
-    }
-    // Ask browser for location, and fly there.
-    navigator.geolocation.getCurrentPosition(fly);
+    //     viewer.camera.flyTo({
+    //         destination : Cesium.Cartesian3.fromDegrees(position.coords.longitude, position.coords.latitude, 1005.0),
+    //         complete: showLabel
+    //     });
+    // }
+    // // Ask browser for location, and fly there.
+    // navigator.geolocation.getCurrentPosition(fly);
 
 
 
