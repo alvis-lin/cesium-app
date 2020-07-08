@@ -305,7 +305,7 @@
       position: Cesium.Cartesian3.fromDegrees(-114.0, 40.0, 300000.0),
       box: {
         dimensions: new Cesium.Cartesian3(400000.0, 300000.0, 500000.0),
-        material: Cesium.Color.RED,
+        material: Cesium.Color.BLUE,
       },
     });
 
@@ -314,25 +314,46 @@
     // Loads data to map
     var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location').then(
       function(dataSource3) {
-        // var p = dataSource1.entities.values;
-        // for (var i = 0; i < p.length; i++) {
-        //   p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
-        // }
         viewer.dataSources.add(dataSource3);
         viewer.zoomTo(dataSource3);
-
-        var entities = dataSource.entities.values;
-
-        for (var i = 0; i < entities.length; i++) {
-            var entity = entities[i];
-            // entity.billboard = undefined;
-            entity.point = new Cesium.PointGraphics({
-                color: Cesium.Color.FORESTGREEN.withAlpha(0.9),
-                pixelSize: 10
-            });
-        }
       }
     );
+
+
+
+    // The function to extrude from geojson file 
+    // 3D geojson file from: https://docs.mapbox.com/mapbox-gl-js/example/3d-extrusion-floorplan/
+    var dataSource = Cesium.GeoJsonDataSource.load('https://docs.mapbox.com/mapbox-gl-js/assets/indoor-3d-map.geojson').then(
+      function(dataSource) {
+        var p = dataSource.entities.values;
+          for (var i = 0; i < p.length; i++) {
+            p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
+          }
+          viewer.dataSources.add(dataSource);
+          viewer.zoomTo(dataSource);
+      }
+    );
+
+
+    // example from Ceisum sandcastle 
+    // From: https://sandcastle.cesium.com/index.html?src=Polygon.html [Accessed on 8 Jul, 2020]
+    var greenPolygon = viewer.entities.add({
+      name: "Green extruded polygon",
+      polygon: {
+        hierarchy: Cesium.Cartesian3.fromDegreesArray([
+          -108.0,
+          42.0,
+          -100.0,
+          42.0,
+          -104.0,
+          40.0,
+        ]),
+        extrudedHeight: 500000.0,
+        material: Cesium.Color.GREEN,
+        closeTop: false,
+        closeBottom: false,
+      },
+    });
 
 
 
