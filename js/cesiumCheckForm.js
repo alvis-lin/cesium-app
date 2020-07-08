@@ -28,7 +28,7 @@ function formValidation() {
 
   // if one of the blank is not filled in latitude or longitude part, an alert will show up 
   if (document.getElementById("latitude").value == "" || document.getElementById("longitude").value == "" || document.getElementById("altitude").value == "") {
-    alert("Please click on the map to set question location!");
+    alert("Please click on the map to set location!");
     flag = false;
   }  
 
@@ -88,6 +88,8 @@ function dataUploaded(data) {
 
 
 
+
+
 // CODE FOR LINESTRING
 function submitLineClick() {
   if (formLineValidation()) {
@@ -120,9 +122,6 @@ function formLineValidation() {
 
   return flag;
 }
-
-
-
 
 
 // converting the data of the question setting form to postString to pass to the server
@@ -190,7 +189,7 @@ function lineDataUploaded(data) {
 
 
 
-
+// CODE FOR POLYGON
 function submitPolygonClick() {
   if (formPolygonValidation()) {
     insertPolygonData();
@@ -219,9 +218,6 @@ function formPolygonValidation() {
 
   return flag;
 }
-
-
-
 
 
 // converting the data of the question setting form to postString to pass to the server
@@ -273,23 +269,59 @@ function polygonDataUploaded(data) {
 
 
 
-
 function submitEditClick() {
-  insertEditData();
-  alert("Thank you for your time! Your model have been edited!");
+  if (formEditValidation()) {
+    insertEditData();
+      alert("Thank you for your time! Your model have been edited!");
+      return true;
+  } else {
+      return false;
+  }
 }
+
+
+function formEditValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("model_id").value == "") {
+    alert("Please fill in Model ID!");
+    flag = false;
+  }
+
+  // if one of the blank is not filled in latitude or longitude part, an alert will show up 
+  if (document.getElementById("latitude_edit").value == "" || document.getElementById("longitude_edit").value == "" || document.getElementById("altitude_edit").value == "") {
+    alert("Please click on the map to set location!");
+    flag = false;
+  }  
+
+  return flag;
+}
+
+
+
+
+
+
+
+
+
 
 
 function insertEditData() { 
   alert ("start Edit data upload"); 
 
   // getting text values
-  var model_name = document.getElementById("polygon_name").value;
-  var polygon_coords = document.getElementById("polygon_coords").value;
+  var model_id = document.getElementById("model_id").value;
+  // geometry 
+  var latitude = document.getElementById("latitude_edit").value;
+  var longitude = document.getElementById("longitude_edit").value;
+  var altitude = document.getElementById("altitude_edit").value;
+  
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "model_name=" + model_name;
-  postString = postString + "&polygon_coords="+ polygon_coords;
+  var postString = "model_id=" + model_id;
+  postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
   alert(postString);
 
   processEditData(postString);
