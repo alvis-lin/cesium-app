@@ -250,6 +250,8 @@
         <hr>
 
         <button id="trackBtn" type="button" class="btn btn-primary" onclick="showCoords()">Show coords</button>
+        <button id="refreshModel" type="button" class="btn btn-primary" onclick="refreshModel()">Refresh Model</button>
+        <button id="removeModels" type="button" class="btn btn-primary" onclick="removeModels()">Remove Models</button>
 
   
 
@@ -310,31 +312,6 @@
     });
 
 
-
-    // Loads data to map
-    var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location').then(
-      function(dataSource3) {
-        viewer.dataSources.add(dataSource3);
-        viewer.zoomTo(dataSource3);
-      }
-    );
-
-
-
-    // The function to extrude from geojson file 
-    // 3D geojson file from: https://docs.mapbox.com/mapbox-gl-js/example/3d-extrusion-floorplan/
-    var dataSource = Cesium.GeoJsonDataSource.load('https://docs.mapbox.com/mapbox-gl-js/assets/indoor-3d-map.geojson').then(
-      function(dataSource) {
-        var p = dataSource.entities.values;
-          for (var i = 0; i < p.length; i++) {
-            p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
-          }
-          viewer.dataSources.add(dataSource);
-          viewer.zoomTo(dataSource);
-      }
-    );
-
-
     // example from Ceisum sandcastle 
     // From: https://sandcastle.cesium.com/index.html?src=Polygon.html [Accessed on 8 Jul, 2020]
     var greenPolygon = viewer.entities.add({
@@ -354,6 +331,42 @@
         closeBottom: false,
       },
     });
+
+    
+
+    // Loads data to map
+    function refreshModel(dataSource3) {
+      viewer.dataSources.removeAll();
+      var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location').then(
+        function(dataSource3) {
+          viewer.dataSources.add(dataSource3);
+          viewer.zoomTo(dataSource3);
+        }
+      )
+    }
+
+    // Remove all the data
+    function removeModels(){
+      viewer.dataSources.removeAll();
+    }
+
+    
+
+    // The function to extrude from geojson file 
+    // 3D geojson file from: https://docs.mapbox.com/mapbox-gl-js/example/3d-extrusion-floorplan/
+    // var dataSource = Cesium.GeoJsonDataSource.load('https://docs.mapbox.com/mapbox-gl-js/assets/indoor-3d-map.geojson').then(
+    //   function(dataSource) {
+    //     var p = dataSource.entities.values;
+    //       for (var i = 0; i < p.length; i++) {
+    //         p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
+    //       }
+    //       viewer.dataSources.add(dataSource);
+    //       viewer.zoomTo(dataSource);
+    //   }
+    // );
+
+
+
 
 
 
