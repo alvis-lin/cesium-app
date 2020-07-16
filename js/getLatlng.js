@@ -1,4 +1,4 @@
-alert("read getLatlng");
+// This file is to track clicks on the map to insert latitude, longitude and altitude
 
 // array to store click coords
 var clickCoords = [];
