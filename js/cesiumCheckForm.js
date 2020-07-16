@@ -186,9 +186,6 @@ function lineDataUploaded(data) {
 
 
 
-
-
-
 // CODE FOR POLYGON
 function submitPolygonClick() {
   if (formPolygonValidation()) {

@@ -49,6 +49,9 @@ function handleClick(e) {
 
 
 
+
+
+
 function showArrayCoords(coords) {
   var innerHtml = '';
   // To update coords for linestring  

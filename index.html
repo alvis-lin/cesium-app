@@ -346,8 +346,8 @@
         function(dataSource3) {
           var p = dataSource3.entities.values;
           for (var i = 0; i < p.length; i++) {
-            p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
-            alert(p[i].polygon.extrudedHeight);
+            p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file
+            //alert(p[i].polygon.extrudedHeight);
           }
           viewer.dataSources.add(dataSource3);
           viewer.zoomTo(dataSource3);
