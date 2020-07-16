@@ -339,17 +339,40 @@
     });
 
     
-
-    // Loads data to map
+    // Test function to extrude geometry
     function refreshModel(dataSource3) {
       viewer.dataSources.removeAll(); // remove old data
       var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location').then(
         function(dataSource3) {
+          var p = dataSource3.entities.values;
+          for (var i = 0; i < p.length; i++) {
+            p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
+            alert(p[i].polygon.extrudedHeight);
+          }
           viewer.dataSources.add(dataSource3);
           viewer.zoomTo(dataSource3);
         }
       )
     }
+
+
+
+
+
+
+    // Loads data to map
+    // function refreshModel(dataSource3) {
+    //   viewer.dataSources.removeAll(); // remove old data
+    //   var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location').then(
+    //     function(dataSource3) {
+    //       viewer.dataSources.add(dataSource3);
+    //       viewer.zoomTo(dataSource3);
+    //     }
+    //   )
+    // }
+
+
+
 
     // Remove all the data
     function removeModels(){
