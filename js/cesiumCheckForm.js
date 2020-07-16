@@ -216,6 +216,12 @@ function formPolygonValidation() {
     flag = false;
   }  
 
+  // make sure the user fill in the height, or an alert will show up
+  if (document.getElementById("polygon_height").value == "") {
+    alert("Please fill in Polygon height!");
+    flag = false;
+  }
+
   return flag;
 }
 
@@ -227,10 +233,12 @@ function insertPolygonData() {
 
   // getting text values
   var model_name = document.getElementById("polygon_name").value;
+  var polygon_height = document.getElementById("polygon_height").value;
   var polygon_coords = document.getElementById("polygon_coords").value;
 
   // PostString will hold all the parameters to pass to the server
   var postString = "model_name=" + model_name;
+  postString = postString + "&polygon_height="+ polygon_height;
   postString = postString + "&polygon_coords="+ polygon_coords;
   alert(postString);
 

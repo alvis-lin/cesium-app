@@ -144,12 +144,18 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="polygon_coords" class="control-label">Polygon coordinates</label><br>
+                  <label for="polygon_coords" class="control-label">Polygon Coordinates</label><br>
                   <input type="text" size="20" id="polygon_coords"/><br /> 
                   <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
                 </div>
 
                 <div class="form-group">
+                  <label for="polygon_height" class="control-label">Polygon Height</label><br>
+                  <input type="text" size="20" class="form-control" id="polygon_height" placeholder="e.g. 1.234" required>
+                </div>
+
+                <div class="form-group">
+                  <button id="clearPolygonCoordsInput" type="button" class="btn btn-primary" onclick="clearPolygonCoords()">Clear input field</button>
                   <button id="startPolygonUpload" type="button" class="btn btn-primary" onclick="submitPolygonClick()">Submit</button><br>
                   <div id="polygonDataUploadResult">The result of the polygon upload goes here</div>   
                 </div>
@@ -336,7 +342,7 @@
 
     // Loads data to map
     function refreshModel(dataSource3) {
-      viewer.dataSources.removeAll();
+      viewer.dataSources.removeAll(); // remove old data
       var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location').then(
         function(dataSource3) {
           viewer.dataSources.add(dataSource3);
