@@ -66,11 +66,17 @@ function showArrayCoords(coords) {
 
   document.getElementById("linestring_coords").value = innerHtml; //parse linestring coords back to webpage
   document.getElementById("polygon_coords").value = poly_innerHtml; //parse polygon coords back to webpage
-  alert(innerHtml);
+  //alert(innerHtml); // To check if get the latlng strings by clicks 
 }
 
 function clearLineCoords() {
   document.getElementById("linestring_coords").value = "";
+  clickCoords = [];
+  alert(clickCoords);
+}
+
+function clearPolygonCoords() {
+  document.getElementById("polygon_coords").value = "";
   clickCoords = [];
   alert(clickCoords);
 }
