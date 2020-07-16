@@ -338,16 +338,19 @@
       },
     });
 
-    
-    // Test function to extrude geometry
+  
+    // function to extrude polygon 
     function refreshModel(dataSource3) {
       viewer.dataSources.removeAll(); // remove old data
+
+      // Then load the data again
       var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location').then(
         function(dataSource3) {
           var p = dataSource3.entities.values;
-          for (var i = 0; i < p.length; i++) {
-            p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file
-            //alert(p[i].polygon.extrudedHeight);
+          for (var i = 0; i < p.length; i++) { 
+            if (p[i].properties.height > 0) { // make sure extrude something when it has height otherwise it would crash 
+              p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file  
+            }          
           }
           viewer.dataSources.add(dataSource3);
           viewer.zoomTo(dataSource3);
@@ -356,47 +359,12 @@
     }
 
 
-
-
-
-
-    // Loads data to map
-    // function refreshModel(dataSource3) {
-    //   viewer.dataSources.removeAll(); // remove old data
-    //   var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location').then(
-    //     function(dataSource3) {
-    //       viewer.dataSources.add(dataSource3);
-    //       viewer.zoomTo(dataSource3);
-    //     }
-    //   )
-    // }
-
-
-
-
     // Remove all the data
     function removeModels(){
       viewer.dataSources.removeAll();
     }
 
     
-
-    // The function to extrude from geojson file 
-    // 3D geojson file from: https://docs.mapbox.com/mapbox-gl-js/example/3d-extrusion-floorplan/
-    // var dataSource = Cesium.GeoJsonDataSource.load('https://docs.mapbox.com/mapbox-gl-js/assets/indoor-3d-map.geojson').then(
-    //   function(dataSource) {
-    //     var p = dataSource.entities.values;
-    //       for (var i = 0; i < p.length; i++) {
-    //         p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the height in geojson file
-    //       }
-    //       viewer.dataSources.add(dataSource);
-    //       viewer.zoomTo(dataSource);
-    //   }
-    // );
-
-
-
-
 
 
     // The function to show cursor latlng
