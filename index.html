@@ -21,6 +21,8 @@
 
 
 
+
+
     <!-- js functionality to get ports -->
     <script src="js/utilities.js"></script> 
 
@@ -32,6 +34,11 @@
 
     <!-- js to track latlng clicks --> 
     <script src="js/getLatlng.js"></script>
+
+    <!-- js to load geojson --> 
+    <script src="Alvis_New1.js"></script>
+
+   
 
 
 
@@ -259,7 +266,6 @@
         <button id="refreshModel" type="button" class="btn btn-primary" onclick="refreshModel()">Refresh Model</button>
         <button id="removeModels" type="button" class="btn btn-primary" onclick="removeModels()">Remove Models</button>
 
-  
 
        </ul>
        <!-- End of Sidebar -->
@@ -338,7 +344,9 @@
       },
     });
 
+
   
+
     // function to extrude polygon 
     function refreshModel(dataSource3) {
       viewer.dataSources.removeAll(); // remove old data
