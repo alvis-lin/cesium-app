@@ -35,8 +35,7 @@
     <!-- js to track latlng clicks --> 
     <script src="js/getLatlng.js"></script>
 
-    <!-- js to load geojson --> 
-    <script src="Alvis_New1.js"></script>
+    
 
    
 
@@ -342,6 +341,28 @@
         closeTop: false,
         closeBottom: false,
       },
+    });
+
+
+    // Grant CesiumJS access to your ion assets
+    Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzMjhmNWJlYy05OGM4LTQ2MTgtOTFlZC1mZTE0YmEzNDNhZmMiLCJpZCI6Mjc2MDgsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODk4MDk2NDV9.lPVb7dzHnqA6dSc14wNlbNTiiwNecYhMRdXub1delsk";
+
+
+
+
+
+    var promise = Cesium.IonResource.fromAssetId(126099)
+    .then(function (resource) {
+      return Cesium.GeoJsonDataSource.load(resource);
+    })
+    .then(function (dataSource) {
+      return viewer.dataSources.add(dataSource);
+    })
+    .then(function (dataSource) {
+      return viewer.zoomTo(dataSource);
+    })
+    .otherwise(function (error) {
+      console.log(error);
     });
 
 
