@@ -26,9 +26,6 @@
     <!-- js functionality to get ports -->
     <script src="js/utilities.js"></script> 
 
-    <!-- js functionality to add/remove model layer to cesium globe -->
-    <!-- <script src="js/modelMapLayer.js"></script>  -->
-
     <!-- js to check and upload form --> 
     <script src="js/cesiumCheckForm.js"></script>
 
@@ -47,6 +44,25 @@
 
     <title>Editing in 3D</title>
     <!-- adapted from: https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
+
+
+
+    <style>
+        @import url(https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Widgets/widgets.css);
+        html, body, #cesiumContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .toolbar-left {
+            display: block;
+            position: absolute;
+            top: 20px;
+            left: 250px;
+        }
+    </style>
 
   </head>
   <body id="page-top">
@@ -272,6 +288,10 @@
        <div id="content-wrapper" class="d-flex flex-column">
         <!-- cesium div -->
         <div id="cesiumContainer" style="height: :50%"></div>
+        <div class="toolbar-left">
+          <button onclick="alert('You clicked btn 1!');">Button 1</button>
+          <button onclick="alert('You clicked btn 2!');">Button 2</button>
+        </div>
       </div>
       <!-- End of Main Content -->
     </div>
@@ -343,28 +363,13 @@
       },
     });
 
-
-    // Grant CesiumJS access to your ion assets
-    Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzMjhmNWJlYy05OGM4LTQ2MTgtOTFlZC1mZTE0YmEzNDNhZmMiLCJpZCI6Mjc2MDgsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODk4MDk2NDV9.lPVb7dzHnqA6dSc14wNlbNTiiwNecYhMRdXub1delsk";
-
-
-
-
-
-    var promise = Cesium.IonResource.fromAssetId(126099)
-    .then(function (resource) {
-      return Cesium.GeoJsonDataSource.load(resource);
-    })
-    .then(function (dataSource) {
-      return viewer.dataSources.add(dataSource);
-    })
-    .then(function (dataSource) {
-      return viewer.zoomTo(dataSource);
-    })
-    .otherwise(function (error) {
-      console.log(error);
-    });
-
+    //test code to load multipolygon geojson file and plot on the map
+    // var dataSource1 = Cesium.GeoJsonDataSource.load('../new.geojson').then(
+    //   function(dataSource1) {
+    //     viewer.dataSources.add(dataSource1);
+    //     viewer.zoomTo(dataSource1);
+    //   }
+    // );
 
   
 
