@@ -305,15 +305,6 @@ function formEditValidation() {
 }
 
 
-
-
-
-
-
-
-
-
-
 function insertEditData() { 
   alert ("start Edit data upload"); 
 
@@ -357,6 +348,104 @@ function editDataUploaded(data) {
   // change the DIV to show the response 
   document.getElementById("dataEditResult").innerHTML = JSON.stringify(data); 
 }
+
+
+
+
+
+
+
+
+
+
+function submitMoveClick() {
+  if (formEditValidation()) {
+    insertEditData();
+      alert("Thank you for your time! Your model have been moved!");
+      refreshModel();
+      return true;
+  } else {
+      return false;
+  }
+}
+
+
+function formMoveValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("model_id").value == "") {
+    alert("Please fill in Model ID!");
+    flag = false;
+  }
+
+  // if one of the blank is not filled in latitude or longitude part, an alert will show up 
+  if (document.getElementById("move_x").value == "" || document.getElementById("move_y").value == "" || document.getElementById("move_z").value == "") {
+    alert("Please enter the parameters to move the model!");
+    flag = false;
+  }  
+
+  return flag;
+}
+
+
+function insertMoveData() { 
+  alert ("start move data upload"); 
+
+  // getting text values
+  var model_id = document.getElementById("model_id").value;
+  // geometry 
+  var latitude = document.getElementById("move_y").value;
+  var longitude = document.getElementById("move_x").value;
+  var altitude = document.getElementById("move_z").value;
+  
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_id=" + model_id;
+  postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
+  alert(postString);
+
+  processMoveData(postString);
+}
+
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processMoveData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/moveModels" 
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "POST", 
+    success: function(data){
+      console.log(data); 
+      moveDataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function moveDataUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("dataMoveResult").innerHTML = JSON.stringify(data); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
