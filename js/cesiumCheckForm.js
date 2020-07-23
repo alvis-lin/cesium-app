@@ -359,8 +359,8 @@ function editDataUploaded(data) {
 
 
 function submitMoveClick() {
-  if (formEditValidation()) {
-    insertEditData();
+  if (formMoveValidation()) {
+    insertMoveData();
       alert("Thank you for your time! Your model have been moved!");
       refreshModel();
       return true;
@@ -374,8 +374,8 @@ function formMoveValidation() {
   flag = true;
 
   // make sure the user fill in the blank, or an alert will show up
-  if (document.getElementById("model_id").value == "") {
-    alert("Please fill in Model ID!");
+  if (document.getElementById("move_model_id").value == "") {
+    alert("Please fill in Model ID to move!");
     flag = false;
   }
 
@@ -393,7 +393,7 @@ function insertMoveData() {
   alert ("start move data upload"); 
 
   // getting text values
-  var model_id = document.getElementById("model_id").value;
+  var model_id = document.getElementById("move_model_id").value;
   // geometry 
   var latitude = document.getElementById("move_y").value;
   var longitude = document.getElementById("move_x").value;
