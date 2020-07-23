@@ -278,6 +278,7 @@ function submitEditClick() {
   if (formEditValidation()) {
     insertEditData();
       alert("Thank you for your time! Your model have been edited!");
+      refreshModel();
       return true;
   } else {
       return false;
