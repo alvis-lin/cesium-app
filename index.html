@@ -381,35 +381,6 @@
     // viewer.zoomTo(dataSource);
 
 
-    var blueBox = viewer.entities.add({
-      name: "Blue box",
-      position: Cesium.Cartesian3.fromDegrees(-114.0, 40.0, 300000.0),
-      box: {
-        dimensions: new Cesium.Cartesian3(400000.0, 300000.0, 500000.0),
-        material: Cesium.Color.BLUE,
-      },
-    });
-
-
-    // example from Ceisum sandcastle 
-    // From: https://sandcastle.cesium.com/index.html?src=Polygon.html [Accessed on 8 Jul, 2020]
-    var greenPolygon = viewer.entities.add({
-      name: "Green extruded polygon",
-      polygon: {
-        hierarchy: Cesium.Cartesian3.fromDegreesArray([
-          -108.0,
-          42.0,
-          -100.0,
-          42.0,
-          -104.0,
-          40.0,
-        ]),
-        extrudedHeight: 500000.0,
-        material: Cesium.Color.GREEN,
-        closeTop: false,
-        closeBottom: false,
-      },
-    });
 
     // Test code to load multipolygon geojson file and plot on the map
     // From: https://gis.stackexchange.com/questions/271269/union-merge-3d-polygons-polyhedralsurface-z-each-with-different-heights-to-out
