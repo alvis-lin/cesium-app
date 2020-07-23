@@ -325,8 +325,22 @@
     var viewer = new Cesium.Viewer('cesiumContainer', {
         sceneMode : Cesium.SceneMode.SCENE3D,
         timeline : false,
-        animation : false
+        animation : false,
+        selectionIndicator : false, // test picking
+        // infoBox : false // test picking
     });
+
+    // Adapt from: https://groups.google.com/forum/#!topic/cesium-dev/sfm049HSQgk [Accessed on: 22 July, 2020]
+    var scene = viewer.scene;
+    var handler;
+    handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+    handler.setInputAction(function(click) {
+        var pickedObject = scene.pick(click.position);
+        if (Cesium.defined(pickedObject)) {
+            alert(pickedObject.id.id.model_id);
+        }
+    }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+
 
     // var dataSource = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/30281');
     // viewer.dataSources.add(dataSource);
@@ -363,7 +377,8 @@
       },
     });
 
-    //test code to load multipolygon geojson file and plot on the map
+    // Test code to load multipolygon geojson file and plot on the map
+    // From: https://gis.stackexchange.com/questions/271269/union-merge-3d-polygons-polyhedralsurface-z-each-with-different-heights-to-out
     // var dataSource1 = Cesium.GeoJsonDataSource.load('../new.geojson').then(
     //   function(dataSource1) {
     //     viewer.dataSources.add(dataSource1);
@@ -373,8 +388,8 @@
 
   
 
-    // function to extrude polygon 
-    function refreshModel(dataSource3) {
+    // function to refresh the geometry layer
+    function refreshModel() {
       viewer.dataSources.removeAll(); // remove old data
 
       // Then load the data again
