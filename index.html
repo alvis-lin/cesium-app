@@ -88,14 +88,14 @@
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <!-- the next line is the cog image -->
             <i class="fas fa-fw fa-cog"></i>
-            <span>Create Model</span>
+            <span>Create Point</span>
           </a>
           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
             <div class="bg-white py-2 collapse-inner rounded">
               <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
               <form name="questionForm" data-toggle="validator" role="form">
                 <div class="form-group">
-                  <label for="model_name" class="control-label">Model Name</label><br>
+                  <label for="model_name" class="control-label">Point Name</label><br>
                   <input type="text" size="20" class="form-control" id="model_name" placeholder="e.g. Pokemon Centre" required>
                 </div>
 
@@ -239,7 +239,7 @@
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
             <!-- the next line is the cog image -->
             <i class="fas fa-fw fa-cog"></i>
-            <span>EDIT Model</span>
+            <span>EDIT Point Location</span>
           </a>
           <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
             <div class="bg-white py-2 collapse-inner rounded">
@@ -251,11 +251,11 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="latitude" class="control-label">Latitude</label><br>
+                  <label for="latitude" class="control-label">New Latitude</label><br>
                   <input type="text" size="20" id="latitude_edit"/><br /> 
-                  <label for="longitude" class="control-label">Longitude</label><br>
+                  <label for="longitude" class="control-label">New Longitude</label><br>
                   <input type="text" size="20" id="longitude_edit"/><br />
-                  <label for="altitude" class="control-label">Altitude</label><br>
+                  <label for="altitude" class="control-label">New Altitude</label><br>
                   <input type="text" size="20" id="altitude_edit"/><br />
                   <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
                 </div>
@@ -278,7 +278,7 @@
         <hr>
 
         <button id="trackBtn" type="button" class="btn btn-primary" onclick="showCoords()">Show coords</button>
-        <button id="refreshModel" type="button" class="btn btn-primary" onclick="refreshModel()">Refresh Model</button>
+        <button id="refreshModel" type="button" class="btn btn-primary" onclick="refreshModel()">Refresh Models</button>
         <button id="removeModels" type="button" class="btn btn-primary" onclick="removeModels()">Remove Models</button>
 
 
@@ -459,9 +459,12 @@
           var altitudeString = cartographic.height.toFixed(5); // The unit for height is metre, so no need to convert to degrees
    
           //alert(longitudeString + ', ' + latitudeString + ', ' + altitudeString);
+          // These are for the coords in 
           document.getElementById("latitude").value = latitudeString;
           document.getElementById("longitude").value = longitudeString;
           document.getElementById("altitude").value = altitudeString;
+
+          // These are for the coords in "Edit Model" form
           document.getElementById("latitude_edit").value = latitudeString;
           document.getElementById("longitude_edit").value = longitudeString;
           document.getElementById("altitude_edit").value = altitudeString;
