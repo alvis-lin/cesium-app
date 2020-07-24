@@ -439,7 +439,7 @@ function moveDataUploaded(data) {
 
 
 
-// // CODE TO EXTRUDE MODEL BY HEIGHT
+// CODE TO EXTRUDE MODEL BY HEIGHT
 
 function submitExtrudeClick() {
   if (formExtrudeValidation()) {
@@ -463,7 +463,7 @@ function formExtrudeValidation() {
 
   // if one of the blank is not filled in latitude or longitude part, an alert will show up 
   if (document.getElementById("extrude_height").value == "") {
-    alert("Please enter the height to move the model!");
+    alert("Please enter the height to extruded the model!");
     flag = false;
   }  
 
@@ -519,6 +519,80 @@ function extrudeDataUploaded(data) {
 
 
 
+
+
+
+// // CODE TO ROTATE MODEL BY DEGREE
+
+function submitRotateClick() {
+  if (formRotateValidation()) {
+    insertRotateData();
+    alert("Thank you for your time! Your model have been rotated!");
+    refreshModel();
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function formRotateValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("rotate_model_id").value == "") {
+    alert("Please fill in Model ID to rotate!");
+    flag = false;
+  }
+
+  // if one of the blank is not filled in latitude or longitude part, an alert will show up 
+  if (document.getElementById("rotate_degree").value == "") {
+    alert("Please enter the height to rotate the model!");
+    flag = false;
+  }  
+
+  return flag;
+}
+
+function insertRotateData() { 
+  alert ("start extruded data upload"); 
+
+  // getting text values
+  var model_id = document.getElementById("rotate_model_id").value;
+  // geometry 
+  var rotate_degree = document.getElementById("rotate_degree").value;
+
+  
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_id=" + model_id;
+  postString = postString + "&rotate_degree="+ rotate_degree;
+  alert(postString);
+
+  processRotateData(postString);
+}
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processRotateData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/rotateModel" 
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "POST", 
+    success: function(data){
+      console.log(data); 
+      rotateDataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function rotateDataUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("dataRotateResult").innerHTML = JSON.stringify(data); 
+}
 
 
 
