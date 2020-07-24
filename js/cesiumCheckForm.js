@@ -2,15 +2,17 @@
 // then the valid form data will be uploaded to the server
 
 
+// CODE TO CREATE POINT
 // only start uploading after all the data in the question setting form is confirmed as valid
 // Adapted from: https://stackoverflow.com/questions/39495581/how-to-generate-alert-when-clicking-submit-button-only-when-the-html-form-is-fu
 function submitClick() {
   if (formValidation()) {
   	insertData();
-    	alert("Thank you for your time! Your model have been submitted!");
-    	return true;
+  	alert("Thank you for your time! Your model have been submitted!");
+    refreshModel();
+  	return true;
   } else {
-    	return false;
+    return false;
   }
 }
 
@@ -35,11 +37,10 @@ function formValidation() {
   return flag;
 }
 
-
 // converting the data of the question setting form to postString to pass to the server
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function insertData() { 
-  alert ("start data upload"); 
+  //alert ("start data upload"); 
 
   // getting text values
   var model_name = document.getElementById("model_name").value;
@@ -54,11 +55,10 @@ function insertData() {
   var altitude = document.getElementById("altitude").value;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
 
-  alert(postString);
+  //alert(postString);
 
   processData(postString);
 }
-
 
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
@@ -76,7 +76,6 @@ function processData(postString) {
 	}); 
 }
 
-
 // processing the response from the data server and show the result on the page
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function dataUploaded(data) { 
@@ -90,17 +89,17 @@ function dataUploaded(data) {
 
 
 
-// CODE FOR LINESTRING
+// CODE TO CREATE LINESTRING
 function submitLineClick() {
   if (formLineValidation()) {
     insertLineData();
-      alert("Thank you for your time! Your linestring have been submitted!");
-      return true;
+    alert("Thank you for your time! Your linestring have been submitted!");
+    refreshModel();
+    return true;
   } else {
-      return false;
+    return false;
   }
 }
-
 
 // check if all the blanks in the form are filled and data is valid when user clicks submit button
 // and start to upload data to server only if all the data is valid
@@ -123,11 +122,10 @@ function formLineValidation() {
   return flag;
 }
 
-
 // converting the data of the question setting form to postString to pass to the server
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function insertLineData() { 
-  alert ("start line data upload"); 
+  //alert ("start line data upload"); 
 
   // getting text values
   var model_name = document.getElementById("line_name").value;
@@ -146,7 +144,6 @@ function insertLineData() {
   processLineData(postString);
 }
 
-
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function processLineData(postString) { 
@@ -162,7 +159,6 @@ function processLineData(postString) {
     data: postString 
   }); 
 }
-
 
 // processing the response from the data server and show the result on the page
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
@@ -186,17 +182,17 @@ function lineDataUploaded(data) {
 
 
 
-// CODE FOR POLYGON
+// CODE TO CREATE POLYGON
 function submitPolygonClick() {
   if (formPolygonValidation()) {
     insertPolygonData();
-      alert("Thank you for your time! Your polygon have been submitted!");
-      return true;
+    alert("Thank you for your time! Your polygon have been submitted!");
+    refreshModel();
+    return true;
   } else {
-      return false;
+    return false;
   }
 }
-
 
 function formPolygonValidation() {
   flag = true;
@@ -222,11 +218,10 @@ function formPolygonValidation() {
   return flag;
 }
 
-
 // converting the data of the question setting form to postString to pass to the server
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function insertPolygonData() { 
-  alert ("start polygon data upload"); 
+  //alert ("start polygon data upload"); 
 
   // getting text values
   var model_name = document.getElementById("polygon_name").value;
@@ -237,11 +232,10 @@ function insertPolygonData() {
   var postString = "model_name=" + model_name;
   postString = postString + "&polygon_height="+ polygon_height;
   postString = postString + "&polygon_coords="+ polygon_coords;
-  alert(postString);
+  //alert(postString);
 
   processPolygonData(postString);
 }
-
 
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
@@ -259,7 +253,6 @@ function processPolygonData(postString) {
   }); 
 }
 
-
 // processing the response from the data server and show the result on the page
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function polygonDataUploaded(data) { 
@@ -273,6 +266,7 @@ function polygonDataUploaded(data) {
 
 
 
+// // CODE TO MOVE POINT TO NEW COORDS
 
 function submitEditClick() {
   if (formEditValidation()) {
@@ -319,7 +313,7 @@ function insertEditData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
-  alert(postString);
+  //alert(postString);
 
   processEditData(postString);
 }
@@ -328,7 +322,7 @@ function insertEditData() {
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function processEditData(postString) { 
-  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/editModels" 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/editModel" 
   $.ajax({ 
     url: serviceUrl, 
     crossDomain: true, 
@@ -355,17 +349,16 @@ function editDataUploaded(data) {
 
 
 
-
-
+// // CODE TO MOVE MODEL BY X, Y, Z DEGREE AND METER
 
 function submitMoveClick() {
   if (formMoveValidation()) {
     insertMoveData();
-      alert("Thank you for your time! Your model have been moved!");
-      refreshModel();
-      return true;
+    alert("Thank you for your time! Your model have been moved!");
+    refreshModel();
+    return true;
   } else {
-      return false;
+    return false;
   }
 }
 
@@ -390,7 +383,7 @@ function formMoveValidation() {
 
 
 function insertMoveData() { 
-  alert ("start move data upload"); 
+  //alert ("start move data upload"); 
 
   // getting text values
   var model_id = document.getElementById("move_model_id").value;
@@ -403,7 +396,7 @@ function insertMoveData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
-  alert(postString);
+  //alert(postString);
 
   processMoveData(postString);
 }
@@ -412,7 +405,7 @@ function insertMoveData() {
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function processMoveData(postString) { 
-  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/moveModels" 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/moveModel" 
   $.ajax({ 
     url: serviceUrl, 
     crossDomain: true, 
@@ -437,6 +430,90 @@ function moveDataUploaded(data) {
 
 
 
+
+
+
+
+
+
+
+
+
+// // CODE TO EXTRUDE MODEL BY HEIGHT
+
+function submitExtrudeClick() {
+  if (formExtrudeValidation()) {
+    insertExtrudeData();
+    alert("Thank you for your time! Your model have been extruded!");
+    refreshModel();
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+function formExtrudeValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("extrude_model_id").value == "") {
+    alert("Please fill in Model ID to extrude!");
+    flag = false;
+  }
+
+  // if one of the blank is not filled in latitude or longitude part, an alert will show up 
+  if (document.getElementById("extrude_height").value == "") {
+    alert("Please enter the height to move the model!");
+    flag = false;
+  }  
+
+  return flag;
+}
+
+
+function insertExtrudeData() { 
+  alert ("start extruded data upload"); 
+
+  // getting text values
+  var model_id = document.getElementById("extrude_model_id").value;
+  // geometry 
+  var extrude_height = document.getElementById("extrude_height").value;
+
+  
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_id=" + model_id;
+  postString = postString + "&extrude_height="+ extrude_height;
+  alert(postString);
+
+  processExtrudeData(postString);
+}
+
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processExtrudeData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/extrudeModel" 
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "POST", 
+    success: function(data){
+      console.log(data); 
+      extrudeDataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function extrudeDataUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("dataExtrudeResult").innerHTML = JSON.stringify(data); 
+}
 
 
 
@@ -483,6 +560,7 @@ function deleteRecord(){
     data: deleteString
   });
 }
+
 function dataDeleted(data){
   document.getElementById("dataDeleteResult").innerHTML = JSON.stringify(data);
 }

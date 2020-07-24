@@ -84,6 +84,8 @@
 
         <!-- hold form to set up quiz questions and only show on big screen (question)-->
         <!-- Adapted code for creating form: https://www.w3schools.com/tags/att_input_required.asp -->
+
+        <!-- Create Point -->
         <li class="nav-item d-none d-lg-block" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <!-- the next line is the cog image -->
@@ -118,7 +120,7 @@
           </div>
         </li>
 
-
+        <!-- Create Line -->
         <li class="nav-item d-none d-lg-block" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
             <!-- the next line is the cog image -->
@@ -150,6 +152,7 @@
           </div>
         </li>
 
+        <!-- Create Polygon -->
         <li class="nav-item d-none d-lg-block" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
             <!-- the next line is the cog image -->
@@ -186,11 +189,7 @@
           </div>
         </li>
 
-
-
-
-
-
+        <!-- Delete Model -->
         <li class="nav-item d-none d-lg-block" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <!-- the next line is the cog image -->
@@ -218,7 +217,7 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-
+        <!-- Button -->
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
@@ -269,7 +268,7 @@
           </div>
         </li>
 
-
+        <!-- Move Model -->
         <li class="nav-item d-none d-lg-block" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
             <!-- the next line is the cog image -->
@@ -303,12 +302,38 @@
           </div>
         </li>
 
+        <!-- Extrude Model -->
+        <li class="nav-item d-none d-lg-block" >
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+            <!-- the next line is the cog image -->
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Extrude Model</span>
+          </a>
+          <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
+            <div class="bg-white py-2 collapse-inner rounded">
+              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
+              <form name="questionForm" data-toggle="validator" role="form">
+                <div class="form-group">
+                  <label for="model_name" class="control-label">Model ID</label><br>
+                  <input type="text" size="20" class="form-control" id="move_model_id" placeholder="e.g. 722" required>
+                </div>
 
-        <!-- cursor latlng goes to here, put "hidden" to hide it when needed-->
-        <a class="sidebar-header d-flex align-items-center justify-content-center" >
-          <a style="color: white">Cursor Latlng: </a>
-          <div id="demo" style="z-index: 2000; color: white"></div> 
-        </a>
+                <div class="form-group">
+                  <label for="extrude_height" class="control-label">Extrude Height (Metre)</label><br>
+                  <input type="text" size="20" id="extrude_height"/><br /> 
+        
+
+                <div class="form-group">
+                  <button id="extrudeBtn" type="button" class="btn btn-primary" onclick="submitExtrudeClick()">Extrude Model</button><br>
+                  <div id="dataExtrudeResult">The result of the extrude goes here</div>   
+                </div>
+              </form>
+            </div>
+          </div>
+        </li>
+
+
+        
         <hr>
 
         <button id="trackBtn" type="button" class="btn btn-primary" onclick="showCoords()">Show coords</button>
