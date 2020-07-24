@@ -452,7 +452,6 @@ function submitExtrudeClick() {
   }
 }
 
-
 function formExtrudeValidation() {
   flag = true;
 
@@ -471,9 +470,8 @@ function formExtrudeValidation() {
   return flag;
 }
 
-
 function insertExtrudeData() { 
-  alert ("start extruded data upload"); 
+  //alert ("start extruded data upload"); 
 
   // getting text values
   var model_id = document.getElementById("extrude_model_id").value;
@@ -485,11 +483,10 @@ function insertExtrudeData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id;
   postString = postString + "&extrude_height="+ extrude_height;
-  alert(postString);
+  //alert(postString);
 
   processExtrudeData(postString);
 }
-
 
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
@@ -506,7 +503,6 @@ function processExtrudeData(postString) {
     data: postString 
   }); 
 }
-
 
 // processing the response from the data server and show the result on the page
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
