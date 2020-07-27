@@ -44,7 +44,7 @@ function insertData() {
 
   // getting text values
   var model_name = document.getElementById("model_name").value;
-  alert(model_name + " ");
+  //alert(model_name + " ");
 
   // PostString will hold all the parameters to pass to the server
   var postString = "model_name=" + model_name;
