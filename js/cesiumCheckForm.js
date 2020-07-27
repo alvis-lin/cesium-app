@@ -554,7 +554,7 @@ function formRotateValidation() {
 }
 
 function insertRotateData() { 
-  alert ("start extruded data upload"); 
+  //alert ("start extruded data upload"); 
 
   // getting text values
   var model_id = document.getElementById("rotate_model_id").value;
@@ -566,7 +566,7 @@ function insertRotateData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id;
   postString = postString + "&rotate_degree="+ rotate_degree;
-  alert(postString);
+  //alert(postString);
 
   processRotateData(postString);
 }
