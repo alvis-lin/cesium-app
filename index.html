@@ -380,9 +380,11 @@
         <!-- cesium div -->
         <div id="cesiumContainer" style="height: :50%"></div>
         <div class="toolbar-left">
-          <button onclick="refreshModel();">Refresh WGS84 Models</button>
-          <button onclick="refreshModel_27700();">Refresh 27700 Models</button>
-          <button onclick="alert('You clicked btn 2!');">Button 2</button>
+          <button onclick="refresh84Model();">Load WGS84 Models</button>
+          <button onclick="refresh84ModelBuffer();">Load WGS 84 Buffer Models</button>
+          <button onclick="refreshGBModel();">Load National Grid Models</button>
+          <button onclick="refreshGBModelBuffer();">Load National Grid Buffer Models</button>
+          <button onclick="removeModels();">Remove Models</button>
         </div>
       </div>
       <!-- End of Main Content -->
@@ -461,16 +463,26 @@
     //   }
     // );
 
+
+
+
+    // to refresh layers when ever there is a change
+    function refreshModel() {
+      refresh84Model();
+      refresh84ModelBuffer();
+      refreshGBModel();
+      refreshGBModelBuffer();
+    }
+
   
 
-    // function to refresh the geometry layer
-    function refreshModel() {
-      //viewer.dataSources.removeAll(); // remove old data
+    // function to load/refresh WGS84 geometry layer
+    function refresh84Model() {
       viewer.dataSources.remove(dataSource3); // remove old data
 
 
       // Then load the data again
-      var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getExtrudedGeoJSON/model/location').then(
+      var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location/4326').then(
         function(dataSource3) {
           var p = dataSource3.entities.values;
           for (var i = 0; i < p.length; i++) { 
@@ -485,13 +497,13 @@
     }
 
 
-    // function to refresh the 27700 geometry layer
-    function refreshModel_27700() {
+    // function to load/refresh buffer of WGS84 geometry layer
+    function refresh84ModelBuffer() {
       viewer.dataSources.remove(dataSource4); // remove old data
 
 
       // Then load the data again
-      var dataSource4 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getExtrudedGeoJSON/model/location_27700').then(
+      var dataSource4 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/buffer/4326').then(
         function(dataSource4) {
           var p = dataSource4.entities.values;
           for (var i = 0; i < p.length; i++) { 
@@ -504,6 +516,55 @@
         }
       )
     }
+
+
+
+    // function to load/refresh National Grid geometry layer
+    function refreshGBModel() {
+      viewer.dataSources.remove(dataSource5); // remove old data
+
+
+      // Then load the data again
+      var dataSource5 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location_27700/27700').then(
+        function(dataSource5) {
+          var p = dataSource5.entities.values;
+          for (var i = 0; i < p.length; i++) { 
+            if (p[i].properties.height > 0) { // make sure extrude something when it has height otherwise it would crash 
+              p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file  
+            }          
+          }
+          viewer.dataSources.add(dataSource5);
+          viewer.zoomTo(dataSource5);
+        }
+      )
+    }
+
+
+
+    // function to load/refresh National Grid geometry layer
+    function refreshGBModelBuffer() {
+      viewer.dataSources.remove(dataSource6); // remove old data
+
+
+      // Then load the data again
+      var dataSource6 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/buffer_27700/27700').then(
+        function(dataSource6) {
+          var p = dataSource6.entities.values;
+          for (var i = 0; i < p.length; i++) { 
+            if (p[i].properties.height > 0) { // make sure extrude something when it has height otherwise it would crash 
+              p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file  
+            }          
+          }
+          viewer.dataSources.add(dataSource6);
+          viewer.zoomTo(dataSource6);
+        }
+      )
+    }
+
+
+
+
+
 
 
     // Remove all the data
