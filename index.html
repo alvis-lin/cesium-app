@@ -380,7 +380,8 @@
         <!-- cesium div -->
         <div id="cesiumContainer" style="height: :50%"></div>
         <div class="toolbar-left">
-          <button onclick="refreshModel();">Refresh Models</button>
+          <button onclick="refreshModel();">Refresh WGS84 Models</button>
+          <button onclick="refreshModel_27700();">Refresh 27700 Models</button>
           <button onclick="alert('You clicked btn 2!');">Button 2</button>
         </div>
       </div>
@@ -464,7 +465,9 @@
 
     // function to refresh the geometry layer
     function refreshModel() {
-      viewer.dataSources.removeAll(); // remove old data
+      //viewer.dataSources.removeAll(); // remove old data
+      viewer.dataSources.remove(dataSource3); // remove old data
+
 
       // Then load the data again
       var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getExtrudedGeoJSON/model/location').then(
@@ -477,6 +480,27 @@
           }
           viewer.dataSources.add(dataSource3);
           viewer.zoomTo(dataSource3);
+        }
+      )
+    }
+
+
+    // function to refresh the 27700 geometry layer
+    function refreshModel_27700() {
+      viewer.dataSources.remove(dataSource4); // remove old data
+
+
+      // Then load the data again
+      var dataSource4 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getExtrudedGeoJSON/model/location_27700').then(
+        function(dataSource4) {
+          var p = dataSource4.entities.values;
+          for (var i = 0; i < p.length; i++) { 
+            if (p[i].properties.height > 0) { // make sure extrude something when it has height otherwise it would crash 
+              p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file  
+            }          
+          }
+          viewer.dataSources.add(dataSource4);
+          viewer.zoomTo(dataSource4);
         }
       )
     }

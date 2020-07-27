@@ -632,5 +632,6 @@ function deleteRecord(){
 }
 
 function dataDeleted(data){
+  refreshModel();
   document.getElementById("dataDeleteResult").innerHTML = JSON.stringify(data);
 }
