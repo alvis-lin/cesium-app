@@ -604,15 +604,6 @@ function rotateDataUploaded(data) {
 
 
 
-
-
-
-
-
-
-
-
-
 // delete record using datadeleted function in this code
 function deleteRecord(){
   var deleteID = document.getElementById("deleteID").value;
@@ -625,14 +616,14 @@ function deleteRecord(){
     type: "POST",
     success: function(data){
       console.log(data);
-      dataDeleted(data);     
+      dataDeleted(data);
     },
     data: deleteString
   });
+  refreshModel();
 }
 
 function dataDeleted(data){
-  refreshModel();
   document.getElementById("dataDeleteResult").innerHTML = JSON.stringify(data);
-  document.getElementById("deleteID").value = ""; // test code
+  document.getElementById("deleteID").value = ""; // to clear ID form column when delete is clicked 
 }
