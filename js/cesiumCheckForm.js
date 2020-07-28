@@ -625,7 +625,7 @@ function deleteRecord(){
     type: "POST",
     success: function(data){
       console.log(data);
-      dataDeleted(data);
+      dataDeleted(data);     
     },
     data: deleteString
   });
@@ -634,4 +634,5 @@ function deleteRecord(){
 function dataDeleted(data){
   refreshModel();
   document.getElementById("dataDeleteResult").innerHTML = JSON.stringify(data);
+  document.getElementById("deleteID").value = ""; // test code
 }
