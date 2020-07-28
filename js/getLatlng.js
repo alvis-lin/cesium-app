@@ -1,4 +1,7 @@
 // This file is to track clicks on the map to insert latitude, longitude and altitude
+// Adapted from: https://stackoverflow.com/questions/36925075/save-mouse-coordinate-in-an-array [Accessed on 6 July, 2020]
+
+
 
 // array to store click coords
 var clickCoords = [];
@@ -75,13 +78,11 @@ function showArrayCoords(coords) {
 function clearLineCoords() {
   document.getElementById("linestring_coords").value = "";
   clickCoords = [];
-  alert(clickCoords);
 }
 
 function clearPolygonCoords() {
   document.getElementById("polygon_coords").value = "";
   clickCoords = [];
-  alert(clickCoords);
 }
 
 function showCoords() {
