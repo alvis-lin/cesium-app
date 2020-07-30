@@ -526,7 +526,7 @@
 
 
       // Then load the data again
-      var dataSource5 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location_27700/27700').then(
+      var dataSource5 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location_27700/4326').then(
         function(dataSource5) {
           var p = dataSource5.entities.values;
           for (var i = 0; i < p.length; i++) { 
@@ -548,7 +548,7 @@
 
 
       // Then load the data again
-      var dataSource6 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/buffer_27700/27700').then(
+      var dataSource6 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/buffer_27700/4326').then(
         function(dataSource6) {
           var p = dataSource6.entities.values;
           for (var i = 0; i < p.length; i++) { 
