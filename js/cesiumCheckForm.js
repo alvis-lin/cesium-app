@@ -522,6 +522,93 @@ function extrudeDataUploaded(data) {
 
 
 
+// CODE TO EDIT HEIGHT
+
+function submitEditHeightClick() {
+  if (formEditHeightValidation()) {
+    insertEditHeightData();
+    alert("Thank you for your time! Your model heigt have been modified!");
+    refreshModel();
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function formEditHeightValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("edit_height_model_id").value == "") {
+    alert("Please fill in Model ID to extrude!");
+    flag = false;
+  }
+
+  // if one of the blank is not filled in latitude or longitude part, an alert will show up 
+  if (document.getElementById("extrude_height_edit").value == "") {
+    alert("Please enter the height to modify the model!");
+    flag = false;
+  }  
+
+  return flag;
+}
+
+function insertEditHeightData() { 
+  alert ("start height editing data upload"); 
+
+  // getting text values
+  var model_id = document.getElementById("edit_height_model_id").value;
+  // geometry 
+  var extrude_height_edit = document.getElementById("extrude_height_edit").value;
+
+  
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_id=" + model_id;
+  postString = postString + "&extrude_height_edit="+ extrude_height_edit;
+  alert(postString);
+
+  processEditHeightData(postString);
+}
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processEditHeightData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/editModelHeight" 
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "POST", 
+    success: function(data){
+      console.log(data); 
+      editHeightDataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function editHeightDataUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("dataEditHeightResult").innerHTML = JSON.stringify(data); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // // CODE TO ROTATE MODEL BY DEGREE
 
 function submitRotateClick() {
