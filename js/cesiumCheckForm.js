@@ -516,7 +516,10 @@ function extrudeDataUploaded(data) {
 
 
 
-
+function submitEditHeightClick() {
+  submitEditHeight();
+  
+}
 
 
 
@@ -524,7 +527,7 @@ function extrudeDataUploaded(data) {
 
 // CODE TO EDIT HEIGHT
 
-function submitEditHeightClick() {
+function submitEditHeight() {
   if (formEditHeightValidation()) {
     insertEditHeightData();
     alert("Thank you for your time! Your model heigt have been modified!");
@@ -554,7 +557,7 @@ function formEditHeightValidation() {
 }
 
 function insertEditHeightData() { 
-  alert ("start height editing data upload"); 
+  // alert ("start height editing data upload"); 
 
   // getting text values
   var model_id = document.getElementById("edit_height_model_id").value;
@@ -566,7 +569,7 @@ function insertEditHeightData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id;
   postString = postString + "&extrude_height_edit="+ extrude_height_edit;
-  alert(postString);
+  // alert(postString);
 
   processEditHeightData(postString);
 }
