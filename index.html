@@ -437,7 +437,7 @@
 
 <script>
     
-    // Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzMjhmNWJlYy05OGM4LTQ2MTgtOTFlZC1mZTE0YmEzNDNhZmMiLCJpZCI6Mjc2MDgsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODk4MDk2NDV9.lPVb7dzHnqA6dSc14wNlbNTiiwNecYhMRdXub1delsk';
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzMjhmNWJlYy05OGM4LTQ2MTgtOTFlZC1mZTE0YmEzNDNhZmMiLCJpZCI6Mjc2MDgsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODk4MDk2NDV9.lPVb7dzHnqA6dSc14wNlbNTiiwNecYhMRdXub1delsk';
 
     // Use clipping planes to selectively hide parts of the globe surface.
     // var viewer = new Cesium.Viewer('cesiumContainer', {
@@ -464,7 +464,7 @@
         var pickedObject = scene.pick(click.position);
         if (Cesium.defined(pickedObject)) {
             //alert(pickedObject.id.name); 
-            //console.log("name: ", pickedObject.id.name);
+            console.log("picked_id: ", pickedObject);
             
             // insert model_id of selected entity into form
             document.getElementById("model_id").value = pickedObject.id._properties._model_id._value;
@@ -509,7 +509,33 @@
 
   
 
-    // function to load/refresh WGS84 geometry layer
+    // TEST CODE!!!
+    // function refresh84Model() {
+    //   viewer.dataSources.remove(dataSource3); // remove old data
+
+
+    //   // Then load the data again
+    //   var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location/4326').then(
+    //     function(dataSource3) {
+    //       var p = dataSource3.entities.values;
+    //       for (var i = 0; i < p.length; i++) { 
+    //         if (p[i].properties.height > 0) { // make sure extrude something when it has height otherwise it would crash 
+    //           p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file  
+    //         }          
+    //       }
+    //       //dataSource3.material = Cesium.Color.GREEN; // Test code to change the colour
+    //       viewer.dataSources.add(dataSource3, {
+    //         stroke: Cesium.Color.RED,
+    //         fill: Cesium.Color.RED,
+    //         strokeWidth: 3
+    //       });
+    //       viewer.zoomTo(dataSource3);
+    //     }
+    //   )
+    // }
+
+
+    // Original code COPY
     function refresh84Model() {
       viewer.dataSources.remove(dataSource3); // remove old data
 
@@ -523,6 +549,7 @@
               p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file  
             }          
           }
+          dataSource3.material = Cesium.Color.GREEN; // Test code to change the colour
           viewer.dataSources.add(dataSource3);
           viewer.zoomTo(dataSource3);
         }
