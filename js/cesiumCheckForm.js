@@ -687,6 +687,85 @@ function rotateDataUploaded(data) {
 
 
 
+
+
+
+
+
+
+
+
+
+function getGeom() {
+  if (formGetGeomValidation()) {
+    insertGetGeomData();
+    alert("Retrived geometry column");
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// check if all the blanks in the form are filled and data is valid when user clicks submit button
+// and start to upload data to server only if all the data is valid
+// Adapted from: https://stackoverflow.com/questions/39495581/how-to-generate-alert-when-clicking-submit-button-only-when-the-html-form-is-fu
+function formGetGeomValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("edit_model_id").value == "") {
+    alert("Please fill in Model ID!");
+    flag = false;
+  }
+
+  return flag;
+}
+
+// converting the data of the question setting form to postString to pass to the server
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function insertGetGeomData() { 
+  alert ("start getting geom"); 
+
+  // getting text values
+  var edit_model_id = document.getElementById("edit_model_id").value;
+  alert("geom id you want: " + edit_model_id);
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "edit_model_id=" + edit_model_id;
+  alert(postString);
+
+  processGetGeomData(postString);
+}
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processGetGeomData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/getGeoJSONgeom/model/location/" + edit_model_id
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "GET", 
+    success: function(data){
+      console.log("data:", data); 
+      dataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function dataGetGeomUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("dataGetGeomUploadResult").innerHTML = JSON.stringify(data); 
+}
+
+
+
+
+
+
+
       
 
 

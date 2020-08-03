@@ -302,6 +302,43 @@
           </div>
         </li>
 
+
+        <!-- Edit Model -->
+        <li class="nav-item d-none d-lg-block" >
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
+            <!-- the next line is the cog image -->
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Edit Model</span>
+          </a>
+          <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
+            <div class="bg-white py-2 collapse-inner rounded">
+              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
+              <form name="questionForm" data-toggle="validator" role="form">
+                <div class="form-group">
+                  <label for="model_name" class="control-label">Model ID</label><br>
+                  <input type="text" size="20" class="form-control" id="edit_model_id" placeholder="e.g. 722" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="edit_geomcolumn" class="control-label">Edit geometry</label><br>
+                  <input type="text" size="20" id="edit_geomcolumn"/><br /> 
+
+        
+
+                <div class="form-group">
+                  <button id="getGeomBtn" type="button" class="btn btn-primary" onclick="getGeom()">Get Geometry</button><br>
+                  <button id="editGeomBtn" type="button" class="btn btn-primary" onclick="submitEditGeomClick()">Save Model</button><br>
+                  <div id="dataGetGeomUploadResult">The result of the move goes here</div>   
+                </div>
+              </form>
+            </div>
+          </div>
+        </li>
+
+
+
+
+
         <!-- Extrude Model -->
         <li class="nav-item d-none d-lg-block" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
@@ -473,6 +510,7 @@
             document.getElementById("edit_height_model_id").value = pickedObject.id._properties._model_id._value;
             document.getElementById("rotate_model_id").value = pickedObject.id._properties._model_id._value;
             document.getElementById("deleteID").value = pickedObject.id._properties._model_id._value;
+            document.getElementById("edit_model_id").value = pickedObject.id._properties._model_id._value;
         }
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
     // }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK); // can also set the action as double click
@@ -728,94 +766,97 @@
     // It worked, but there is offset of the cursor location and the point created
  
     // Adapt from: https://sandcastle.cesium.com/?src=Drawing%20on%20Terrain.html [Accessed on 3 August, 2020]
-    viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(
-      Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK
-    );
-    function createPoint(worldPosition) {
-      var point = viewer.entities.add({
-        position: worldPosition,
-        point: {
-          color: Cesium.Color.WHITE,
-          pixelSize: 5,
-          heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
-        },
-      });
-      return point;
-    }
-    var drawingMode = "polygon";
 
-    function drawShape(positionData) {
-      var shape;
-      if (drawingMode === "line") {
-        shape = viewer.entities.add({
-          polyline: {
-            positions: positionData,
-            clampToGround: true,
-            width: 3,
-          },
-        });
-      } else if (drawingMode === "polygon") {
-        shape = viewer.entities.add({
-          polygon: {
-            hierarchy: positionData,
-            material: new Cesium.ColorMaterialProperty(
-              Cesium.Color.WHITE.withAlpha(0.7)
-            ),
-          },
-        });
-      }
-      return shape;
-    }
+    // viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(
+    //   Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK
+    // );
+    // function createPoint(worldPosition) {
+    //   var point = viewer.entities.add({
+    //     position: worldPosition,
+    //     point: {
+    //       color: Cesium.Color.WHITE,
+    //       pixelSize: 5,
+    //       heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
+    //     },
+    //   });
+    //   return point;
+    // }
+    // var drawingMode = "polygon";
 
-    var activeShapePoints = [];
-    var activeShape;
-    var floatingPoint;
-    var handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
-    handler.setInputAction(function (event) {
-      // We use `viewer.scene.pickPosition` here instead of `viewer.camera.pickEllipsoid` so that
-      // we get the correct point when mousing over terrain.
-      var earthPosition = viewer.scene.pickPosition(event.position);
-      // `earthPosition` will be undefined if our mouse is not over the globe.
-      if (Cesium.defined(earthPosition)) {
-        if (activeShapePoints.length === 0) {
-          floatingPoint = createPoint(earthPosition);
-          activeShapePoints.push(earthPosition);
-          var dynamicPositions = new Cesium.CallbackProperty(function () {
-            if (drawingMode === "polygon") {
-              return new Cesium.PolygonHierarchy(activeShapePoints);
-            }
-            return activeShapePoints;
-          }, false);
-          activeShape = drawShape(dynamicPositions);
-        }
-        activeShapePoints.push(earthPosition);
-        createPoint(earthPosition);
-      }
-    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+    // function drawShape(positionData) {
+    //   var shape;
+    //   if (drawingMode === "line") {
+    //     shape = viewer.entities.add({
+    //       polyline: {
+    //         positions: positionData,
+    //         clampToGround: true,
+    //         width: 3,
+    //       },
+    //     });
+    //   } else if (drawingMode === "polygon") {
+    //     shape = viewer.entities.add({
+    //       polygon: {
+    //         hierarchy: positionData,
+    //         material: new Cesium.ColorMaterialProperty(
+    //           Cesium.Color.WHITE.withAlpha(0.7)
+    //         ),
+    //       },
+    //     });
+    //   }
+    //   return shape;
+    // }
 
-    handler.setInputAction(function (event) {
-      if (Cesium.defined(floatingPoint)) {
-        var newPosition = viewer.scene.pickPosition(event.endPosition);
-        if (Cesium.defined(newPosition)) {
-          floatingPoint.position.setValue(newPosition);
-          activeShapePoints.pop();
-          activeShapePoints.push(newPosition);
-        }
-      }
-    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
-    // Redraw the shape so it's not dynamic and remove the dynamic shape.
-    function terminateShape() {
-      activeShapePoints.pop();
-      drawShape(activeShapePoints);
-      viewer.entities.remove(floatingPoint);
-      viewer.entities.remove(activeShape);
-      floatingPoint = undefined;
-      activeShape = undefined;
-      activeShapePoints = [];
-    }
-    handler.setInputAction(function (event) {
-      terminateShape();
-    }, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
+    // var activeShapePoints = [];
+    // var activeShape;
+    // var floatingPoint;
+    // var handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
+    // handler.setInputAction(function (event) {
+    //   // We use `viewer.scene.pickPosition` here instead of `viewer.camera.pickEllipsoid` so that
+    //   // we get the correct point when mousing over terrain.
+    //   var earthPosition = viewer.scene.pickPosition(event.position);
+    //   // `earthPosition` will be undefined if our mouse is not over the globe.
+    //   if (Cesium.defined(earthPosition)) {
+    //     if (activeShapePoints.length === 0) {
+    //       floatingPoint = createPoint(earthPosition);
+    //       activeShapePoints.push(earthPosition);
+    //       var dynamicPositions = new Cesium.CallbackProperty(function () {
+    //         if (drawingMode === "polygon") {
+    //           return new Cesium.PolygonHierarchy(activeShapePoints);
+    //         }
+    //         return activeShapePoints;
+    //       }, false);
+    //       activeShape = drawShape(dynamicPositions);
+    //     }
+    //     activeShapePoints.push(earthPosition);
+    //     createPoint(earthPosition);
+    //   }
+    // }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+    // handler.setInputAction(function (event) {
+    //   if (Cesium.defined(floatingPoint)) {
+    //     var newPosition = viewer.scene.pickPosition(event.endPosition);
+    //     if (Cesium.defined(newPosition)) {
+    //       floatingPoint.position.setValue(newPosition);
+    //       activeShapePoints.pop();
+    //       activeShapePoints.push(newPosition);
+    //     }
+    //   }
+    // }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+    // // Redraw the shape so it's not dynamic and remove the dynamic shape.
+    // function terminateShape() {
+    //   activeShapePoints.pop();
+    //   drawShape(activeShapePoints);
+    //   viewer.entities.remove(floatingPoint);
+    //   viewer.entities.remove(activeShape);
+    //   floatingPoint = undefined;
+    //   activeShape = undefined;
+    //   activeShapePoints = [];
+    // }
+    // handler.setInputAction(function (event) {
+    //   terminateShape();
+    // }, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
+
+
 
 
 
@@ -823,6 +864,7 @@
 
     // var viewer = new Cesium.Viewer('cesiumContainer');
     // function to zoom to user location
+    
     // from: https://groups.google.com/forum/#!topic/cesium-dev/VDaXd0oODhs
     // function fly(position) {
     //     var source = new Cesium.CustomDataSource();
