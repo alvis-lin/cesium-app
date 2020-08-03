@@ -729,6 +729,7 @@ function insertGetGeomData() {
   // getting text values
   var edit_model_id = document.getElementById("edit_model_id").value;
   alert("geom id you want: " + edit_model_id);
+  console.log("geom id you want: " , edit_model_id);
 
   // PostString will hold all the parameters to pass to the server
   var postString = edit_model_id;
@@ -740,14 +741,15 @@ function insertGetGeomData() {
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function processGetGeomData(postString) { 
-  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/getGeoJSONgeom/model/location/" + edit_model_id
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/getGeoJSONgeom/model/location/" + edit_model_id.value
+  console.log("serviceUrl:" ,serviceUrl);
   $.ajax({ 
     url: serviceUrl, 
     crossDomain: true, 
     type: "GET", 
     success: function(data){
       console.log("data:", data); 
-      dataUploaded(data);
+      dataGetGeomUploaded(data);
     }, 
     data: postString 
   }); 
@@ -757,7 +759,7 @@ function processGetGeomData(postString) {
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function dataGetGeomUploaded(data) { 
   // change the DIV to show the response 
-  document.getElementById("dataGetGeomUploadResult").innerHTML = JSON.stringify(data); 
+  document.getElementById("edit_geomcolumn").value = JSON.stringify(data); 
 }
 
 
