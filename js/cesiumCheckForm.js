@@ -731,7 +731,7 @@ function insertGetGeomData() {
   alert("geom id you want: " + edit_model_id);
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "edit_model_id=" + edit_model_id;
+  var postString = edit_model_id;
   alert(postString);
 
   processGetGeomData(postString);
