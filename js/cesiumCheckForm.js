@@ -265,83 +265,84 @@ function polygonDataUploaded(data) {
 
 
 
-
-// // CODE TO MOVE POINT TO NEW COORDS
-
-function submitEditClick() {
-  if (formEditValidation()) {
-    insertEditData();
-      alert("Thank you for your time! Your model have been edited!");
-      refreshModel();
-      return true;
-  } else {
-      return false;
-  }
-}
+// DELETE IT LATER
+// CODE TO MOVE POINT TO NEW COORDS
 
 
-function formEditValidation() {
-  flag = true;
-
-  // make sure the user fill in the blank, or an alert will show up
-  if (document.getElementById("model_id").value == "") {
-    alert("Please fill in Model ID!");
-    flag = false;
-  }
-
-  // if one of the blank is not filled in latitude or longitude part, an alert will show up 
-  if (document.getElementById("latitude_edit").value == "" || document.getElementById("longitude_edit").value == "" || document.getElementById("altitude_edit").value == "") {
-    alert("Please click on the map to set location!");
-    flag = false;
-  }  
-
-  return flag;
-}
+// function submitEditClick() {
+//   if (formEditValidation()) {
+//     insertEditData();
+//       alert("Thank you for your time! Your model have been edited!");
+//       refreshModel();
+//       return true;
+//   } else {
+//       return false;
+//   }
+// }
 
 
-function insertEditData() { 
-  alert ("start Edit data upload"); 
+// function formEditValidation() {
+//   flag = true;
 
-  // getting text values
-  var model_id = document.getElementById("model_id").value;
-  // geometry 
-  var latitude = document.getElementById("latitude_edit").value;
-  var longitude = document.getElementById("longitude_edit").value;
-  var altitude = document.getElementById("altitude_edit").value;
+//   // make sure the user fill in the blank, or an alert will show up
+//   if (document.getElementById("model_id").value == "") {
+//     alert("Please fill in Model ID!");
+//     flag = false;
+//   }
+
+//   // if one of the blank is not filled in latitude or longitude part, an alert will show up 
+//   if (document.getElementById("latitude_edit").value == "" || document.getElementById("longitude_edit").value == "" || document.getElementById("altitude_edit").value == "") {
+//     alert("Please click on the map to set location!");
+//     flag = false;
+//   }  
+
+//   return flag;
+// }
+
+
+// function insertEditData() { 
+//   alert ("start Edit data upload"); 
+
+//   // getting text values
+//   var model_id = document.getElementById("model_id").value;
+//   // geometry 
+//   var latitude = document.getElementById("latitude_edit").value;
+//   var longitude = document.getElementById("longitude_edit").value;
+//   var altitude = document.getElementById("altitude_edit").value;
   
 
-  // PostString will hold all the parameters to pass to the server
-  var postString = "model_id=" + model_id;
-  postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
-  //alert(postString);
+//   // PostString will hold all the parameters to pass to the server
+//   var postString = "model_id=" + model_id;
+//   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
+//   //alert(postString);
 
-  processEditData(postString);
-}
-
-
-// post the data of the question setting form to database quizquestoin table
-// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
-function processEditData(postString) { 
-  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/editModel" 
-  $.ajax({ 
-    url: serviceUrl, 
-    crossDomain: true, 
-    type: "POST", 
-    success: function(data){
-      console.log(data); 
-      editDataUploaded(data);
-    }, 
-    data: postString 
-  }); 
-}
+//   processEditData(postString);
+// }
 
 
-// processing the response from the data server and show the result on the page
-// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
-function editDataUploaded(data) { 
-  // change the DIV to show the response 
-  document.getElementById("dataEditResult").innerHTML = JSON.stringify(data); 
-}
+// // post the data of the question setting form to database quizquestoin table
+// // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+// function processEditData(postString) { 
+//   var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/editModel" 
+//   $.ajax({ 
+//     url: serviceUrl, 
+//     crossDomain: true, 
+//     type: "POST", 
+//     success: function(data){
+//       console.log(data); 
+//       editDataUploaded(data);
+//     }, 
+//     data: postString 
+//   }); 
+// }
+
+
+// // processing the response from the data server and show the result on the page
+// // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+// function editDataUploaded(data) { 
+//   // change the DIV to show the response 
+//   document.getElementById("dataEditResult").innerHTML = JSON.stringify(data); 
+// }
 
 
 
@@ -429,6 +430,83 @@ function moveDataUploaded(data) {
 
 
 
+
+
+
+
+
+function submitEditClick() {
+  if (formEditValidation()) {
+    insertEditData();
+      alert("Thank you for your time! Your model have been edited!");
+      refreshModel();
+      return true;
+  } else {
+      return false;
+  }
+}
+
+
+function formEditValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("edit_model_id").value == "") {
+    alert("Please fill in Model ID!");
+    flag = false;
+  }
+
+  // if one of the blank is not filled in latitude or longitude part, an alert will show up 
+  if (document.getElementById("edit_geomcolumn").value == "") {
+    alert("Please fill the geometry column!");
+    flag = false;
+  }  
+
+  return flag;
+}
+
+
+function insertEditData() { 
+  alert ("start Edit data upload"); 
+
+  // getting text values
+  var model_id = document.getElementById("edit_model_id").value;
+  // geometry 
+  var edit_geomcolumn = document.getElementById("edit_geomcolumn").value;
+  
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_id=" + model_id;
+  postString = postString + "&edit_geomcolumn="+ edit_geomcolumn;
+  //alert(postString);
+
+  processEditData(postString);
+}
+
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processEditData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/editModel" 
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "POST", 
+    success: function(data){
+      console.log(data); 
+      editDataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function editDataUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("dataEditResult").innerHTML = JSON.stringify(data); 
+}
 
 
 
@@ -758,8 +836,12 @@ function processGetGeomData(postString) {
 // processing the response from the data server and show the result on the page
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function dataGetGeomUploaded(data) { 
+  
+  //data = JSON.stringify(data)
+  // remove the doubel quotation mark, adapted from: https://stackoverflow.com/questions/11233498/json-stringify-without-quotes-on-properties [Accessed on 4 August, 2020]
   // change the DIV to show the response 
-  document.getElementById("edit_geomcolumn").value = JSON.stringify(data); 
+  document.getElementById("edit_geomcolumn").value = data; 
+  //document.getElementById("edit_geomcolumn").value = data.replace(/['"]+/g, ''); 
 }
 
 
