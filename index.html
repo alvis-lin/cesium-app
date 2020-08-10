@@ -448,11 +448,11 @@
         <!-- cesium div -->
         <div id="cesiumContainer" style="height: :50%"></div>
         <div class="toolbar-left">
-          <button onclick="refresh2D84Model();">Load 2D WGS84 Models</button>
-          <button onclick="refresh84Model();">Load WGS84 Models</button>
-          <button onclick="refresh84ModelBuffer();">Load WGS 84 Buffer Models</button>
-          <button onclick="refreshGBModel();">Load National Grid Models</button>
-          <button onclick="refreshGBModelBuffer();">Load National Grid Buffer Models</button>
+          <button onclick="getOSModel();">OS Models</button>
+          <button onclick="refresh84Model();">WGS84 Models</button>
+          <button onclick="refresh84ModelBuffer();">WGS 84 Buffer</button>
+          <button onclick="refreshGBModel();">National Grid Models</button>
+          <button onclick="refreshGBModelBuffer();">National Grid Buffer Models</button>
           <button onclick="removeModels();">Remove Models</button>
         </div>
       </div>
@@ -546,7 +546,6 @@
       refreshGBModelBuffer();
     }
 
-  
 
     // TEST CODE!!!
     // function refresh84Model() {
@@ -574,14 +573,34 @@
     // }
 
     // Original code COPY
-    function refresh2D84Model() {
+    // function refresh2D84Model() {
+    //   viewer.dataSources.remove(dataSource2); // remove old data
+
+
+    //   // Then load the data again
+    //   var dataSource2 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location_2d/4326').then(
+    //     function(dataSource2) {
+    //       var p = dataSource2.entities.values;
+    //       for (var i = 0; i < p.length; i++) { 
+    //         if (p[i].properties.height > 0) { // make sure extrude something when it has height otherwise it would crash 
+    //           p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file  
+    //         }          
+    //       }
+    //       dataSource2.material = Cesium.Color.GREEN; // Test code to change the colour, didn't work so far
+    //       viewer.dataSources.add(dataSource2);
+    //       viewer.zoomTo(dataSource2);
+    //     }
+    //   )
+    // }
+
+    function getOSModel() {
       viewer.dataSources.remove(dataSource2); // remove old data
 
 
       // Then load the data again
-      var dataSource2 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location_2d/4326').then(
-        function(dataSource3) {
-          var p = dataSource3.entities.values;
+      var dataSource2 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/cesiumtest').then(
+        function(dataSource2) {
+          var p = dataSource2.entities.values;
           for (var i = 0; i < p.length; i++) { 
             if (p[i].properties.height > 0) { // make sure extrude something when it has height otherwise it would crash 
               p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file  
