@@ -875,7 +875,7 @@
 
     // Add a checkbox at the top.
     document.getElementById('toolbar').innerHTML =
-        '<label><input type="checkbox" id="showCheckbox" /> Show 84</label>';
+        '<label><input type="checkbox" id="showCheckbox" /> Show 84</label><br><label><input type="checkbox" id="showCheckbox1" /> Show OS</label>';
 
     var checkbox = document.getElementById('showCheckbox');
     checkbox.addEventListener('change', function() {
@@ -885,13 +885,33 @@
           // Show if not shown.
           if (!viewer.dataSources.contains(dataSource7)) {
               viewer.dataSources.add(dataSource7);
-              console.log("there?:", viewer.dataSources.contains(dataSource7));
               viewer.zoomTo(dataSource7);
-              console.log("there???:", viewer.dataSources.contains(dataSource7));
           }
         } else {
             alert("unticked");
             viewer.dataSources.remove(dataSource7);
+        }
+    }, false);
+
+
+    var dataSource8 = new Cesium.GeoJsonDataSource();
+    dataSource8.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
+
+    
+
+    var checkbox1 = document.getElementById('showCheckbox1');
+    checkbox1.addEventListener('change', function() {
+
+        // Checkbox state changed.
+        if (checkbox1.checked) {
+          // Show if not shown.
+          if (!viewer.dataSources.contains(dataSource8)) {
+              viewer.dataSources.add(dataSource8);
+              viewer.zoomTo(dataSource8);
+          }
+        } else {
+            alert("unticked");
+            viewer.dataSources.remove(dataSource8);
         }
     }, false);
 
