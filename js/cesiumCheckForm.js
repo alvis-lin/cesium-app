@@ -63,7 +63,7 @@ function insertData() {
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function processData(postString) { 
-	var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/insertModels" 
+	var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/insertPoint" 
 	$.ajax({ 
 		url: serviceUrl, 
 		crossDomain: true, 
