@@ -75,13 +75,13 @@
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" >
-          <div class="sidebar-brand-text mx-3" style="color: white">Web 3D GIS</div>
+          <div class="sidebar-brand-text mx-3" style="color: white; text-align: center">Web 3D GIS</div>
         </a>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
         <div class="sidebar-brand-text mx-5" style="color: white">Working Layer:</div>
-        <div id="workingLayer" style="color: white"></div>
+        <div id="working_layer" style="color: white; text-align: center"><br></div>
         <hr class="sidebar-divider">
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -604,6 +604,7 @@
 
 
       // Then load the data again
+      document.getElementById("working_layer").innerHTML = "buildings_tq2580"; 
       var dataSource2 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326').then(
         function(dataSource2) {
           var p = dataSource2.entities.values;
@@ -653,6 +654,7 @@
 
 
       // Then load the data again
+      document.getElementById("working_layer").innerHTML = "model"; 
       var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location/4326').then(
         function(dataSource3) {
           var p = dataSource3.entities.values;
