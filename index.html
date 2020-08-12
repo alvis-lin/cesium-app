@@ -76,11 +76,11 @@
         /*THIS IS TEST TO ADD TOOLBOX*/
         #controlPanel {
           position: absolute;
-          top: 100px;
+          top: 80px;
           left: 250px;
           background: rgba(42, 42, 42, 0.8);
-          padding: 5px 8px;
-          border-radius: 5px;
+          padding: 20px;
+          border-radius: 10px;
           color: white;
         }
         label {
@@ -106,7 +106,8 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
         <div class="sidebar-brand-text mx-5" style="color: white">Working Layer:</div>
-        <div id="working_layer" style="color: white; text-align: center"><br></div>
+        <div id="working_layer" style="color: white; text-align: center"></div>
+        <br>
         <hr class="sidebar-divider">
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -495,6 +496,7 @@
           <b>Control Panel</b><br/>
           Tick the box to toggle different layers<br/>
           <p>
+            <hr color="white">
             <label>
               <input id="Checkbox_model" type="checkbox" />
               <span>Model Layer</span>
@@ -502,9 +504,9 @@
             <label>
               <input id="Checkbox_OS" type="checkbox" />
               <span>OS Layer</span>
-            </label><br/>
-            <button class="cesium-button">Button 1</button>
-            <button class="cesium-button">Button 2</button>
+            </label>
+            <!-- <button class="cesium-button">Button 1</button>
+            <button class="cesium-button">Button 2</button> -->
           </p>
         </div>
 
@@ -899,7 +901,7 @@
           }
         } else {
             viewer.dataSources.remove(dataSource7);
-            document.getElementById("working_layer").innerHTML = "<br>"; // remove working layer text
+            document.getElementById("working_layer").innerHTML = ""; // remove working layer text
         }
     }, false);
 
@@ -922,7 +924,7 @@
           }
         } else {
             viewer.dataSources.remove(dataSource8);
-            document.getElementById("working_layer").innerHTML = "<br>"; // remove working layer text
+            document.getElementById("working_layer").innerHTML = ""; // remove working layer text
         }
     }, false);
 
