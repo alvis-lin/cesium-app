@@ -76,7 +76,7 @@
         /*THIS IS TEST TO ADD TOOLBOX*/
         #controlPanel {
           position: absolute;
-          top: 60px;
+          top: 260px;
           left: 250px;
           background: rgba(42, 42, 42, 0.8);
           padding: 5px 8px;
@@ -486,9 +486,11 @@
           <button onclick="removeModels();">Remove Models</button>
         </div>
 
-        <!-- TEST CODE TO ADD TOOLBAR -->
+        <!-- CODE TO ADD TWO LAYERS -->
         <div class="toolbar-left-bottom" id="toolbar"></div>
-        <!-- <div id="controlPanel">
+
+        <!-- ControlPanel -->
+        <div id="controlPanel">
           This is a floating control panel<br/>
           with a translucent background color.
           <p>
@@ -499,7 +501,7 @@
             <button class="cesium-button">Button 1</button>
             <button class="cesium-button">Button 2</button>
           </p>
-        </div> -->
+        </div>
 
 
 
@@ -596,6 +598,7 @@
     function refreshModel() {
       alert("click load 84 to refresh");
       dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location/4326');
+      dataSource8.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
       // removeModels();
       // refresh84Model();
       // refresh84ModelBuffer();
@@ -870,6 +873,10 @@
     // }, false);
 
 
+
+
+    // CODE TO TOGGLE LAYERS
+    // Adapted from: https://stackoverflow.com/questions/29184613/how-can-you-control-visibility-of-datasource-in-cesiumjs [Accessed on 12 August, 2020]
 
     var dataSource7 = new Cesium.GeoJsonDataSource();
     dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location/4326');
