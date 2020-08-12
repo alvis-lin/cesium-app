@@ -595,7 +595,7 @@
 
     // to refresh layers when ever there is a change
     function refreshModel() {
-      alert("click load 84 to refresh");
+      // reload data to update
       dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location/4326');
       dataSource8.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
       // removeModels();
@@ -895,9 +895,11 @@
           if (!viewer.dataSources.contains(dataSource7)) {
               viewer.dataSources.add(dataSource7);
               viewer.zoomTo(dataSource7);
+              document.getElementById("working_layer").innerHTML = "model"; // add working layer text
           }
         } else {
             viewer.dataSources.remove(dataSource7);
+            document.getElementById("working_layer").innerHTML = ""; // remove working layer text
         }
     }, false);
 
@@ -916,9 +918,11 @@
           if (!viewer.dataSources.contains(dataSource8)) {
               viewer.dataSources.add(dataSource8);
               viewer.zoomTo(dataSource8);
+              document.getElementById("working_layer").innerHTML = "buildings_tq2580"; // add working layer text
           }
         } else {
             viewer.dataSources.remove(dataSource8);
+            document.getElementById("working_layer").innerHTML = ""; // remove working layer text
         }
     }, false);
 
