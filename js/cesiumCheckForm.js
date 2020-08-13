@@ -53,7 +53,7 @@ function insertPointData() {
   var latitude = document.getElementById("latitude").value;
   var longitude = document.getElementById("longitude").value;
   var altitude = document.getElementById("altitude").value;
-  var tablename = document.getElementById("working_layer").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude+ "&tablename="+ tablename;
 
   alert(postString);

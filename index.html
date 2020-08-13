@@ -661,7 +661,7 @@
 
 
       // Then load the data again
-      document.getElementById("working_layer").innerHTML = "buildings_tq2580"; 
+      document.getElementById("working_layer").innerHTML = buildings_tq2580f;  
       var dataSource2 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326').then(
         function(dataSource2) {
           var p = dataSource2.entities.values;
@@ -779,22 +779,7 @@
 
     // function to load/refresh National Grid geometry layer
     function refreshGBModelBuffer() {
-      viewer.dataSources.remove(dataSource6); // remove old data
-
-
-      // Then load the data again
-      var dataSource6 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/buffer_27700/4326').then(
-        function(dataSource6) {
-          var p = dataSource6.entities.values;
-          for (var i = 0; i < p.length; i++) { 
-            if (p[i].properties.height > 0) { // make sure extrude something when it has height otherwise it would crash 
-              p[i].polygon.extrudedHeight = p[i].properties.height; //extrude using the "height" in geojson file  
-            }          
-          }
-          viewer.dataSources.add(dataSource6);
-          viewer.zoomTo(dataSource6);
-        }
-      )
+      alert(document.getElementById("working_layer").innerHTML);
     }
 
 
