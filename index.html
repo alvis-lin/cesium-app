@@ -134,7 +134,7 @@
                   <input type="text" size="20" class="form-control" id="model_name" placeholder="e.g. Pokemon Centre" required>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="latitude" class="control-label">Latitude</label><br>
                   <input type="text" size="20" id="latitude"/><br /> 
                   <label for="longitude" class="control-label">Longitude</label><br>
@@ -142,7 +142,7 @@
                   <label for="altitude" class="control-label">Altitude</label><br>
                   <input type="text" size="20" id="altitude"/><br />
                   <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
-                </div>
+                </div> -->
 
                 <div class="form-group">
                   <button id="startPointUpload" type="button" class="btn btn-primary" onclick="submitPointClick()">Submit</button><br>
@@ -259,10 +259,53 @@
           </a>
           <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-             <h6 class="collapse-header" color="white">Model</h6>
-             <button id="showModelLayer" type="button" class="btn btn-primary" width="100%" onclick="showModels()">Show Models</button><br>
-             <button id="hideModelLayer" type="button" class="btn btn-primary" onclick="removeModels()">Hide Models</button><br>       
-            </div>
+              
+              <!-- Tab links -->
+              <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'Point')" id="defaultOpen">Point</button>
+                <button class="tablinks" onclick="openCity(event, 'Line')">Line</button>
+                <button class="tablinks" onclick="openCity(event, 'Polygon')">Point</button>
+              </div>
+
+              <div id="Point" class="tabcontent">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
+                  <form name="questionForm" data-toggle="validator" role="form">
+                    <div class="form-group">
+                      <label for="model_name" class="control-label">Point Name</label><br>
+                      <input type="text" size="20" class="form-control" id="model_name" placeholder="e.g. Pokemon Centre" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="latitude" class="control-label">Latitude</label><br>
+                      <input type="text" size="20" id="latitude"/><br /> 
+                      <label for="longitude" class="control-label">Longitude</label><br>
+                      <input type="text" size="20" id="longitude"/><br />
+                      <label for="altitude" class="control-label">Altitude</label><br>
+                      <input type="text" size="20" id="altitude"/><br />
+                      <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
+                    </div>
+
+                    <div class="form-group">
+                      <button id="startPointUpload" type="button" class="btn btn-primary" onclick="submitPointClick()">Submit</button><br>
+                      <div id="pointDataUploadResult">The result of the upload goes here</div>   
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div id="Paris" class="tabcontent">
+                <h3>Paris</h3>
+                <p>Paris is the capital of France.</p> 
+              </div>
+
+              <div id="Tokyo" class="tabcontent">
+                <h3>Tokyo</h3>
+                <p>Tokyo is the capital of Japan.</p>
+              </div>
+
+
+
            </div>
          </li>
 
@@ -794,6 +837,30 @@
       viewer.dataSources.remove(dataSource3);
     }
 
+
+
+
+
+
+
+
+    // tabs to change the input geometry type
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
 
 
 
