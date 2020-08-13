@@ -73,7 +73,8 @@
             left: 250px;
         }
 
-        /*THIS IS TEST TO ADD TOOLBOX*/
+        
+        /*code to set control panel*/
         #controlPanel {
           position: absolute;
           top: 80px;
@@ -144,8 +145,8 @@
                 </div>
 
                 <div class="form-group">
-                  <button id="startUpload" type="button" class="btn btn-primary" onclick="submitClick()">Submit</button><br>
-                  <div id="dataUploadResult">The result of the upload goes here</div>   
+                  <button id="startPointUpload" type="button" class="btn btn-primary" onclick="submitPointClick()">Submit</button><br>
+                  <div id="pointDataUploadResult">The result of the upload goes here</div>   
                 </div>
               </form>
             </div>
@@ -492,6 +493,7 @@
         <div class="toolbar-left-bottom" id="toolbar"></div>
 
         <!-- ControlPanel -->
+        <!-- Adapt from: https://stackoverflow.com/questions/24206285/html5-cesium-making-divs-float-over-cesium-map [Accessed on 12 August, 2020] -->
         <div id="controlPanel">
           <b>Control Panel</b><br/>
           Tick the box to toggle different layers<br/>
@@ -598,7 +600,7 @@
     // to refresh layers when ever there is a change
     function refreshModel() {
       // reload data to update
-      dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location/4326');
+      dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/geom/4326');
       dataSource8.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
       // removeModels();
       // refresh84Model();
@@ -713,7 +715,7 @@
       // Then load the data again
       document.getElementById("working_layer").innerHTML = "model"; 
 
-      var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location/4326').then(
+      var dataSource3 = Cesium.GeoJsonDataSource.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/geom/4326').then(
         function(dataSource3) {
           var p = dataSource3.entities.values;
           for (var i = 0; i < p.length; i++) { 
@@ -881,7 +883,7 @@
 
     // TO LOAD DATA FROM OS LAYER
     var dataSource7 = new Cesium.GeoJsonDataSource();
-    dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/location/4326');
+    dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/model/geom/4326');
 
     // // Add a checkbox at the top.
     // document.getElementById('toolbar').innerHTML =
@@ -930,12 +932,6 @@
 
 
 
-
-
-
-
-
-    
 
 
     // The function to show cursor latlng

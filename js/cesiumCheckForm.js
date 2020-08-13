@@ -5,10 +5,10 @@
 // CODE TO CREATE POINT
 // only start uploading after all the data in the question setting form is confirmed as valid
 // Adapted from: https://stackoverflow.com/questions/39495581/how-to-generate-alert-when-clicking-submit-button-only-when-the-html-form-is-fu
-function submitClick() {
-  if (formValidation()) {
-  	insertData();
-  	alert("Thank you for your time! Your model have been submitted!");
+function submitPointClick() {
+  if (formPointValidation()) {
+  	insertPointData();
+  	alert("Thank you for your time! Your point have been submitted!");
     refreshModel();
   	return true;
   } else {
@@ -19,7 +19,7 @@ function submitClick() {
 // check if all the blanks in the form are filled and data is valid when user clicks submit button
 // and start to upload data to server only if all the data is valid
 // Adapted from: https://stackoverflow.com/questions/39495581/how-to-generate-alert-when-clicking-submit-button-only-when-the-html-form-is-fu
-function formValidation() {
+function formPointValidation() {
   flag = true;
 
   // make sure the user fill in the blank, or an alert will show up
@@ -39,8 +39,8 @@ function formValidation() {
 
 // converting the data of the question setting form to postString to pass to the server
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
-function insertData() { 
-  //alert ("start data upload"); 
+function insertPointData() { 
+  alert ("start point data upload"); 
 
   // getting text values
   var model_name = document.getElementById("model_name").value;
@@ -53,16 +53,17 @@ function insertData() {
   var latitude = document.getElementById("latitude").value;
   var longitude = document.getElementById("longitude").value;
   var altitude = document.getElementById("altitude").value;
-  postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
+  var tablename = document.getElementById("working_layer").value;
+  postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude+ "&tablename="+ tablename;
 
-  //alert(postString);
+  alert(postString);
 
-  processData(postString);
+  processPointData(postString);
 }
 
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
-function processData(postString) { 
+function processPointData(postString) { 
 	var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/insertPoint" 
 	$.ajax({ 
 		url: serviceUrl, 
@@ -70,7 +71,7 @@ function processData(postString) {
 		type: "POST", 
 		success: function(data){
 			console.log(data); 
-			dataUploaded(data);
+			pointDataUploaded(data);
 		}, 
 		data: postString 
 	}); 
@@ -78,9 +79,9 @@ function processData(postString) {
 
 // processing the response from the data server and show the result on the page
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
-function dataUploaded(data) { 
+function pointDataUploaded(data) { 
 	// change the DIV to show the response 
-	document.getElementById("dataUploadResult").innerHTML = JSON.stringify(data); 
+	document.getElementById("pointDataUploadResult").innerHTML = JSON.stringify(data); 
 }
 
 
