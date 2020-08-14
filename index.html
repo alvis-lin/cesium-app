@@ -664,18 +664,14 @@
     handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
     handler.setInputAction(function(click) {
         var pickedObject = scene.pick(click.position);
-        if (Cesium.defined(pickedObject)) {
-            //alert(pickedObject.id.name); 
-            console.log("picked_id: ", pickedObject);
-            
+        if (Cesium.defined(pickedObject)) {        
             // insert model_id of selected entity into form
-            document.getElementById("model_id").value = pickedObject.id._properties._model_id._value;
+            document.getElementById("deleteID").value = pickedObject.id._properties._model_id._value;
             document.getElementById("move_model_id").value = pickedObject.id._properties._model_id._value;
+            document.getElementById("edit_model_id").value = pickedObject.id._properties._model_id._value;
             document.getElementById("extrude_model_id").value = pickedObject.id._properties._model_id._value;
             document.getElementById("edit_height_model_id").value = pickedObject.id._properties._model_id._value;
-            document.getElementById("rotate_model_id").value = pickedObject.id._properties._model_id._value;
-            document.getElementById("deleteID").value = pickedObject.id._properties._model_id._value;
-            document.getElementById("edit_model_id").value = pickedObject.id._properties._model_id._value;
+            document.getElementById("rotate_model_id").value = pickedObject.id._properties._model_id._value;    
         }
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
     // }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK); // can also set the action as double click
