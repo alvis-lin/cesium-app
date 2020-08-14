@@ -868,11 +868,7 @@ function formGetGeomValidation() {
     flag = false;
   }
 
-  if (document.getElementById("working_layer").innerHTML == "") {
-    alert("Please select Working Layer!");
-    flag = false;
-  }
-
+  
   // make sure working layer is selected, or an alert will show up
   if (document.getElementById("working_layer").innerHTML == "") {
     alert("Please select Working Layer!");
@@ -934,7 +930,36 @@ function dataGetGeomUploaded(data) {
 
 
       
+function deleteModel() {
+  if (formDeleteValidation()) {
+    deleteRecord();
+    alert("Deleted");
+    return true;
+  } else {
+    return false;
+  }
+}
 
+// check if all the blanks in the form are filled and data is valid when user clicks submit button
+// and start to upload data to server only if all the data is valid
+// Adapted from: https://stackoverflow.com/questions/39495581/how-to-generate-alert-when-clicking-submit-button-only-when-the-html-form-is-fu
+function formDeleteValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("delete_id").value == "") {
+    alert("Please fill in Model ID!");
+    flag = false;
+  }
+
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
+
+  return flag;
+}
 
 
 
@@ -943,12 +968,7 @@ function dataGetGeomUploaded(data) {
 // delete record using datadeleted function in this code
 function deleteRecord(){
 
-  // make sure working layer is selected, or an alert will show up
-  if (document.getElementById("working_layer").innerHTML == "") {
-    alert("Please select Working Layer!");
-  }
-
-  var deleteID = document.getElementById("deleteID").value;
+  var deleteID = document.getElementById("delete_id").value;
   var tablename = document.getElementById("working_layer").innerHTML;
 
   var deleteString = "model_id="+deleteID+"&port_id="+httpsPortNumberAPI+ "&tablename="+ tablename; // original
@@ -969,5 +989,5 @@ function deleteRecord(){
 
 function dataDeleted(data){
   document.getElementById("dataDeleteResult").innerHTML = data;
-  document.getElementById("deleteID").value = ""; // to clear ID form column when delete is clicked 
+  document.getElementById("delete_id").value = ""; // to clear ID form column when delete is clicked 
 }

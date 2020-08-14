@@ -327,10 +327,10 @@
               <form name="questionForm" data-toggle="validator" role="form">
                 <div class="form-group">
                   <label for="deleteID" class="control-label">Model ID</label><br>
-                  <input type="text" size="20" class="form-control" id="deleteID" placeholder="e.g.722" required>
+                  <input type="text" size="20" class="form-control" id="delete_id" placeholder="e.g.722" required>
                 </div>
                 <div class="form-group">
-                  <button id="startDelete" type="button" class="btn btn-primary" onclick="deleteRecord()">Delete</button><br>
+                  <button id="startDelete" type="button" class="btn btn-primary" onclick="deleteModel()">Delete</button><br>
                   <div id="dataDeleteResult">The result goes here</div>   
                 </div>
               </form>
@@ -666,7 +666,7 @@
         var pickedObject = scene.pick(click.position);
         if (Cesium.defined(pickedObject)) {        
             // insert model_id of selected entity into form
-            document.getElementById("deleteID").value = pickedObject.id._properties._model_id._value;
+            document.getElementById("delete_id").value = pickedObject.id._properties._model_id._value;
             document.getElementById("move_model_id").value = pickedObject.id._properties._model_id._value;
             document.getElementById("edit_model_id").value = pickedObject.id._properties._model_id._value;
             document.getElementById("extrude_model_id").value = pickedObject.id._properties._model_id._value;
