@@ -212,42 +212,15 @@
           </div>
         </li> -->
 
-        <!-- Delete Model -->
-        <li class="nav-item d-none d-lg-block" >
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <!-- the next line is the cog image -->
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Delete Model</span>
-          </a>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
-            <div class="bg-white py-2 collapse-inner rounded">
-              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
-              <form name="questionForm" data-toggle="validator" role="form">
-                <div class="form-group">
-                  <label for="deleteID" class="control-label">Model ID</label><br>
-                  <input type="text" size="20" class="form-control" id="deleteID" placeholder="e.g.722" required>
-                </div>
-                <div class="form-group">
-                  <button id="startDelete" type="button" class="btn btn-primary" onclick="deleteRecord()">Delete</button><br>
-                  <div id="dataDeleteResult">The result of the upload goes here</div>   
-                </div>
-              </form>
-            </div>
-          </div>
-        </li>
+     
 
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Button -->
-        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Create model -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-            <i class="fas fa-fw fa-cog"></i>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <i class="far fa-plus-square"></i>
             <span>Create Model</span>
           </a>
-          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
             <div class="bg-white py-2 collapse-inner rounded">
               
               <!-- Tab links -->
@@ -342,17 +315,46 @@
            </div> <!-- end of collapse five -->
         </li> <!-- end of create geometry -->
 
-
-        <li class="nav-item d-none d-lg-block" >
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-            <!-- the next line is the cog image -->
-            <i class="fas fa-fw fa-cog"></i>
-            <span>EDIT Point Location</span>
+        <!-- Delete Model -->
+        <li class="nav-item" >
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-trash-alt"></i>
+            <span>Delete Model</span>
           </a>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
             <div class="bg-white py-2 collapse-inner rounded">
               <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
               <form name="questionForm" data-toggle="validator" role="form">
+                <div class="form-group">
+                  <label for="deleteID" class="control-label">Model ID</label><br>
+                  <input type="text" size="20" class="form-control" id="deleteID" placeholder="e.g.722" required>
+                </div>
+                <div class="form-group">
+                  <button id="startDelete" type="button" class="btn btn-primary" onclick="deleteRecord()">Delete</button><br>
+                  <div id="dataDeleteResult">The result of the upload goes here</div>   
+                </div>
+              </form>
+            </div>
+          </div>
+        </li>
+
+
+
+
+
+
+
+
+        <!-- <li class="nav-item d-none d-lg-block" >
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree"> -->
+            <!-- the next line is the cog image -->
+            <!-- <i class="fas fa-fw fa-cog"></i>
+            <span>EDIT Point Location</span>
+          </a>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
+            <div class="bg-white py-2 collapse-inner rounded"> -->
+              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
+              <!-- <form name="questionForm" data-toggle="validator" role="form">
                 <div class="form-group">
                   <label for="model_name" class="control-label">Model ID</label><br>
                   <input type="text" size="20" class="form-control" id="model_id" placeholder="e.g.722" required>
@@ -374,13 +376,12 @@
               </form>
             </div>
           </div>
-        </li>
+        </li> -->
 
         <!-- Move Model -->
-        <li class="nav-item d-none d-lg-block" >
+        <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-            <!-- the next line is the cog image -->
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-arrows-alt"></i>
             <span>Move Model</span>
           </a>
           <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
@@ -394,11 +395,11 @@
 
                 <div class="form-group">
                   <label for="move_y" class="control-label">Move Latidute (Degree)</label><br>
-                  <input type="text" size="20" id="move_y"/><br /> 
+                  <input type="text" size="20" class="form-control" id="move_y"/><br /> 
                   <label for="move_x" class="control-label">Move Longitude (Degree)</label><br>
-                  <input type="text" size="20" id="move_x"/><br />
+                  <input type="text" size="20" class="form-control" id="move_x"/><br />
                   <label for="move_z" class="control-label">New Altitude (Metre)</label><br>
-                  <input type="text" size="20" id="move_z"/><br />
+                  <input type="text" size="20" class="form-control" id="move_z"/><br />
         
 
                 <div class="form-group">
@@ -412,10 +413,9 @@
 
 
         <!-- Edit Model -->
-        <li class="nav-item d-none d-lg-block" >
+        <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
-            <!-- the next line is the cog image -->
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-edit"></i>
             <span>Edit Model</span>
           </a>
           <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
@@ -448,10 +448,9 @@
 
 
         <!-- Extrude Model -->
-        <li class="nav-item d-none d-lg-block" >
+        <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
-            <!-- the next line is the cog image -->
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-long-arrow-alt-up"></i>
             <span>Extrude Model</span>
           </a>
           <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
@@ -465,7 +464,7 @@
 
                 <div class="form-group">
                   <label for="extrude_height" class="control-label">Extrude Height (Metre)</label><br>
-                  <input type="text" size="20" id="extrude_height"/><br /> 
+                  <input type="text" size="20" class="form-control" id="extrude_height"/><br /> 
         
 
                 <div class="form-group">
@@ -479,10 +478,9 @@
 
 
         <!-- Edit Model Height-->
-        <li class="nav-item d-none d-lg-block" >
+        <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
-            <!-- the next line is the cog image -->
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-arrows-alt-v"></i>
             <span>Edit Height</span>
           </a>
           <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
@@ -496,7 +494,7 @@
 
                 <div class="form-group">
                   <label for="extrude_height" class="control-label">New Height (Metre)</label><br>
-                  <input type="text" size="20" id="extrude_height_edit"/><br /> 
+                  <input type="text" size="20" class="form-control" id="extrude_height_edit"/><br /> 
         
 
                 <div class="form-group">
@@ -511,10 +509,9 @@
 
 
         <!-- Rotate Model -->
-        <li class="nav-item d-none d-lg-block" >
+        <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
-            <!-- the next line is the cog image -->
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-undo"></i>
             <span>Rotate Model</span>
           </a>
           <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
@@ -528,7 +525,7 @@
 
                 <div class="form-group">
                   <label for="rotate_degree" class="control-label">Rotate Degree (Anticlockwise in default, please use negative number to rotate clockwise)</label><br>
-                  <input type="text" size="20" id="rotate_degree"/><br /> 
+                  <input type="text" size="20" class="form-control" id="rotate_degree"/><br /> 
         
 
                 <div class="form-group">
@@ -540,14 +537,14 @@
           </div>
         </li>
 
-
+<!-- 
         
         <hr>
 
         <button id="trackBtn" type="button" class="btn btn-primary" onclick="showCoords()">Show coords</button>
         <button id="refreshModel" type="button" class="btn btn-primary" onclick="refreshModel()">Refresh Models</button>
         <button id="removeModels" type="button" class="btn btn-primary" onclick="removeModels()">Remove Models</button>
-
+ -->
 
        </ul>
        <!-- End of Sidebar -->
