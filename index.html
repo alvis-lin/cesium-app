@@ -271,11 +271,11 @@
                     <div class="form-group">
                       <label for="linestring_coords" class="control-label">Linestring coordinates</label><br>
                       <input type="text" size="20" class="form-control" id="linestring_coords"/><br /> 
-                      <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
+                      <div class="help-block with-errors">Please click on the map to get coordinates and height</div>
+                      <button id="clearLineCoordsInput" type="button" class="btn btn-primary" onclick="clearLineCoords()">Clear</button> 
                     </div>
 
-                    <div class="form-group">
-                      <button id="clearLineCoordsInput" type="button" class="btn btn-primary" onclick="clearLineCoords()">Clear input field</button>
+                    <div class="form-group"> 
                       <button id="startLineUpload" type="button" class="btn btn-primary" onclick="submitLineClick()">Submit</button><br>
                       <div id="lineDataUploadResult">The result of the line upload goes here</div>   
                     </div>
@@ -297,15 +297,15 @@
                       <label for="polygon_coords" class="control-label">Polygon Coordinates</label><br>
                       <input type="text" size="20" id="polygon_coords"/><br /> 
                       <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
+                      <button id="clearPolygonCoordsInput" type="button" class="btn btn-primary" onclick="clearPolygonCoords()">Clear</button>
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label for="polygon_height" class="control-label">Polygon Height</label><br>
                       <input type="text" size="20" class="form-control" id="polygon_height" placeholder="e.g. 1.234" required>
-                    </div>
+                    </div> -->
 
-                    <div class="form-group">
-                      <button id="clearPolygonCoordsInput" type="button" class="btn btn-primary" onclick="clearPolygonCoords()">Clear input field</button>
+                    <div class="form-group">    
                       <button id="startPolygonUpload" type="button" class="btn btn-primary" onclick="submitPolygonClick()">Submit</button><br>
                       <div id="polygonDataUploadResult">The result of the polygon upload goes here</div>   
                     </div>
