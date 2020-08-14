@@ -399,6 +399,8 @@ function insertMoveData() {
 
   // getting text values
   var model_id = document.getElementById("move_model_id").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
+
   // geometry 
   var latitude = document.getElementById("move_y").value;
   var longitude = document.getElementById("move_x").value;
@@ -406,7 +408,7 @@ function insertMoveData() {
   
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "model_id=" + model_id;
+  var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
   //alert(postString);
 
@@ -436,6 +438,12 @@ function processMoveData(postString) {
 function moveDataUploaded(data) { 
   // change the DIV to show the response 
   document.getElementById("dataMoveResult").innerHTML = data;
+
+  // clear columns after upload
+  document.getElementById("move_model_id").value = ""; 
+  document.getElementById("move_y").value = ""; 
+  document.getElementById("move_x").value = ""; 
+  document.getElementById("move_z").value = ""; 
 }
 
 
