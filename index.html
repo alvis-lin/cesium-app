@@ -537,6 +537,42 @@
           </div>
         </li>
 
+
+
+        <!-- Buffering -->
+        <li class="nav-item" >
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+            <i class="fas fa-record-vinyl"></i>
+            <span>Buffering</span>
+          </a>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
+            <div class="bg-white py-2 collapse-inner rounded">
+              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
+              <form name="questionForm" data-toggle="validator" role="form">
+                <div class="form-group">
+                  <label for="model_name" class="control-label">Model ID</label><br>
+                  <input type="text" size="20" class="form-control" id="rotate_model_id" placeholder="e.g. 722" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="rotate_degree" class="control-label">Rotate Degree (Anticlockwise in default, please use negative number to rotate clockwise)</label><br>
+                  <input type="text" size="20" class="form-control" id="rotate_degree"/><br /> 
+        
+
+                <div class="form-group">
+                  <button id="rotateBtn" type="button" class="btn btn-primary" onclick="submitRotateClick()">Rotate Model</button><br>
+                  <div id="dataRotateResult">The result of the rotate goes here</div>   
+                </div>
+              </form>
+            </div>
+          </div>
+        </li>
+
+
+
+
+
+
 <!-- 
         
         <hr>
