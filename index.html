@@ -236,23 +236,23 @@
                   <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
                   <form name="questionForm" data-toggle="validator" role="form">
                     <div class="form-group">
-                      <label for="model_name" class="control-label">Point Name</label><br>
-                      <input type="text" size="20" class="form-control" id="model_name" placeholder="e.g. Pokemon Centre" required>
+                      <label for="model_name" class="control-label">Point Name</label>
+                      <input type="text" size="20" class="form-control" id="point_name" placeholder="e.g. Pokemon Centre" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="latitude" class="control-label">Latitude</label><br>
-                      <input type="text" size="20" class="form-control" id="latitude"/><br /> 
-                      <label for="longitude" class="control-label">Longitude</label><br>
-                      <input type="text" size="20" class="form-control" id="longitude"/><br />
-                      <label for="altitude" class="control-label">Altitude</label><br>
-                      <input type="text" size="20" class="form-control" id="altitude"/><br />
-                      <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
+                      <label for="latitude" class="control-label">Latitude</label>
+                      <input type="text" size="20" class="form-control" id="latitude"/><br> 
+                      <label for="longitude" class="control-label">Longitude</label>
+                      <input type="text" size="20" class="form-control" id="longitude"/><br>
+                      <label for="altitude" class="control-label">Altitude</label>
+                      <input type="text" size="20" class="form-control" id="altitude"/>
+                      <div class="help-block with-errors">Please click on the map to get coordinates</div> 
                     </div>
 
                     <div class="form-group">
                       <button id="startPointUpload" type="button" class="btn btn-primary" onclick="submitPointClick()">Submit</button><br>
-                      <div id="pointDataUploadResult">The result of the point upload goes here</div>   
+                      <div id="pointDataUploadResult">The result of submission goes here</div>   
                     </div>
                   </form>
                 </div>
@@ -264,20 +264,20 @@
                   <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
                   <form name="questionForm" data-toggle="validator" role="form">
                     <div class="form-group">
-                      <label for="line_name" class="control-label">Line Name</label><br>
+                      <label for="line_name" class="control-label">Line Name</label>
                       <input type="text" size="20" class="form-control" id="line_name" placeholder="e.g. Route 1" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="linestring_coords" class="control-label">Linestring coordinates</label><br>
-                      <input type="text" size="20" class="form-control" id="linestring_coords"/><br /> 
-                      <div class="help-block with-errors">Please click on the map to get coordinates and height</div>
+                      <label for="linestring_coords" class="control-label">Line Coordinates</label>
+                      <input type="text" size="20" class="form-control" id="linestring_coords"/>
+                      <div class="help-block with-errors">Please click on the map to get coordinates</div>
                       <button id="clearLineCoordsInput" type="button" class="btn btn-primary" onclick="clearLineCoords()">Clear</button> 
                     </div>
 
                     <div class="form-group"> 
                       <button id="startLineUpload" type="button" class="btn btn-primary" onclick="submitLineClick()">Submit</button><br>
-                      <div id="lineDataUploadResult">The result of the line upload goes here</div>   
+                      <div id="lineDataUploadResult">The result of submission goes here</div>   
                     </div>
                   </form>
                 </div>
@@ -289,14 +289,14 @@
                   <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
                   <form name="questionForm" data-toggle="validator" role="form">
                     <div class="form-group">
-                      <label for="polygon_name" class="control-label">Polygon Name</label><br>
+                      <label for="polygon_name" class="control-label">Polygon Name</label>
                       <input type="text" size="20" class="form-control" id="polygon_name" placeholder="e.g. Pokemon School" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="polygon_coords" class="control-label">Polygon Coordinates</label><br>
-                      <input type="text" size="20" id="polygon_coords"/><br /> 
-                      <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
+                      <label for="polygon_coords" class="control-label">Polygon Coordinates</label>
+                      <input type="text" size="20" id="polygon_coords"/>
+                      <div class="help-block with-errors">Please click on the map to get coordinates</div> 
                       <button id="clearPolygonCoordsInput" type="button" class="btn btn-primary" onclick="clearPolygonCoords()">Clear</button>
                     </div>
 
@@ -307,7 +307,7 @@
 
                     <div class="form-group">    
                       <button id="startPolygonUpload" type="button" class="btn btn-primary" onclick="submitPolygonClick()">Submit</button><br>
-                      <div id="polygonDataUploadResult">The result of the polygon upload goes here</div>   
+                      <div id="polygonDataUploadResult">The result of submission goes here</div>   
                     </div>
                   </form>
                 </div>

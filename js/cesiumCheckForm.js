@@ -23,7 +23,7 @@ function formPointValidation() {
   flag = true;
 
   // make sure the user fill in the blank, or an alert will show up
-  if (document.getElementById("model_name").value == "") {
+  if (document.getElementById("point_name").value == "") {
     alert("Please fill in Model Name!");
     flag = false;
   }
@@ -43,7 +43,7 @@ function insertPointData() {
   alert ("start point data upload"); 
 
   // getting text values
-  var model_name = document.getElementById("model_name").value;
+  var model_name = document.getElementById("point_name").value;
   var tablename = document.getElementById("working_layer").innerHTML;
   
 
@@ -86,7 +86,7 @@ function pointDataUploaded(data) {
   document.getElementById("pointDataUploadResult").innerHTML = data;
 
   // clear columns after upload
-  document.getElementById("model_name").value = ""; 
+  document.getElementById("point_name").value = ""; 
   document.getElementById("latitude").value = ""; 
   document.getElementById("longitude").value = "";
   document.getElementById("altitude").value = "";
@@ -137,7 +137,7 @@ function insertLineData() {
   //alert ("start line data upload"); 
 
   // getting text values
-  var model_name = document.getElementById("model_name").value;
+  var model_name = document.getElementById("line_name").value;
   var tablename = document.getElementById("working_layer").innerHTML;
 
   //getting geometry values
@@ -173,6 +173,10 @@ function processLineData(postString) {
 function lineDataUploaded(data) { 
   // change the DIV to show the response 
   document.getElementById("lineDataUploadResult").innerHTML = data;
+
+  // clear columns after upload
+  document.getElementById("line_name").value = ""; 
+  document.getElementById("linestring_coords").value = ""; 
 }
 
 
@@ -226,7 +230,7 @@ function insertPolygonData() {
   //alert ("start polygon data upload"); 
 
   // getting text values
-  var model_name = document.getElementById("model_name").value;
+  var model_name = document.getElementById("polygon_name").value;
   var tablename = document.getElementById("working_layer").innerHTML;
 
   //getting geometry values
@@ -261,6 +265,10 @@ function processPolygonData(postString) {
 function polygonDataUploaded(data) { 
   // change the DIV to show the response 
   document.getElementById("polygonDataUploadResult").innerHTML = data;
+  
+  // clear columns after upload
+  document.getElementById("polygon_name").value = ""; 
+  document.getElementById("polygon_coords").value = ""; 
 }
 
 
