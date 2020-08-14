@@ -81,7 +81,8 @@ function processPointData(postString) {
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function pointDataUploaded(data) { 
 	// change the DIV to show the response 
-	document.getElementById("pointDataUploadResult").innerHTML = JSON.stringify(data);
+	// document.getElementById("pointDataUploadResult").innerHTML = JSON.stringify(data);
+  document.getElementById("pointDataUploadResult").innerHTML = data;
 
   // clear columns after upload
   document.getElementById("model_name").value = ""; 
@@ -171,7 +172,7 @@ function processLineData(postString) {
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function lineDataUploaded(data) { 
   // change the DIV to show the response 
-  document.getElementById("lineDataUploadResult").innerHTML = JSON.stringify(data); 
+  document.getElementById("lineDataUploadResult").innerHTML = data;
 }
 
 
@@ -256,7 +257,7 @@ function processPolygonData(postString) {
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function polygonDataUploaded(data) { 
   // change the DIV to show the response 
-  document.getElementById("polygonDataUploadResult").innerHTML = JSON.stringify(data); 
+  document.getElementById("polygonDataUploadResult").innerHTML = data;
 }
 
 
@@ -423,7 +424,7 @@ function processMoveData(postString) {
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function moveDataUploaded(data) { 
   // change the DIV to show the response 
-  document.getElementById("dataMoveResult").innerHTML = JSON.stringify(data); 
+  document.getElementById("dataMoveResult").innerHTML = data;
 }
 
 
@@ -504,7 +505,7 @@ function processEditData(postString) {
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function editDataUploaded(data) { 
   // change the DIV to show the response 
-  document.getElementById("dataEditResult").innerHTML = JSON.stringify(data); 
+  document.getElementById("dataEditResult").innerHTML = data;
 }
 
 
@@ -585,7 +586,7 @@ function processExtrudeData(postString) {
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function extrudeDataUploaded(data) { 
   // change the DIV to show the response 
-  document.getElementById("dataExtrudeResult").innerHTML = JSON.stringify(data); 
+  document.getElementById("dataExtrudeResult").innerHTML = data;
 }
 
 
@@ -671,7 +672,7 @@ function processEditHeightData(postString) {
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function editHeightDataUploaded(data) { 
   // change the DIV to show the response 
-  document.getElementById("dataEditHeightResult").innerHTML = JSON.stringify(data); 
+  document.getElementById("dataEditHeightResult").innerHTML = data;
 }
 
 
@@ -758,7 +759,7 @@ function processRotateData(postString) {
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function rotateDataUploaded(data) { 
   // change the DIV to show the response 
-  document.getElementById("dataRotateResult").innerHTML = JSON.stringify(data); 
+  document.getElementById("dataRotateResult").innerHTML = data; 
 }
 
 
