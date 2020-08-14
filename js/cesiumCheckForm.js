@@ -44,17 +44,18 @@ function insertPointData() {
 
   // getting text values
   var model_name = document.getElementById("model_name").value;
-  //alert(model_name + " ");
-
-  // PostString will hold all the parameters to pass to the server
-  var postString = "model_name=" + model_name;
+  var tablename = document.getElementById("working_layer").innerHTML;
+  
 
   //getting geometry values
   var latitude = document.getElementById("latitude").value;
   var longitude = document.getElementById("longitude").value;
   var altitude = document.getElementById("altitude").value;
-  var tablename = document.getElementById("working_layer").innerHTML;
-  postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude+ "&tablename="+ tablename;
+  
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_name=" + model_name + "&tablename="+ tablename;
+  postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
 
   alert(postString);
 
@@ -136,16 +137,15 @@ function insertLineData() {
   //alert ("start line data upload"); 
 
   // getting text values
-  var model_name = document.getElementById("line_name").value;
-  //alert(model_name + " ");
+  var model_name = document.getElementById("model_name").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
 
-
-  // getting text values
+  //getting geometry values
   var linestring_coords = document.getElementById("linestring_coords").value;
   //alert(linestring_coords + " ");
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "model_name=" + model_name;
+  var postString = "model_name=" + model_name + "&tablename="+ tablename;
   postString = postString + "&linestring_coords="+ linestring_coords;
   //alert(postString);
 
@@ -226,11 +226,14 @@ function insertPolygonData() {
   //alert ("start polygon data upload"); 
 
   // getting text values
-  var model_name = document.getElementById("polygon_name").value;
+  var model_name = document.getElementById("model_name").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
+
+  //getting geometry values
   var polygon_coords = document.getElementById("polygon_coords").value;
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "model_name=" + model_name;
+  var postString = "model_name=" + model_name + "&tablename="+ tablename;
   postString = postString + "&polygon_coords="+ polygon_coords;
   //alert(postString);
 
@@ -877,6 +880,6 @@ function deleteRecord(){
 }
 
 function dataDeleted(data){
-  document.getElementById("dataDeleteResult").innerHTML = JSON.stringify(data);
+  document.getElementById("dataDeleteResult").innerHTML = data;
   document.getElementById("deleteID").value = ""; // to clear ID form column when delete is clicked 
 }
