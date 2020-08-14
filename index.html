@@ -252,7 +252,7 @@
 
                     <div class="form-group">
                       <button id="startPointUpload" type="button" class="btn btn-primary" onclick="submitPointClick()">Submit</button><br>
-                      <div id="pointDataUploadResult">The result of submission goes here</div>   
+                      <div id="pointDataUploadResult">The result goes here</div>   
                     </div>
                   </form>
                 </div>
@@ -277,7 +277,7 @@
 
                     <div class="form-group"> 
                       <button id="startLineUpload" type="button" class="btn btn-primary" onclick="submitLineClick()">Submit</button><br>
-                      <div id="lineDataUploadResult">The result of submission goes here</div>   
+                      <div id="lineDataUploadResult">The result goes here</div>   
                     </div>
                   </form>
                 </div>
@@ -307,7 +307,7 @@
 
                     <div class="form-group">    
                       <button id="startPolygonUpload" type="button" class="btn btn-primary" onclick="submitPolygonClick()">Submit</button><br>
-                      <div id="polygonDataUploadResult">The result of submission goes here</div>   
+                      <div id="polygonDataUploadResult">The result goes here</div>   
                     </div>
                   </form>
                 </div>
@@ -331,7 +331,7 @@
                 </div>
                 <div class="form-group">
                   <button id="startDelete" type="button" class="btn btn-primary" onclick="deleteRecord()">Delete</button><br>
-                  <div id="dataDeleteResult">The result of the upload goes here</div>   
+                  <div id="dataDeleteResult">The result goes here</div>   
                 </div>
               </form>
             </div>
@@ -404,7 +404,7 @@
 
                 <div class="form-group">
                   <button id="editBtn" type="button" class="btn btn-primary" onclick="submitMoveClick()">Move Model</button><br>
-                  <div id="dataMoveResult">The result of the move goes here</div>   
+                  <div id="dataMoveResult">The result goes here</div>   
                 </div>
               </form>
             </div>
@@ -434,9 +434,9 @@
         
 
                 <div class="form-group">
-                  <button id="getGeomBtn" type="button" class="btn btn-primary" onclick="getGeom()">Get Geometry</button><br>
+                  <button id="getGeomBtn" type="button" class="btn btn-primary" onclick="getGeom()">Get Geometry</button><br><br>
                   <button id="editGeomBtn" type="button" class="btn btn-primary" onclick="submitEditClick()">Save Model</button><br>
-                  <div id="dataEditResult">The result of the move goes here</div>   
+                  <div id="dataEditResult">The result goes here</div>   
                 </div>
               </form>
             </div>
@@ -469,7 +469,7 @@
 
                 <div class="form-group">
                   <button id="extrudeBtn" type="button" class="btn btn-primary" onclick="submitExtrudeClick()">Extrude Model</button><br>
-                  <div id="dataExtrudeResult">The result of the extrude goes here</div>   
+                  <div id="dataExtrudeResult">The result goes here</div>   
                 </div>
               </form>
             </div>
@@ -499,7 +499,7 @@
 
                 <div class="form-group">
                   <button id="editHeightBtn" type="button" class="btn btn-primary" onclick="submitEditHeightClick()">Edit Height</button><br>
-                  <div id="dataEditHeightResult">The result of the height modification goes here</div>   
+                  <div id="dataEditHeightResult">The result goes here</div>   
                 </div>
               </form>
             </div>
@@ -530,7 +530,7 @@
 
                 <div class="form-group">
                   <button id="rotateBtn" type="button" class="btn btn-primary" onclick="submitRotateClick()">Rotate Model</button><br>
-                  <div id="dataRotateResult">The result of the rotate goes here</div>   
+                  <div id="dataRotateResult">The result goes here</div>   
                 </div>
               </form>
             </div>
@@ -561,7 +561,7 @@
 
                 <div class="form-group">
                   <button id="rotateBtn" type="button" class="btn btn-primary" onclick="submitRotateClick()">Rotate Model</button><br>
-                  <div id="dataRotateResult">The result of the rotate goes here</div>   
+                  <div id="dataRotateResult">The result goes here</div>   
                 </div>
               </form>
             </div>
@@ -1288,12 +1288,12 @@
 
 
 
-    // //load the Leaflet map and then add the data AFTER the page has loaded
+    // //load Cesium map and then add the data AFTER the page has loaded
     document.addEventListener('DOMContentLoaded', function() { 
       loadMap(); 
     }, false); 
 
-    // to load map and add earthquake data
+    // get port number
     function loadMap() { 
       getPorts(); 
     } 

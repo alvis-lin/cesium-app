@@ -490,12 +490,13 @@ function insertEditData() {
 
   // getting text values
   var model_id = document.getElementById("edit_model_id").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
   // geometry 
   var edit_geomcolumn = document.getElementById("edit_geomcolumn").value;
   
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "model_id=" + model_id;
+  var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&edit_geomcolumn="+ edit_geomcolumn;
   //alert(postString);
 
@@ -525,6 +526,10 @@ function processEditData(postString) {
 function editDataUploaded(data) { 
   // change the DIV to show the response 
   document.getElementById("dataEditResult").innerHTML = data;
+
+  // clear columns after upload
+  document.getElementById("edit_model_id").value = ""; 
+  document.getElementById("edit_geomcolumn").value = ""; 
 }
 
 
