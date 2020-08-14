@@ -57,7 +57,7 @@ function insertPointData() {
   var postString = "model_name=" + model_name + "&tablename="+ tablename;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
 
-  //alert(postString);
+  alert(postString);
 
   processPointData(postString);
 }
@@ -830,11 +830,14 @@ function insertGetGeomData() {
 
   // getting text values
   var edit_model_id = document.getElementById("edit_model_id").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
+
   alert("geom id you want: " + edit_model_id);
   console.log("geom id you want: " , edit_model_id);
 
   // PostString will hold all the parameters to pass to the server
-  var postString = edit_model_id;
+  //var postString = edit_model_id;
+  var postString = "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/getGeoJSONgeom/"+ tablename + "/geom/" + edit_model_id;
   alert(postString);
 
   processGetGeomData(postString);
@@ -842,8 +845,9 @@ function insertGetGeomData() {
 
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
-function processGetGeomData(postString) { 
-  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/getGeoJSONgeom/model/location/" + edit_model_id.value
+function processGetGeomData(postString) {
+  alert("PostString in function: " + postString); 
+  var serviceUrl= postString;
   console.log("serviceUrl:" ,serviceUrl);
   $.ajax({ 
     url: serviceUrl, 
