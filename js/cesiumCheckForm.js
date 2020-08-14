@@ -34,6 +34,12 @@ function formPointValidation() {
     flag = false;
   }  
 
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
+
   return flag;
 }
 
@@ -57,7 +63,7 @@ function insertPointData() {
   var postString = "model_name=" + model_name + "&tablename="+ tablename;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
 
-  alert(postString);
+  //alert(postString);
 
   processPointData(postString);
 }
@@ -127,6 +133,12 @@ function formLineValidation() {
     alert("Please click on the map to set insert linestring coordinates!");
     flag = false;
   }  
+
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
 
   return flag;
 }
@@ -219,7 +231,13 @@ function formPolygonValidation() {
   if (document.getElementById("polygon_coords").value == "") {
     alert("Please click on the map to set insert polygon coordinates!");
     flag = false;
-  }  
+  } 
+
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  } 
 
   return flag;
 }
@@ -390,6 +408,12 @@ function formMoveValidation() {
     flag = false;
   }  
 
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
+
   return flag;
 }
 
@@ -481,6 +505,12 @@ function formEditValidation() {
     flag = false;
   }  
 
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
+
   return flag;
 }
 
@@ -569,6 +599,12 @@ function formExtrudeValidation() {
     flag = false;
   }  
 
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
+
   return flag;
 }
 
@@ -654,6 +690,12 @@ function formEditHeightValidation() {
     alert("Please enter the height to modify the model!");
     flag = false;
   }  
+
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
 
   return flag;
 }
@@ -742,6 +784,12 @@ function formRotateValidation() {
     flag = false;
   }  
 
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
+
   return flag;
 }
 
@@ -820,6 +868,17 @@ function formGetGeomValidation() {
     flag = false;
   }
 
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
+
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
+
   return flag;
 }
 
@@ -832,13 +891,10 @@ function insertGetGeomData() {
   var edit_model_id = document.getElementById("edit_model_id").value;
   var tablename = document.getElementById("working_layer").innerHTML;
 
-  alert("geom id you want: " + edit_model_id);
-  console.log("geom id you want: " , edit_model_id);
+  
 
   // PostString will hold all the parameters to pass to the server
-  //var postString = edit_model_id;
   var postString = "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/getGeoJSONgeom/"+ tablename + "/geom/" + edit_model_id;
-  alert(postString);
 
   processGetGeomData(postString);
 }
@@ -846,7 +902,6 @@ function insertGetGeomData() {
 // post the data of the question setting form to database quizquestoin table
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function processGetGeomData(postString) {
-  alert("PostString in function: " + postString); 
   var serviceUrl= postString;
   console.log("serviceUrl:" ,serviceUrl);
   $.ajax({ 
@@ -887,6 +942,12 @@ function dataGetGeomUploaded(data) {
 
 // delete record using datadeleted function in this code
 function deleteRecord(){
+
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+  }
+
   var deleteID = document.getElementById("deleteID").value;
   var tablename = document.getElementById("working_layer").innerHTML;
 
