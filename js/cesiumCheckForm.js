@@ -40,7 +40,7 @@ function formPointValidation() {
 // converting the data of the question setting form to postString to pass to the server
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function insertPointData() { 
-  alert ("start point data upload"); 
+  //alert ("start point data upload"); 
 
   // getting text values
   var model_name = document.getElementById("point_name").value;
@@ -57,7 +57,7 @@ function insertPointData() {
   var postString = "model_name=" + model_name + "&tablename="+ tablename;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
 
-  alert(postString);
+  //alert(postString);
 
   processPointData(postString);
 }
@@ -871,7 +871,9 @@ function dataGetGeomUploaded(data) {
 // delete record using datadeleted function in this code
 function deleteRecord(){
   var deleteID = document.getElementById("deleteID").value;
-  var deleteString = "model_id="+deleteID+"&port_id="+httpsPortNumberAPI; // original
+  var tablename = document.getElementById("working_layer").innerHTML;
+
+  var deleteString = "model_id="+deleteID+"&port_id="+httpsPortNumberAPI+ "&tablename="+ tablename; // original
   //var deleteString = "model_id="+deleteID;
   var serviceUrl = "https://developer.cege.ucl.ac.uk:"+httpsPortNumberAPI+"/deleteModels";
   $.ajax({
