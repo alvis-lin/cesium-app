@@ -270,7 +270,10 @@
 
                     <div class="form-group">
                       <label for="linestring_coords" class="control-label">Line Coordinates</label>
-                      <input type="text" size="20" class="form-control" id="linestring_coords"/>
+                      <!-- <input type="text" size="20" class="form-control" id="linestring_coords"/> -->
+
+                      <textarea type="text" cols="16" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' id="linestring_coords"></textarea><br />
+
                       <div class="help-block with-errors">Please click on the map to get coordinates</div>
                       <button id="clearLineCoordsInput" type="button" class="btn btn-primary" onclick="clearLineCoords()">Clear</button> 
                     </div>
@@ -295,7 +298,10 @@
 
                     <div class="form-group">
                       <label for="polygon_coords" class="control-label">Polygon Coordinates</label>
-                      <input type="text" size="20" id="polygon_coords"/>
+                      <textarea type="text" cols="16" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' id="polygon_coords"></textarea><br />
+
+
+
                       <div class="help-block with-errors">Please click on the map to get coordinates</div> 
                       <button id="clearPolygonCoordsInput" type="button" class="btn btn-primary" onclick="clearPolygonCoords()">Clear</button>
                     </div>
@@ -424,17 +430,16 @@
               <form name="questionForm" data-toggle="validator" role="form">
                 <div class="form-group">
                   <label for="model_name" class="control-label">Model ID</label><br>
-                  <input type="text" size="20" class="form-control" id="edit_model_id" placeholder="e.g. 722" required>
+                  <input type="text" size="20" class="form-control" id="edit_model_id" placeholder="e.g. 722" required><br>
+                  <button id="getGeomBtn" type="button" class="btn btn-primary" onclick="getGeom()">Get Geometry</button><br><br>
                 </div>
 
                 <div class="form-group">
                   <label for="edit_geomcolumn" class="control-label">Edit geometry</label><br>
-                  <textarea type="text" rows="1" class="auto_height" id="edit_geomcolumn"/></textarea><br /> 
-
-        
+                  <textarea type="text" cols="17" rows="6" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' id="edit_geomcolumn"/></textarea><br><br> 
 
                 <div class="form-group">
-                  <button id="getGeomBtn" type="button" class="btn btn-primary" onclick="getGeom()">Get Geometry</button><br><br>
+                  
                   <button id="editGeomBtn" type="button" class="btn btn-primary" onclick="submitEditClick()">Save Model</button><br>
                   <div id="dataEditResult">The result goes here</div>   
                 </div>
