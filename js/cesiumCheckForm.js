@@ -798,13 +798,14 @@ function insertRotateData() {
 
   // getting text values
   var model_id = document.getElementById("rotate_model_id").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
   // geometry 
   var rotate_degree = document.getElementById("rotate_degree").value;
 
   
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "model_id=" + model_id;
+  var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&rotate_degree="+ rotate_degree;
   //alert(postString);
 
@@ -832,6 +833,10 @@ function processRotateData(postString) {
 function rotateDataUploaded(data) { 
   // change the DIV to show the response 
   document.getElementById("dataRotateResult").innerHTML = data; 
+
+  // clear columns after upload
+  document.getElementById("rotate_model_id").value = ""; 
+  document.getElementById("rotate_degree").value = ""; 
 }
 
 
