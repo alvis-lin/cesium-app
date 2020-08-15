@@ -516,7 +516,7 @@ function formEditValidation() {
 
 
 function insertEditData() { 
-  alert ("start Edit data upload"); 
+  //alert ("start Edit data upload"); 
 
   // getting text values
   var model_id = document.getElementById("edit_model_id").value;
@@ -756,7 +756,7 @@ function editHeightDataUploaded(data) {
 
 
 
-// // CODE TO ROTATE MODEL BY DEGREE
+// CODE TO ROTATE MODEL BY DEGREE
 
 function submitRotateClick() {
   if (formRotateValidation()) {
@@ -780,7 +780,7 @@ function formRotateValidation() {
 
   // if one of the blank is not filled in latitude or longitude part, an alert will show up 
   if (document.getElementById("rotate_degree").value == "") {
-    alert("Please enter the height to rotate the model!");
+    alert("Please enter the degree to rotate the model!");
     flag = false;
   }  
 
@@ -850,7 +850,118 @@ function rotateDataUploaded(data) {
 
 
 
+// to get buffer with radius in metre
 
+function submitBufferClick() {
+  if (formBufferValidation()) {
+    insertBufferData();
+    alert("Thank you for your time! Your buffer is generated!");
+    refreshModel();
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function formBufferValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("buffer_model_id").value == "") {
+    alert("Please fill in Model ID to generate buffer!");
+    flag = false;
+  }
+
+  // make sure the radius column is filled
+  if (document.getElementById("buffer_radius").value == "") {
+    alert("Please enter the radius to generate buffer!");
+    flag = false;
+  }  
+
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
+
+  return flag;
+}
+
+function insertBufferData() { 
+  alert ("start buffer data upload"); 
+
+  // getting text values
+  var model_id = document.getElementById("buffer_model_id").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
+  // geometry 
+  var buffer_radius = document.getElementById("buffer_radius").value;
+
+  
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_id=" + model_id + "&tablename="+ tablename;
+  postString = postString + "&buffer_radius="+ buffer_radius;
+  alert(postString);
+
+  processBufferData(postString);
+}
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processBufferData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/bufferModel" 
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "POST", 
+    success: function(data){
+      console.log(data); 
+      bufferDataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function bufferDataUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("dataBufferResult").innerHTML = data; 
+
+  // clear columns after upload
+  document.getElementById("buffer_model_id").value = ""; 
+  document.getElementById("buffer_radius").value = ""; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// to retrieve the geometry string of the model
 function getGeom() {
   if (formGetGeomValidation()) {
     insertGetGeomData();
@@ -886,7 +997,7 @@ function formGetGeomValidation() {
 // converting the data of the question setting form to postString to pass to the server
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function insertGetGeomData() { 
-  alert ("start getting geom"); 
+  //alert ("start getting geom"); 
 
   // getting text values
   var edit_model_id = document.getElementById("edit_model_id").value;
