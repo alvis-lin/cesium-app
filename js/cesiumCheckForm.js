@@ -851,7 +851,6 @@ function rotateDataUploaded(data) {
 
 
 // to get buffer with radius in metre
-
 function submitBufferClick() {
   if (formBufferValidation()) {
     insertBufferData();
@@ -931,6 +930,90 @@ function bufferDataUploaded(data) {
   // clear columns after upload
   document.getElementById("buffer_model_id").value = ""; 
   document.getElementById("buffer_radius").value = ""; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// to delete buffer 
+function deleteBufferClick() {
+  if (formDeleteBufferValidation()) {
+    insertDeleteBufferData();
+    alert("Thank you for your time! Your buffer is generated!");
+    refreshModel();
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function formDeleteBufferValidation() {
+  flag = true;
+
+  // make sure the user fill in the blank, or an alert will show up
+  if (document.getElementById("buffer_model_id").value == "") {
+    alert("Please fill in Model ID to generate buffer!");
+    flag = false;
+  }
+
+  // make sure working layer is selected, or an alert will show up
+  if (document.getElementById("working_layer").innerHTML == "") {
+    alert("Please select Working Layer!");
+    flag = false;
+  }
+
+  return flag;
+}
+
+function insertDeleteBufferData() { 
+  alert ("start delete buffer data upload"); 
+
+  // getting text values
+  var model_id = document.getElementById("buffer_model_id").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
+  
+
+  // PostString will hold all the parameters to pass to the server
+  var postString = "model_id=" + model_id + "&tablename="+ tablename;
+  alert(postString);
+
+  processDeleteBufferData(postString);
+}
+
+// post the data of the question setting form to database quizquestoin table
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function processDeleteBufferData(postString) { 
+  var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/bufferDelete" 
+  $.ajax({ 
+    url: serviceUrl, 
+    crossDomain: true, 
+    type: "POST", 
+    success: function(data){
+      console.log(data); 
+      bufferDeleteDataUploaded(data);
+    }, 
+    data: postString 
+  }); 
+}
+
+// processing the response from the data server and show the result on the page
+// Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
+function bufferDeleteDataUploaded(data) { 
+  // change the DIV to show the response 
+  document.getElementById("dataDeleteBufferResult").innerHTML = data; 
+
+  // clear columns after upload
+  document.getElementById("buffer_model_id").value = ""; 
 }
 
 
