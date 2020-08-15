@@ -634,6 +634,11 @@
               <span>Model Buffer Layer</span>
             </label><br/>
 
+            <label>
+              <input id="Checkbox_OS_buffer" type="checkbox" />
+              <span>OS Buffer Layer</span>
+            </label><br/>
+
             <!-- <button class="cesium-button">Button 1</button>
             <button class="cesium-button">Button 2</button> -->
           </p>
@@ -724,9 +729,10 @@
     // to refresh layers when ever there is a change
     function refreshModel() {
       // reload data to update
-      dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/geom/4326');
-      dataSource8.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
-      dataSource9.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/buffer/4326');
+      dataSourceModel.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/geom/4326');
+      dataSourceOS.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
+      dataSourceModelBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/buffer/4326');
+      dataSourceOSBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/buffer/4326');
       // removeModels();
       // refresh84Model();
       // refresh84ModelBuffer();
@@ -1017,8 +1023,8 @@
     // Adapted from: https://stackoverflow.com/questions/29184613/how-can-you-control-visibility-of-datasource-in-cesiumjs [Accessed on 12 August, 2020]
 
     // TO LOAD DATA FROM MODEL LAYER
-    var dataSource7 = new Cesium.GeoJsonDataSource();
-    dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/geom/4326');
+    var dataSourceModel = new Cesium.GeoJsonDataSource();
+    dataSourceModel.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/geom/4326');
 
     // TOGGLE MODEL LAYER
     var checkboxModel = document.getElementById('Checkbox_model');
@@ -1027,21 +1033,21 @@
         // Checkbox state changed.
         if (checkboxModel.checked) {
           // Show if not shown.
-          if (!viewer.dataSources.contains(dataSource7)) {
-              viewer.dataSources.add(dataSource7);
-              viewer.zoomTo(dataSource7);
+          if (!viewer.dataSources.contains(dataSourceModel)) {
+              viewer.dataSources.add(dataSourceModel);
+              viewer.zoomTo(dataSourceModel);
               document.getElementById("working_layer").innerHTML = "models"; // add table name
           }
         } else {
-            viewer.dataSources.remove(dataSource7);
+            viewer.dataSources.remove(dataSourceModel);
             document.getElementById("working_layer").innerHTML = ""; // remove table name
         }
     }, false);
 
 
     // TO LOAD DATA FROM OS LAYER
-    var dataSource8 = new Cesium.GeoJsonDataSource();
-    dataSource8.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
+    var dataSourceOS = new Cesium.GeoJsonDataSource();
+    dataSourceOS.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
 
     // TO TOGGLE OS LAYER
     var checkboxOS = document.getElementById('Checkbox_OS');
@@ -1050,13 +1056,13 @@
         // Checkbox state changed.
         if (checkboxOS.checked) {
           // Show if not shown.
-          if (!viewer.dataSources.contains(dataSource8)) {
-              viewer.dataSources.add(dataSource8);
-              viewer.zoomTo(dataSource8);
+          if (!viewer.dataSources.contains(dataSourceOS)) {
+              viewer.dataSources.add(dataSourceOS);
+              viewer.zoomTo(dataSourceOS);
               document.getElementById("working_layer").innerHTML = "buildings_tq2580"; // add table name
           }
         } else {
-            viewer.dataSources.remove(dataSource8);
+            viewer.dataSources.remove(dataSourceOS);
             document.getElementById("working_layer").innerHTML = ""; // remove table name
         }
     }, false);
@@ -1065,8 +1071,8 @@
 
 
     // TO LOAD DATA FROM MODEL-BUFFER LAYER
-    var dataSource9 = new Cesium.GeoJsonDataSource();
-    dataSource9.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/buffer/4326');
+    var dataSourceModelBuffer = new Cesium.GeoJsonDataSource();
+    dataSourceModelBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/buffer/4326');
 
     // TOGGLE MODEL LAYER
     var checkboxModelBuffer = document.getElementById('Checkbox_model_buffer');
@@ -1075,13 +1081,37 @@
         // Checkbox state changed.
         if (checkboxModelBuffer.checked) {
           // Show if not shown.
-          if (!viewer.dataSources.contains(dataSource9)) {
-              viewer.dataSources.add(dataSource9);
-              viewer.zoomTo(dataSource9);
+          if (!viewer.dataSources.contains(dataSourceModelBuffer)) {
+              viewer.dataSources.add(dataSourceModelBuffer);
+              viewer.zoomTo(dataSourceModelBuffer);
               document.getElementById("working_layer").innerHTML = "models"; // add table name
           }
         } else {
-            viewer.dataSources.remove(dataSource9);
+            viewer.dataSources.remove(dataSourceModelBuffer);
+            document.getElementById("working_layer").innerHTML = ""; // remove table name
+        }
+    }, false);
+
+
+
+    // TO LOAD DATA FROM OS-buffer LAYER
+    var dataSourceOSBuffer = new Cesium.GeoJsonDataSource();
+    dataSourceOSBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/buffer/4326');
+
+    // TO TOGGLE OS LAYER
+    var checkboxOSBuffer = document.getElementById('Checkbox_OS_buffer');
+    checkboxOSBuffer.addEventListener('change', function() {
+
+        // Checkbox state changed.
+        if (checkboxOSBuffer.checked) {
+          // Show if not shown.
+          if (!viewer.dataSources.contains(dataSourceOSBuffer)) {
+              viewer.dataSources.add(dataSourceOSBuffer);
+              viewer.zoomTo(dataSourceOSBuffer);
+              document.getElementById("working_layer").innerHTML = "buildings_tq2580"; // add table name
+          }
+        } else {
+            viewer.dataSources.remove(dataSourceOSBuffer);
             document.getElementById("working_layer").innerHTML = ""; // remove table name
         }
     }, false);
