@@ -618,10 +618,17 @@
               <input id="Checkbox_model" type="checkbox" />
               <span>Model Layer</span>
             </label><br/>
+            
             <label>
               <input id="Checkbox_OS" type="checkbox" />
               <span>OS Layer</span>
-            </label>
+            </label><br>
+
+            <label>
+              <input id="Checkbox_model_buffer" type="checkbox" />
+              <span>Model Buffer Layer</span>
+            </label><br/>
+
             <!-- <button class="cesium-button">Button 1</button>
             <button class="cesium-button">Button 2</button> -->
           </p>
@@ -713,6 +720,7 @@
       // reload data to update
       dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/geom/4326');
       dataSource8.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
+      dataSource9.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/buffer/4326');
       // removeModels();
       // refresh84Model();
       // refresh84ModelBuffer();
@@ -1002,13 +1010,9 @@
     // CODE TO TOGGLE LAYERS
     // Adapted from: https://stackoverflow.com/questions/29184613/how-can-you-control-visibility-of-datasource-in-cesiumjs [Accessed on 12 August, 2020]
 
-    // TO LOAD DATA FROM OS LAYER
+    // TO LOAD DATA FROM MODEL LAYER
     var dataSource7 = new Cesium.GeoJsonDataSource();
     dataSource7.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/geom/4326');
-
-    // // Add a checkbox at the top.
-    // document.getElementById('toolbar').innerHTML =
-    //     '<label><input type="checkbox" id="showCheckbox" /> Show 84</label><br><label><input type="checkbox" id="showCheckbox1" /> Show OS</label>';
 
     // TOGGLE MODEL LAYER
     var checkboxModel = document.getElementById('Checkbox_model');
@@ -1020,11 +1024,11 @@
           if (!viewer.dataSources.contains(dataSource7)) {
               viewer.dataSources.add(dataSource7);
               viewer.zoomTo(dataSource7);
-              document.getElementById("working_layer").innerHTML = "models"; // add working layer text
+              document.getElementById("working_layer").innerHTML = "models"; // add table name
           }
         } else {
             viewer.dataSources.remove(dataSource7);
-            document.getElementById("working_layer").innerHTML = ""; // remove working layer text
+            document.getElementById("working_layer").innerHTML = ""; // remove table name
         }
     }, false);
 
@@ -1043,11 +1047,36 @@
           if (!viewer.dataSources.contains(dataSource8)) {
               viewer.dataSources.add(dataSource8);
               viewer.zoomTo(dataSource8);
-              document.getElementById("working_layer").innerHTML = "buildings_tq2580"; // add working layer text
+              document.getElementById("working_layer").innerHTML = "buildings_tq2580"; // add table name
           }
         } else {
             viewer.dataSources.remove(dataSource8);
-            document.getElementById("working_layer").innerHTML = ""; // remove working layer text
+            document.getElementById("working_layer").innerHTML = ""; // remove table name
+        }
+    }, false);
+
+
+
+
+    // TO LOAD DATA FROM MODEL-BUFFER LAYER
+    var dataSource9 = new Cesium.GeoJsonDataSource();
+    dataSource9.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/buffer/4326');
+
+    // TOGGLE MODEL LAYER
+    var checkboxModelBuffer = document.getElementById('Checkbox_model_buffer');
+    checkboxModelBuffer.addEventListener('change', function() {
+
+        // Checkbox state changed.
+        if (checkboxModelBuffer.checked) {
+          // Show if not shown.
+          if (!viewer.dataSources.contains(dataSource9)) {
+              viewer.dataSources.add(dataSource9);
+              viewer.zoomTo(dataSource9);
+              document.getElementById("working_layer").innerHTML = "models"; // add table name
+          }
+        } else {
+            viewer.dataSources.remove(dataSource9);
+            document.getElementById("working_layer").innerHTML = ""; // remove table name
         }
     }, false);
 
