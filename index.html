@@ -556,16 +556,21 @@
               <form name="questionForm" data-toggle="validator" role="form">
                 <div class="form-group">
                   <label for="model_name" class="control-label">Model ID</label><br>
-                  <input type="text" size="20" class="form-control" id="rotate_model_id" placeholder="e.g. 722" required>
+                  <input type="text" size="20" class="form-control" id="buffer_model_id" placeholder="e.g. 722" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="rotate_degree" class="control-label">Rotate Degree (Anticlockwise in default, please use negative number to rotate clockwise)</label><br>
-                  <input type="text" size="20" class="form-control" id="rotate_degree"/><br /> 
+                  <label for="rotate_degree" class="control-label">Radius (Metre)</label><br>
+                  <input type="text" size="20" class="form-control" id="buffer_radius"/><br /> 
         
 
                 <div class="form-group">
-                  <button id="rotateBtn" type="button" class="btn btn-primary" onclick="submitRotateClick()">Rotate Model</button><br>
+                  <button id="rotateBtn" type="button" class="btn btn-primary" onclick="submitBufferClick()">Generate Buffer</button><br>
+                  <div id="dataRotateResult">The result goes here</div>   
+                </div>
+
+                <div class="form-group">
+                  <button id="rotateBtn" type="button" class="btn btn-primary" onclick="deleteBufferClick()">Delete Buffer</button><br>
                   <div id="dataRotateResult">The result goes here</div>   
                 </div>
               </form>
