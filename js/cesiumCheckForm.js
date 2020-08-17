@@ -480,9 +480,9 @@ function editDataUploaded(data) {
 function submitExtrudeClick() {
   if (formExtrudeValidation()) {
     insertExtrudeData();
-    alert("Model has been extruded!");
+    //alert("Model has been extruded!");
     refreshModel();
-    submitEditHeight(); // edit height again
+    submitEditHeight(); // edit height if model is extruded
     return true;
   } else {
     return false;
@@ -529,7 +529,6 @@ function insertExtrudeData() {
   
   processExtrudeData(postString);
 
-  alert("t1:" + postString);
 }
 
 // post the data of the question setting form to database quizquestoin table
@@ -565,7 +564,7 @@ function extrudeDataUploaded(data) {
 function submitEditHeight() {
   if (formEditHeightValidation()) {
     insertEditHeightData();
-    alert("Model heigt has been modified!");
+    alert("Model has been extruded!");
     refreshModel();
     return true;
   } else {
@@ -598,8 +597,7 @@ function formEditHeightValidation() {
 }
 
 function insertEditHeightData() { 
-  alert("start height edidting");
-  
+ 
   // getting text values
   var model_id = document.getElementById("extrude_model_id").value;
   var tablename = document.getElementById("working_layer").innerHTML;
@@ -612,8 +610,6 @@ function insertEditHeightData() {
   var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&extrude_height="+ extrude_height;
  
-  alert("p2" + postString);
-
   processEditHeightData(postString);
 }
 
@@ -638,6 +634,8 @@ function processEditHeightData(postString) {
 function editHeightDataUploaded(data) { 
   // change the DIV to show the response 
   document.getElementById("dataExtrudeResult").innerHTML = data;
+  document.getElementById("extrude_model_id").value = ""; // to clear ID form column when model is extruded 
+  document.getElementById("extrude_height").value = ""; // to clear form column when model is extruded 
 }
 
 
