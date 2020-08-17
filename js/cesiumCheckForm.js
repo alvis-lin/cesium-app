@@ -528,6 +528,8 @@ function insertExtrudeData() {
   postString = postString + "&extrude_height="+ extrude_height;
   
   processExtrudeData(postString);
+
+  alert("t1:" + postString);
 }
 
 // post the data of the question setting form to database quizquestoin table
