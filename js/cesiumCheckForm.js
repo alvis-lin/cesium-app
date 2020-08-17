@@ -517,13 +517,14 @@ function insertExtrudeData() {
  
   // getting text values
   var model_id = document.getElementById("extrude_model_id").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
   // geometry 
   var extrude_height = document.getElementById("extrude_height").value;
 
   
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "model_id=" + model_id;
+  var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&extrude_height="+ extrude_height;
   
   processExtrudeData(postString);
@@ -599,13 +600,14 @@ function insertEditHeightData() {
   
   // getting text values
   var model_id = document.getElementById("extrude_model_id").value;
+  var tablename = document.getElementById("working_layer").innerHTML;
   // geometry 
   var extrude_height = document.getElementById("extrude_height").value;
 
   
 
   // PostString will hold all the parameters to pass to the server
-  var postString = "model_id=" + model_id;
+  var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&extrude_height="+ extrude_height;
  
   alert("p2" + postString);
