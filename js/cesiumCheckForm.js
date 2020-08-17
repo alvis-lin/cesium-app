@@ -8,7 +8,7 @@
 function submitPointClick() {
   if (formPointValidation()) {
   	insertPointData();
-  	alert("Thank you for your time! Your point have been submitted!");
+  	alert("Point has been created!");
     refreshModel();
   	return true;
   } else {
@@ -46,7 +46,6 @@ function formPointValidation() {
 // converting the data of the question setting form to postString to pass to the server
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function insertPointData() { 
-  //alert ("start point data upload"); 
 
   // getting text values
   var model_name = document.getElementById("point_name").value;
@@ -62,8 +61,6 @@ function insertPointData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_name=" + model_name + "&tablename="+ tablename;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
-
-  //alert(postString);
 
   processPointData(postString);
 }
@@ -108,7 +105,7 @@ function pointDataUploaded(data) {
 function submitLineClick() {
   if (formLineValidation()) {
     insertLineData();
-    alert("Thank you for your time! Your linestring have been submitted!");
+    alert("Line has been created!");
     refreshModel();
     return true;
   } else {
@@ -146,21 +143,18 @@ function formLineValidation() {
 // converting the data of the question setting form to postString to pass to the server
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function insertLineData() { 
-  //alert ("start line data upload"); 
-
+  
   // getting text values
   var model_name = document.getElementById("line_name").value;
   var tablename = document.getElementById("working_layer").innerHTML;
 
   //getting geometry values
   var linestring_coords = document.getElementById("linestring_coords").value;
-  //alert(linestring_coords + " ");
 
   // PostString will hold all the parameters to pass to the server
   var postString = "model_name=" + model_name + "&tablename="+ tablename;
   postString = postString + "&linestring_coords="+ linestring_coords;
-  //alert(postString);
-
+ 
   processLineData(postString);
 }
 
@@ -210,7 +204,7 @@ function lineDataUploaded(data) {
 function submitPolygonClick() {
   if (formPolygonValidation()) {
     insertPolygonData();
-    alert("Thank you for your time! Your polygon have been submitted!");
+    alert("Polygon has been created!");
     refreshModel();
     return true;
   } else {
@@ -245,8 +239,7 @@ function formPolygonValidation() {
 // converting the data of the question setting form to postString to pass to the server
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function insertPolygonData() { 
-  //alert ("start polygon data upload"); 
-
+  
   // getting text values
   var model_name = document.getElementById("polygon_name").value;
   var tablename = document.getElementById("working_layer").innerHTML;
@@ -257,8 +250,7 @@ function insertPolygonData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_name=" + model_name + "&tablename="+ tablename;
   postString = postString + "&polygon_coords="+ polygon_coords;
-  //alert(postString);
-
+  
   processPolygonData(postString);
 }
 
@@ -294,97 +286,13 @@ function polygonDataUploaded(data) {
 
 
 
-// DELETE IT LATER
-// CODE TO MOVE POINT TO NEW COORDS
-
-
-// function submitEditClick() {
-//   if (formEditValidation()) {
-//     insertEditData();
-//       alert("Thank you for your time! Your model have been edited!");
-//       refreshModel();
-//       return true;
-//   } else {
-//       return false;
-//   }
-// }
-
-
-// function formEditValidation() {
-//   flag = true;
-
-//   // make sure the user fill in the blank, or an alert will show up
-//   if (document.getElementById("model_id").value == "") {
-//     alert("Please fill in Model ID!");
-//     flag = false;
-//   }
-
-//   // if one of the blank is not filled in latitude or longitude part, an alert will show up 
-//   if (document.getElementById("latitude_edit").value == "" || document.getElementById("longitude_edit").value == "" || document.getElementById("altitude_edit").value == "") {
-//     alert("Please click on the map to set location!");
-//     flag = false;
-//   }  
-
-//   return flag;
-// }
-
-
-// function insertEditData() { 
-//   alert ("start Edit data upload"); 
-
-//   // getting text values
-//   var model_id = document.getElementById("model_id").value;
-//   // geometry 
-//   var latitude = document.getElementById("latitude_edit").value;
-//   var longitude = document.getElementById("longitude_edit").value;
-//   var altitude = document.getElementById("altitude_edit").value;
-  
-
-//   // PostString will hold all the parameters to pass to the server
-//   var postString = "model_id=" + model_id;
-//   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
-//   //alert(postString);
-
-//   processEditData(postString);
-// }
-
-
-// // post the data of the question setting form to database quizquestoin table
-// // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
-// function processEditData(postString) { 
-//   var serviceUrl= "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/editModel" 
-//   $.ajax({ 
-//     url: serviceUrl, 
-//     crossDomain: true, 
-//     type: "POST", 
-//     success: function(data){
-//       console.log(data); 
-//       editDataUploaded(data);
-//     }, 
-//     data: postString 
-//   }); 
-// }
-
-
-// // processing the response from the data server and show the result on the page
-// // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
-// function editDataUploaded(data) { 
-//   // change the DIV to show the response 
-//   document.getElementById("dataEditResult").innerHTML = JSON.stringify(data); 
-// }
-
-
-
-
-
-
 
 // // CODE TO MOVE MODEL BY X, Y, Z DEGREE AND METER
 
 function submitMoveClick() {
   if (formMoveValidation()) {
     insertMoveData();
-    alert("Thank you for your time! Your model have been moved!");
+    alert("Model has been moved!");
     refreshModel();
     return true;
   } else {
@@ -419,8 +327,7 @@ function formMoveValidation() {
 
 
 function insertMoveData() { 
-  //alert ("start move data upload"); 
-
+  
   // getting text values
   var model_id = document.getElementById("move_model_id").value;
   var tablename = document.getElementById("working_layer").innerHTML;
@@ -434,8 +341,7 @@ function insertMoveData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&latitude="+ latitude + "&longitude="+longitude + "&altitude="+ altitude;
-  //alert(postString);
-
+ 
   processMoveData(postString);
 }
 
@@ -481,7 +387,7 @@ function moveDataUploaded(data) {
 function submitEditClick() {
   if (formEditValidation()) {
     insertEditData();
-      alert("Thank you for your time! Your model have been edited!");
+      alert("Model has been edited!");
       refreshModel();
       return true;
   } else {
@@ -516,8 +422,7 @@ function formEditValidation() {
 
 
 function insertEditData() { 
-  //alert ("start Edit data upload"); 
-
+  
   // getting text values
   var model_id = document.getElementById("edit_model_id").value;
   var tablename = document.getElementById("working_layer").innerHTML;
@@ -528,8 +433,7 @@ function insertEditData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&edit_geomcolumn="+ edit_geomcolumn;
-  //alert(postString);
-
+  
   processEditData(postString);
 }
 
@@ -576,8 +480,9 @@ function editDataUploaded(data) {
 function submitExtrudeClick() {
   if (formExtrudeValidation()) {
     insertExtrudeData();
-    alert("Thank you for your time! Your model have been extruded!");
+    alert("Model has been extruded!");
     refreshModel();
+    submitEditHeight(); // edit height again
     return true;
   } else {
     return false;
@@ -609,8 +514,7 @@ function formExtrudeValidation() {
 }
 
 function insertExtrudeData() { 
-  //alert ("start extruded data upload"); 
-
+ 
   // getting text values
   var model_id = document.getElementById("extrude_model_id").value;
   // geometry 
@@ -621,8 +525,7 @@ function insertExtrudeData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id;
   postString = postString + "&extrude_height="+ extrude_height;
-  //alert(postString);
-
+  
   processExtrudeData(postString);
 }
 
@@ -654,21 +557,12 @@ function extrudeDataUploaded(data) {
 
 
 
-function submitEditHeightClick() {
-  submitEditHeight();
-  
-}
-
-
-
-
-
 // CODE TO EDIT HEIGHT
 
 function submitEditHeight() {
   if (formEditHeightValidation()) {
     insertEditHeightData();
-    alert("Thank you for your time! Your model heigt have been modified!");
+    alert("Model heigt has been modified!");
     refreshModel();
     return true;
   } else {
@@ -680,13 +574,13 @@ function formEditHeightValidation() {
   flag = true;
 
   // make sure the user fill in the blank, or an alert will show up
-  if (document.getElementById("edit_height_model_id").value == "") {
+  if (document.getElementById("extrude_model_id").value == "") {
     alert("Please fill in Model ID to extrude!");
     flag = false;
   }
 
   // if one of the blank is not filled in latitude or longitude part, an alert will show up 
-  if (document.getElementById("extrude_height_edit").value == "") {
+  if (document.getElementById("extrude_height").value == "") {
     alert("Please enter the height to modify the model!");
     flag = false;
   }  
@@ -701,19 +595,20 @@ function formEditHeightValidation() {
 }
 
 function insertEditHeightData() { 
-  // alert ("start height editing data upload"); 
-
+  alert("start height edidting");
+  
   // getting text values
-  var model_id = document.getElementById("edit_height_model_id").value;
+  var model_id = document.getElementById("extrude_model_id").value;
   // geometry 
-  var extrude_height_edit = document.getElementById("extrude_height_edit").value;
+  var extrude_height = document.getElementById("extrude_height").value;
 
   
 
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id;
-  postString = postString + "&extrude_height_edit="+ extrude_height_edit;
-  // alert(postString);
+  postString = postString + "&extrude_height="+ extrude_height;
+ 
+  alert("p2" + postString);
 
   processEditHeightData(postString);
 }
@@ -738,7 +633,7 @@ function processEditHeightData(postString) {
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function editHeightDataUploaded(data) { 
   // change the DIV to show the response 
-  document.getElementById("dataEditHeightResult").innerHTML = data;
+  document.getElementById("dataExtrudeResult").innerHTML = data;
 }
 
 
@@ -761,7 +656,7 @@ function editHeightDataUploaded(data) {
 function submitRotateClick() {
   if (formRotateValidation()) {
     insertRotateData();
-    alert("Thank you for your time! Your model have been rotated!");
+    alert("Model has been rotated!");
     refreshModel();
     return true;
   } else {
@@ -794,8 +689,7 @@ function formRotateValidation() {
 }
 
 function insertRotateData() { 
-  //alert ("start extruded data upload"); 
-
+  
   // getting text values
   var model_id = document.getElementById("rotate_model_id").value;
   var tablename = document.getElementById("working_layer").innerHTML;
@@ -807,8 +701,7 @@ function insertRotateData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&rotate_degree="+ rotate_degree;
-  //alert(postString);
-
+  
   processRotateData(postString);
 }
 
@@ -853,9 +746,20 @@ function rotateDataUploaded(data) {
 // to get buffer with radius in metre
 function submitBufferClick() {
   if (formBufferValidation()) {
+
     insertBufferData();
-    alert("Thank you for your time! Your buffer is generated!");
+    alert("Buffer has been generated!");
     refreshModel();
+    
+    // tick model buffer layer in control panel to show buffer
+    if (document.getElementById("working_layer").innerHTML == "models" && !checkboxModelBuffer.checked) {
+      document.getElementById('Checkbox_model_buffer').click();
+    }
+
+    // tick os buffer layer in control panel to show buffer
+    else if (document.getElementById("working_layer").innerHTML == "buildings_tq2580" && !checkboxOSBuffer.checked) {
+      document.getElementById('Checkbox_OS_buffer').click();
+    }
     return true;
   } else {
     return false;
@@ -882,13 +786,11 @@ function formBufferValidation() {
     alert("Please select Working Layer!");
     flag = false;
   }
-
   return flag;
 }
 
 function insertBufferData() { 
-  alert ("start buffer data upload"); 
-
+  
   // getting text values
   var model_id = document.getElementById("buffer_model_id").value;
   var tablename = document.getElementById("working_layer").innerHTML;
@@ -900,8 +802,7 @@ function insertBufferData() {
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&buffer_radius="+ buffer_radius;
-  alert(postString);
-
+  
   processBufferData(postString);
 }
 
@@ -949,7 +850,7 @@ function bufferDataUploaded(data) {
 function deleteBufferClick() {
   if (formDeleteBufferValidation()) {
     insertDeleteBufferData();
-    alert("Thank you for your time! Your buffer is generated!");
+    alert("Buffer has been deleted!");
     refreshModel();
     return true;
   } else {
@@ -976,8 +877,7 @@ function formDeleteBufferValidation() {
 }
 
 function insertDeleteBufferData() { 
-  alert ("start delete buffer data upload"); 
-
+  
   // getting text values
   var model_id = document.getElementById("buffer_model_id").value;
   var tablename = document.getElementById("working_layer").innerHTML;
@@ -985,8 +885,7 @@ function insertDeleteBufferData() {
 
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id + "&tablename="+ tablename;
-  alert(postString);
-
+  
   processDeleteBufferData(postString);
 }
 
@@ -1048,7 +947,6 @@ function bufferDeleteDataUploaded(data) {
 function getGeom() {
   if (formGetGeomValidation()) {
     insertGetGeomData();
-    alert("Retrived geometry column");
     return true;
   } else {
     return false;
@@ -1080,13 +978,10 @@ function formGetGeomValidation() {
 // converting the data of the question setting form to postString to pass to the server
 // Adapted from UCL CEGE0043: Web and Mobile GIS - Apps and Programming course materials
 function insertGetGeomData() { 
-  //alert ("start getting geom"); 
-
+  
   // getting text values
   var edit_model_id = document.getElementById("edit_model_id").value;
   var tablename = document.getElementById("working_layer").innerHTML;
-
-  
 
   // PostString will hold all the parameters to pass to the server
   var postString = "https://developer.cege.ucl.ac.uk:"+ httpsPortNumberAPI + "/getGeoJSONgeom/"+ tablename + "/geom/" + edit_model_id;
@@ -1132,7 +1027,7 @@ function dataGetGeomUploaded(data) {
 function deleteModel() {
   if (formDeleteValidation()) {
     deleteRecord();
-    alert("Deleted");
+    alert("Model has been Deleted");
     return true;
   } else {
     return false;

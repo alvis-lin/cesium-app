@@ -13,6 +13,9 @@
 
 
 
+
+/*Tab style for create model form*/
+
 /* Style the tab */
 .tab {
   overflow: hidden;
@@ -50,10 +53,12 @@
 }
 
 
+
+
 /*ControlPanel Settings        */
 #controlPanel {
           position: absolute;
-          top: 80px;
+          top: 20px;
           left: 250px;
           background: rgba(42, 42, 42, 0.8);
           padding: 20px;
@@ -75,7 +80,7 @@ html, body, #cesiumContainer {
             padding: 0;
             overflow: hidden;
         }
-        .toolbar-left {
+        /*.toolbar-left {
             display: block;
             position: absolute;
             top: 20px;
@@ -85,9 +90,9 @@ html, body, #cesiumContainer {
         .toolbar-left-bottom {
             display: block;
             position: absolute;
-            top: 80px;
+            top: 20px;
             left: 250px;
-        }
+        }*/
 
 
 

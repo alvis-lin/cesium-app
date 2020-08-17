@@ -11,9 +11,7 @@
     <!-- custom fonts and styles for the bootstrap template -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" type="text/css" rel="stylesheet"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  crossorigin="anonymous">
-
     <link href="css/sb-admin-2.css" type="text/css" rel="stylesheet">
-
 
     <!-- cesium -->
     <script src="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Cesium.js"></script>
@@ -33,55 +31,8 @@
     <script src="js/getLatlng.js"></script>
 
 
-
-
-
     <title>Editing in 3D</title>
-    <!-- adapted from: https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
-
-
-    <!-- <style>
-        @import url(https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Widgets/widgets.css);
-        html, body, #cesiumContainer {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        .toolbar-left {
-            display: block;
-            position: absolute;
-            top: 20px;
-            left: 250px;
-        }
-
-        .toolbar-left-bottom {
-            display: block;
-            position: absolute;
-            top: 80px;
-            left: 250px;
-        }
-
-        
-        /*code to set control panel*/
-        #controlPanel {
-          position: absolute;
-          top: 80px;
-          left: 250px;
-          background: rgba(42, 42, 42, 0.8);
-          padding: 20px;
-          border-radius: 10px;
-          color: white;
-        }
-        label {
-          cursor: pointer;
-        }
-        label:hover span {
-          text-decoration: underline;
-        }
-
-    </style> -->
+    
 
   </head>
   <body id="page-top">
@@ -100,119 +51,6 @@
         <div id="working_layer" style="color: white; text-align: center"></div>
         <br>
         <hr class="sidebar-divider">
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <!-- Nav Item - Pages Collapse Menu -->
-        <!-- Adapted code for scrollable div from: https://stackoverflow.com/questions/10309268/set-div-height-auto-and-scroll-can-be-used -->
-
-        <!-- hold form to set up quiz questions and only show on big screen (question)-->
-        <!-- Adapted code for creating form: https://www.w3schools.com/tags/att_input_required.asp -->
-
-        <!-- Create Point -->
-        <!-- <li class="nav-item d-none d-lg-block" >
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> -->
-            <!-- the next line is the cog image -->
-            <!-- <i class="fas fa-fw fa-cog"></i>
-            <span>Create Point</span>
-          </a>
-          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
-            <div class="bg-white py-2 collapse-inner rounded"> -->
-              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
-              <!-- <form name="questionForm" data-toggle="validator" role="form">
-                <div class="form-group">
-                  <label for="model_name" class="control-label">Point Name</label><br>
-                  <input type="text" size="20" class="form-control" id="model_name" placeholder="e.g. Pokemon Centre" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="latitude" class="control-label">Latitude</label><br>
-                  <input type="text" size="20" id="latitude"/><br /> 
-                  <label for="longitude" class="control-label">Longitude</label><br>
-                  <input type="text" size="20" id="longitude"/><br />
-                  <label for="altitude" class="control-label">Altitude</label><br>
-                  <input type="text" size="20" id="altitude"/><br />
-                  <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
-                </div>
-
-                <div class="form-group">
-                  <button id="startPointUpload" type="button" class="btn btn-primary" onclick="submitPointClick()">Submit</button><br>
-                  <div id="pointDataUploadResult">The result of the upload goes here</div>   
-                </div>
-              </form>
-            </div>
-          </div>
-        </li> -->
-
-        <!-- Create Line -->
-        <!-- <li class="nav-item d-none d-lg-block" >
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix"> -->
-            <!-- the next line is the cog image -->
-            <!-- <i class="fas fa-fw fa-cog"></i>
-            <span>Create Line</span>
-          </a>
-          <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
-            <div class="bg-white py-2 collapse-inner rounded"> -->
-              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
-              <!-- <form name="questionForm" data-toggle="validator" role="form">
-                <div class="form-group">
-                  <label for="line_name" class="control-label">Line Name</label><br>
-                  <input type="text" size="20" class="form-control" id="line_name" placeholder="e.g. Route 1" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="linestring_coords" class="control-label">Linestring coordinates</label><br>
-                  <input type="text" size="20" id="linestring_coords"/><br /> 
-                  <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
-                </div>
-
-                <div class="form-group">
-                  <button id="clearLineCoordsInput" type="button" class="btn btn-primary" onclick="clearLineCoords()">Clear input field</button>
-                  <button id="startLineUpload" type="button" class="btn btn-primary" onclick="submitLineClick()">Submit</button><br>
-                  <div id="lineDataUploadResult">The result of the line upload goes here</div>   
-                </div>
-              </form>
-            </div>
-          </div>
-        </li> -->
-
-        <!-- Create Polygon -->
-        <!-- <li class="nav-item d-none d-lg-block" >
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven"> -->
-            <!-- the next line is the cog image -->
-            <!-- <i class="fas fa-fw fa-cog"></i>
-            <span>Create Polygon</span>
-          </a>
-          <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionSidebar" style='max-height:50%; overflow-x:scroll;'>
-            <div class="bg-white py-2 collapse-inner rounded"> -->
-              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
-              <!-- <form name="questionForm" data-toggle="validator" role="form">
-                <div class="form-group">
-                  <label for="polygon_name" class="control-label">Polygon Name</label><br>
-                  <input type="text" size="20" class="form-control" id="polygon_name" placeholder="e.g. Pokemon School" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="polygon_coords" class="control-label">Polygon Coordinates</label><br>
-                  <input type="text" size="20" id="polygon_coords"/><br /> 
-                  <div class="help-block with-errors">Please click on the map to get coordinates and height</div> 
-                </div>
-
-                <div class="form-group">
-                  <label for="polygon_height" class="control-label">Polygon Height</label><br>
-                  <input type="text" size="20" class="form-control" id="polygon_height" placeholder="e.g. 1.234" required>
-                </div>
-
-                <div class="form-group">
-                  <button id="clearPolygonCoordsInput" type="button" class="btn btn-primary" onclick="clearPolygonCoords()">Clear input field</button>
-                  <button id="startPolygonUpload" type="button" class="btn btn-primary" onclick="submitPolygonClick()">Submit</button><br>
-                  <div id="polygonDataUploadResult">The result of the polygon upload goes here</div>   
-                </div>
-              </form>
-            </div>
-          </div>
-        </li> -->
-
-     
 
         <!-- Create model -->
         <li class="nav-item">
@@ -306,11 +144,6 @@
                       <button id="clearPolygonCoordsInput" type="button" class="btn btn-primary" onclick="clearPolygonCoords()">Clear</button>
                     </div>
 
-                    <!-- <div class="form-group">
-                      <label for="polygon_height" class="control-label">Polygon Height</label><br>
-                      <input type="text" size="20" class="form-control" id="polygon_height" placeholder="e.g. 1.234" required>
-                    </div> -->
-
                     <div class="form-group">    
                       <button id="startPolygonUpload" type="button" class="btn btn-primary" onclick="submitPolygonClick()">Submit</button><br>
                       <div id="polygonDataUploadResult">The result goes here</div>   
@@ -343,46 +176,6 @@
             </div>
           </div>
         </li>
-
-
-
-
-
-
-
-
-        <!-- <li class="nav-item d-none d-lg-block" >
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree"> -->
-            <!-- the next line is the cog image -->
-            <!-- <i class="fas fa-fw fa-cog"></i>
-            <span>EDIT Point Location</span>
-          </a>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
-            <div class="bg-white py-2 collapse-inner rounded"> -->
-              <!-- Adapted code for form https://1000hz.github.io/bootstrap-validator/ -->
-              <!-- <form name="questionForm" data-toggle="validator" role="form">
-                <div class="form-group">
-                  <label for="model_name" class="control-label">Model ID</label><br>
-                  <input type="text" size="20" class="form-control" id="model_id" placeholder="e.g.722" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="latitude" class="control-label">New Latitude</label><br>
-                  <input type="text" size="20" id="latitude_edit"/><br /> 
-                  <label for="longitude" class="control-label">New Longitude</label><br>
-                  <input type="text" size="20" id="longitude_edit"/><br />
-                  <label for="altitude" class="control-label">New Altitude</label><br>
-                  <input type="text" size="20" id="altitude_edit"/><br />
-                  <div class="help-block with-errors">Please click on the map to get coordinates and height</div>
-                </div>
-                <div class="form-group">
-                  <button id="editBtn" type="button" class="btn btn-primary" onclick="submitEditClick()">Edit Model</button><br>
-                  <div id="dataEditResult">The result of the edit goes here</div>   
-                </div>
-              </form>
-            </div>
-          </div>
-        </li> -->
 
         <!-- Move Model -->
         <li class="nav-item" >
@@ -447,9 +240,6 @@
             </div>
           </div>
         </li>
-
-
-
 
 
         <!-- Extrude Model -->
@@ -542,8 +332,6 @@
           </div>
         </li>
 
-
-
         <!-- Buffering -->
         <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
@@ -578,20 +366,6 @@
           </div>
         </li>
 
-
-
-
-
-
-<!-- 
-        
-        <hr>
-
-        <button id="trackBtn" type="button" class="btn btn-primary" onclick="showCoords()">Show coords</button>
-        <button id="refreshModel" type="button" class="btn btn-primary" onclick="refreshModel()">Refresh Models</button>
-        <button id="removeModels" type="button" class="btn btn-primary" onclick="removeModels()">Remove Models</button>
- -->
-
        </ul>
        <!-- End of Sidebar -->
 
@@ -599,17 +373,17 @@
         <!-- cesium div -->
         <!-- <div id="cesiumContainer"></div> -->
         <div id="cesiumContainer" style="height: :50%"></div>
-        <div class="toolbar-left">
+        <!-- <div class="toolbar-left">
           <button onclick="getOSModel();">OS Models</button>
           <button onclick="refresh84Model();">WGS84 Models</button>
-          <button onclick="refresh84ModelBuffer();">WGS 84 Buffer</button>
+          <button onclick="refresh84ModelBuffer();">CHECK OS BUFFER CHECKED</button>
           <button onclick="refreshGBModel();">National Grid Models</button>
           <button onclick="refreshGBModelBuffer();">National Grid Buffer Models</button>
           <button onclick="removeModels();">Remove Models</button>
-        </div>
+        </div> -->
 
         <!-- CODE TO ADD TWO LAYERS -->
-        <div class="toolbar-left-bottom" id="toolbar"></div>
+        <!-- <div class="toolbar-left-bottom" id="toolbar"></div> -->
 
         <!-- ControlPanel -->
         <!-- Adapt from: https://stackoverflow.com/questions/24206285/html5-cesium-making-divs-float-over-cesium-map [Accessed on 12 August, 2020] -->
@@ -643,10 +417,6 @@
             <button class="cesium-button">Button 2</button> -->
           </p>
         </div>
-
-
-
-
       </div>
       <!-- End of Main Content -->
     </div>
@@ -872,16 +642,7 @@
 
     // function to load/refresh buffer of WGS84 geometry layer
     function refresh84ModelBuffer() {
-      viewer.dataSources.remove(dataSource4); // remove old data
-
-
-      // Then load the data again
-      var dataSource4 = Cesium.GeoJsonDataSource.load('').then(
-        function(dataSource4) {
-          viewer.dataSources.add(dataSource4);
-          viewer.zoomTo(dataSource4);
-        }
-      )
+      document.getElementById('Checkbox_OS_buffer').click();
     }
 
 
