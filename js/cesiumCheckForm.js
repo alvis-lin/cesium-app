@@ -697,7 +697,7 @@ function editHeightDataUploaded(data) {
 function submitRotateClick() {
   if (formRotateValidation()) {
     insertRotateData();
-    alert("Model has been rotated!");
+    alert("Model has been rotated!\n(Polyhedral is not supported)");
     refreshModel();
     return true;
   } else {
@@ -789,7 +789,7 @@ function submitBufferClick() {
   if (formBufferValidation()) {
 
     insertBufferData();
-    alert("Buffer has been generated!");
+    alert("Buffer has been generated!\n(Polyhedral is not supported)");
     refreshModel();
     
     // tick model buffer layer in control panel to show buffer

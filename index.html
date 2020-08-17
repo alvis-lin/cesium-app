@@ -75,7 +75,7 @@
                   <form name="questionForm" data-toggle="validator" role="form">
                     <div class="form-group">
                       <label for="model_name" class="control-label">Point Name</label>
-                      <input type="text" size="20" class="form-control" id="point_name" placeholder="e.g. Pokemon Centre" required>
+                      <input type="text" size="20" class="form-control" id="point_name" placeholder="e.g. UCL" required>
                     </div>
 
                     <div class="form-group">
@@ -103,7 +103,7 @@
                   <form name="questionForm" data-toggle="validator" role="form">
                     <div class="form-group">
                       <label for="line_name" class="control-label">Line Name</label>
-                      <input type="text" size="20" class="form-control" id="line_name" placeholder="e.g. Route 1" required>
+                      <input type="text" size="20" class="form-control" id="line_name" placeholder="e.g. Gower Street" required>
                     </div>
 
                     <div class="form-group">
@@ -131,7 +131,7 @@
                   <form name="questionForm" data-toggle="validator" role="form">
                     <div class="form-group">
                       <label for="polygon_name" class="control-label">Polygon Name</label>
-                      <input type="text" size="20" class="form-control" id="polygon_name" placeholder="e.g. Pokemon School" required>
+                      <input type="text" size="20" class="form-control" id="polygon_name" placeholder="e.g. Main Quad" required>
                     </div>
 
                     <div class="form-group">
@@ -224,18 +224,19 @@
                 <div class="form-group">
                   <label for="model_name" class="control-label">Model ID</label><br>
                   <input type="text" size="20" class="form-control" id="edit_model_id" placeholder="e.g. 722" required><br>
+                  <div class="help-block with-errors">Please click on the model you want to edit to get ID, then click 'Get Geometry' to start editing</div>
                   <button id="getGeomBtn" type="button" class="btn btn-primary" onclick="getGeom()">Get Geometry</button><br><br>
                 </div>
 
                 <div class="form-group">
-                  <label for="edit_geomcolumn" class="control-label">Edit geometry</label><br>
+                  <label for="edit_geomcolumn" class="control-label">Geometry Vertices</label><br>
                   <textarea type="text" cols="17" rows="6" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' id="edit_geomcolumn"/></textarea><br><br> 
 
-                  <label for="edit_find" class="control-label">Find vertice</label><br>
+                  <label for="edit_find" class="control-label">Find Vertex</label><br>
                   <input type="text" size="20" class="form-control" id="edit_find" placeholder="e.g. 1 52 0" required><br>
 
-                  <label for="edit_replace" class="control-label">Replace vertice with</label><br>
-                  <input type="text" size="20" class="form-control" id="edit_replace" placeholder="e.g. 1.1 52.1 0" required><br>
+                  <label for="edit_replace" class="control-label">Replace Vertex with</label><br>
+                  <input type="text" size="20" class="form-control" id="edit_replace" placeholder="e.g. 2 53 0" required><br>
 
                 <div class="form-group"> 
                   <button id="editGeomBtn" type="button" class="btn btn-primary" onclick="submitEditClick()">Save Model</button><br>
@@ -357,8 +358,7 @@
         <!-- Adapt from: https://stackoverflow.com/questions/24206285/html5-cesium-making-divs-float-over-cesium-map [Accessed on 12 August, 2020] -->
         <div id="controlPanel">
           <i class="fas fa-layer-group"></i>
-          <b>Control Panel</b><br/>
-          Tick the box to toggle different layers<br/>
+          <b> Layers</b>
           <p>
             <hr color="white">
             <label>
@@ -379,9 +379,7 @@
             <label>
               <input id="Checkbox_OS_buffer" type="checkbox" />
               <span>OS Buffer Layer</span>
-            </label><br/>
-
-            
+            </label>          
           </p>
         </div>
       </div>
