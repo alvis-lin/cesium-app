@@ -440,14 +440,37 @@ function updateGeom() {
   var edit_find = String(document.getElementById("edit_find").value);
   var edit_replace = String(document.getElementById("edit_replace").value);
 
+  // alert("paras: " + edit_geomcolumn + "find" + edit_find + "replace" + edit_replace);
+
+  // alert("before:" + edit_geomcolumn);
+  // edit_geomcolumn.replace(edit_find, edit_replace);
+  // alert("after:" + edit_geomcolumn);
+  // document.getElementById("edit_geomcolumn").value = edit_geomcolumn;
+  // var edit_geomcolumn = document.getElementById("edit_geomcolumn").value;
+  // alert("final:" + edit_geomcolumn);
+
+
+
+  var test = "010100";
+  var find = "0";
+  var replace = "2";
+  test = test.replaceAll(find, replace);
+  alert("test result: " + test)
+
+
+  // var edit_geomcolumn = "POINT Z (0 52 0)"
+  // var edit_find = "0 52 0"
+  // var edit_replace = "0 53 0"
+
   alert("paras: " + edit_geomcolumn + "find" + edit_find + "replace" + edit_replace);
 
   alert("before:" + edit_geomcolumn);
-  edit_geomcolumn.replace(edit_find, edit_replace);
+  edit_geomcolumn = edit_geomcolumn.replaceAll(edit_find, edit_replace);
+  // alert(edit_geomcolumn.replace(edit_find, edit_replace));
   alert("after:" + edit_geomcolumn);
   document.getElementById("edit_geomcolumn").value = edit_geomcolumn;
-  var edit_geomcolumn = document.getElementById("edit_geomcolumn").value;
-  alert("final:" + edit_geomcolumn);
+  // var edit_geomcolumn = document.getElementById("edit_geomcolumn").value;
+  // alert("final:" + edit_geomcolumn);
 }
 
 
@@ -493,7 +516,7 @@ function editDataUploaded(data) {
 
   // clear columns after upload
   document.getElementById("edit_model_id").value = ""; 
-  document.getElementById("edit_geomcolumn").value = ""; 
+  //document.getElementById("edit_geomcolumn").value = ""; 
 }
 
 
