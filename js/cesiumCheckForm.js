@@ -2,6 +2,25 @@
 // then the valid form data will be uploaded to the server
 
 
+
+// tabs to change the input geometry type
+// Adapted from: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_open[Accessed on 13 August, 2020]
+function openGeom(evt, geomName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(geomName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+
+
 // CODE TO CREATE POINT
 // only start uploading after all the data in the question setting form is confirmed as valid
 // Adapted from: https://stackoverflow.com/questions/39495581/how-to-generate-alert-when-clicking-submit-button-only-when-the-html-form-is-fu
@@ -440,37 +459,8 @@ function updateGeom() {
   var edit_find = String(document.getElementById("edit_find").value);
   var edit_replace = String(document.getElementById("edit_replace").value);
 
-  // alert("paras: " + edit_geomcolumn + "find" + edit_find + "replace" + edit_replace);
-
-  // alert("before:" + edit_geomcolumn);
-  // edit_geomcolumn.replace(edit_find, edit_replace);
-  // alert("after:" + edit_geomcolumn);
-  // document.getElementById("edit_geomcolumn").value = edit_geomcolumn;
-  // var edit_geomcolumn = document.getElementById("edit_geomcolumn").value;
-  // alert("final:" + edit_geomcolumn);
-
-
-
-  var test = "010100";
-  var find = "0";
-  var replace = "2";
-  test = test.replaceAll(find, replace);
-  alert("test result: " + test)
-
-
-  // var edit_geomcolumn = "POINT Z (0 52 0)"
-  // var edit_find = "0 52 0"
-  // var edit_replace = "0 53 0"
-
-  alert("paras: " + edit_geomcolumn + "find" + edit_find + "replace" + edit_replace);
-
-  alert("before:" + edit_geomcolumn);
-  edit_geomcolumn = edit_geomcolumn.replaceAll(edit_find, edit_replace);
-  // alert(edit_geomcolumn.replace(edit_find, edit_replace));
-  alert("after:" + edit_geomcolumn);
+  edit_geomcolumn = edit_geomcolumn.replaceAll(edit_find, edit_replace); // replace vertices 
   document.getElementById("edit_geomcolumn").value = edit_geomcolumn;
-  // var edit_geomcolumn = document.getElementById("edit_geomcolumn").value;
-  // alert("final:" + edit_geomcolumn);
 }
 
 
@@ -516,14 +506,10 @@ function editDataUploaded(data) {
 
   // clear columns after upload
   document.getElementById("edit_model_id").value = ""; 
-  //document.getElementById("edit_geomcolumn").value = ""; 
+  document.getElementById("edit_geomcolumn").value = ""; 
+  document.getElementById("edit_find").value = ""; 
+  document.getElementById("edit_replace").value = ""; 
 }
-
-
-
-
-
-
 
 
 

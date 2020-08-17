@@ -36,6 +36,10 @@ function handleClick(e) {
       var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(8);
       var altitudeString = cartographic.height.toFixed(5); // The unit for height is metre, so no need to convert to degrees
 
+      //These are from index
+      document.getElementById("latitude").value = latitudeString;
+      document.getElementById("longitude").value = longitudeString;
+      document.getElementById("altitude").value = altitudeString;
 
       // create click point and store it in array
       var aClick = new ClickPoint(longitudeString, latitudeString, altitudeString);
