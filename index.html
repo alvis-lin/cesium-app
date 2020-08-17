@@ -231,8 +231,13 @@
                   <label for="edit_geomcolumn" class="control-label">Edit geometry</label><br>
                   <textarea type="text" cols="17" rows="6" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' id="edit_geomcolumn"/></textarea><br><br> 
 
-                <div class="form-group">
-                  
+                  <label for="edit_find" class="control-label">Find vertice</label><br>
+                  <input type="text" size="20" class="form-control" id="edit_find" placeholder="e.g. 1 52 0" required><br>
+
+                  <label for="edit_replace" class="control-label">Replace vertice with</label><br>
+                  <input type="text" size="20" class="form-control" id="edit_replace" placeholder="e.g. 1.1 52.1 0" required><br>
+
+                <div class="form-group"> 
                   <button id="editGeomBtn" type="button" class="btn btn-primary" onclick="submitEditClick()">Save Model</button><br>
                   <div id="dataEditResult">The result goes here</div>   
                 </div>
@@ -435,7 +440,6 @@
             document.getElementById("move_model_id").value = pickedObject.id._properties._model_id._value;
             document.getElementById("edit_model_id").value = pickedObject.id._properties._model_id._value;
             document.getElementById("extrude_model_id").value = pickedObject.id._properties._model_id._value;
-            document.getElementById("edit_height_model_id").value = pickedObject.id._properties._model_id._value;
             document.getElementById("rotate_model_id").value = pickedObject.id._properties._model_id._value; 
             document.getElementById("buffer_model_id").value = pickedObject.id._properties._model_id._value;   
         }

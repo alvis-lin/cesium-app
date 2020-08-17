@@ -386,6 +386,7 @@ function moveDataUploaded(data) {
 
 function submitEditClick() {
   if (formEditValidation()) {
+    updateGeom();
     insertEditData();
       alert("Model has been edited!");
       refreshModel();
@@ -411,6 +412,18 @@ function formEditValidation() {
     flag = false;
   }  
 
+  // if one of the blank is not filled in the vertice to replace 
+  if (document.getElementById("edit_find").value == "") {
+    alert("Please fill the vertice you want to replace!");
+    flag = false;
+  }  
+
+  // if one of the blank is not filled in the new vertice
+  if (document.getElementById("edit_replace").value == "") {
+    alert("Please fill the new vertice!");
+    flag = false;
+  }  
+
   // make sure working layer is selected, or an alert will show up
   if (document.getElementById("working_layer").innerHTML == "") {
     alert("Please select Working Layer!");
@@ -421,6 +434,24 @@ function formEditValidation() {
 }
 
 
+
+function updateGeom() {
+  var edit_geomcolumn = String(document.getElementById("edit_geomcolumn").value);
+  var edit_find = String(document.getElementById("edit_find").value);
+  var edit_replace = String(document.getElementById("edit_replace").value);
+
+  alert("paras: " + edit_geomcolumn + "find" + edit_find + "replace" + edit_replace);
+
+  alert("before:" + edit_geomcolumn);
+  edit_geomcolumn.replace(edit_find, edit_replace);
+  alert("after:" + edit_geomcolumn);
+  document.getElementById("edit_geomcolumn").value = edit_geomcolumn;
+  var edit_geomcolumn = document.getElementById("edit_geomcolumn").value;
+  alert("final:" + edit_geomcolumn);
+}
+
+
+
 function insertEditData() { 
   
   // getting text values
@@ -429,7 +460,6 @@ function insertEditData() {
   // geometry 
   var edit_geomcolumn = document.getElementById("edit_geomcolumn").value;
   
-
   // PostString will hold all the parameters to pass to the server
   var postString = "model_id=" + model_id + "&tablename="+ tablename;
   postString = postString + "&edit_geomcolumn="+ edit_geomcolumn;
