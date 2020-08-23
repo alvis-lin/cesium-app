@@ -158,7 +158,7 @@
         <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-trash-alt"></i>
-            <span>Delete Model</span>
+            <span>Delete Object</span>
           </a>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
             <div class="bg-white py-2 collapse-inner rounded" style="padding: 5px 5px;">
@@ -181,7 +181,7 @@
         <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
             <i class="fas fa-arrows-alt"></i>
-            <span>Move Model</span>
+            <span>Move Object</span>
           </a>
           <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
             <div class="bg-white py-2 collapse-inner rounded" style="padding: 5px 5px;">
@@ -215,7 +215,7 @@
         <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
             <i class="fas fa-edit"></i>
-            <span>Edit Model</span>
+            <span>Edit Object</span>
           </a>
           <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
             <div class="bg-white py-2 collapse-inner rounded" style="padding: 5px 5px;">
@@ -252,7 +252,7 @@
         <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
             <i class="fas fa-arrows-alt-v"></i>
-            <span>Extrude Model</span>
+            <span>Extrude Object</span>
           </a>
           <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar" style='max-height:50%; overflow-y:scroll;'>
             <div class="bg-white py-2 collapse-inner rounded" style="padding: 5px 5px;">
@@ -269,7 +269,7 @@
         
 
                 <div class="form-group">
-                  <button id="extrudeBtn" type="button" class="btn btn-primary" onclick="submitExtrudeClick()">Extrude Model</button><br>
+                  <button id="extrudeBtn" type="button" class="btn btn-primary" onclick="submitExtrudeClick()">Extrude Object</button><br>
                   <div id="dataExtrudeResult">The result goes here</div>   
                 </div>
               </form>
@@ -286,7 +286,7 @@
         <li class="nav-item" >
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
             <i class="fas fa-redo"></i>
-            <span>Rotate Model</span>
+            <span>Rotate Object</span>
           </a>
           <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionSidebar" style='max-height:30%; overflow-y:scroll;'>
             <div class="bg-white py-2 collapse-inner rounded" style="padding: 5px 5px;">
@@ -372,6 +372,11 @@
             </label><br>
 
             <label>
+              <input id="Checkbox_OSM" type="checkbox" />
+              <span>OSM Layer</span>
+            </label><br>
+
+            <label>
               <input id="Checkbox_model_buffer" type="checkbox" />
               <span>Model Buffer Layer</span>
             </label><br/>
@@ -438,9 +443,10 @@
     // to refresh layers 
     function refreshModel() {
       dataSourceModel.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/geom/4326');
-      dataSourceOS.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
+      dataSourceOS.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_os/geom/4326');
+      dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/geom/4326');
       dataSourceModelBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/buffer/4326');
-      dataSourceOSBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/buffer/4326');
+      dataSourceOSBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_os/buffer/4326');
     }
 
 
@@ -453,32 +459,32 @@
     // CODE TO TOGGLE LAYERS
     // Adapted from: https://stackoverflow.com/questions/29184613/how-can-you-control-visibility-of-datasource-in-cesiumjs [Accessed on 12 August, 2020]
 
-    // TO LOAD DATA FROM MODEL LAYER
+    // load data from models table
     var dataSourceModel = new Cesium.GeoJsonDataSource();
     dataSourceModel.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/geom/4326');
 
-    // TOGGLE MODEL LAYER
+    // toggle models layer
     var checkboxModel = document.getElementById('Checkbox_model');
     checkboxModel.addEventListener('change', function() {
 
-        // Checkbox state changed.
+        // if the checkbox for models layer is checked
         if (checkboxModel.checked) {
-          // Show if not shown.
+          // show the layer if not shown
           if (!viewer.dataSources.contains(dataSourceModel)) {
               viewer.dataSources.add(dataSourceModel);
               viewer.zoomTo(dataSourceModel);
-              document.getElementById("working_layer").innerHTML = "models"; // add table name
+              document.getElementById("working_layer").innerHTML = "models"; // show table name on menu bar
           }
         } else {
             viewer.dataSources.remove(dataSourceModel);
-            document.getElementById("working_layer").innerHTML = ""; // remove table name
+            document.getElementById("working_layer").innerHTML = ""; // remove table name from menu bar
         }
     }, false);
 
 
     // TO LOAD DATA FROM OS LAYER
     var dataSourceOS = new Cesium.GeoJsonDataSource();
-    dataSourceOS.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/geom/4326');
+    dataSourceOS.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_os/geom/4326');
 
     // TO TOGGLE OS LAYER
     var checkboxOS = document.getElementById('Checkbox_OS');
@@ -490,10 +496,36 @@
           if (!viewer.dataSources.contains(dataSourceOS)) {
               viewer.dataSources.add(dataSourceOS);
               viewer.zoomTo(dataSourceOS);
-              document.getElementById("working_layer").innerHTML = "buildings_tq2580"; // add table name
+              document.getElementById("working_layer").innerHTML = "ucl_os"; // add table name
           }
         } else {
             viewer.dataSources.remove(dataSourceOS);
+            document.getElementById("working_layer").innerHTML = ""; // remove table name
+        }
+    }, false);
+
+
+
+
+
+    // TO LOAD DATA FROM OSM LAYER
+    var dataSourceOSM = new Cesium.GeoJsonDataSource();
+    dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/geom/4326');
+
+    // TO TOGGLE OS LAYER
+    var checkboxOSM = document.getElementById('Checkbox_OSM');
+    checkboxOSM.addEventListener('change', function() {
+
+        // Checkbox state changed.
+        if (checkboxOSM.checked) {
+          // Show if not shown.
+          if (!viewer.dataSources.contains(dataSourceOSM)) {
+              viewer.dataSources.add(dataSourceOSM);
+              viewer.zoomTo(dataSourceOSM);
+              document.getElementById("working_layer").innerHTML = "ucl_osm"; // add table name
+          }
+        } else {
+            viewer.dataSources.remove(dataSourceOSM);
             document.getElementById("working_layer").innerHTML = ""; // remove table name
         }
     }, false);
@@ -527,7 +559,7 @@
 
     // TO LOAD DATA FROM OS-buffer LAYER
     var dataSourceOSBuffer = new Cesium.GeoJsonDataSource();
-    dataSourceOSBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/buildings_tq2580/buffer/4326');
+    dataSourceOSBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_os/buffer/4326');
 
     // TO TOGGLE OS LAYER
     var checkboxOSBuffer = document.getElementById('Checkbox_OS_buffer');
@@ -539,7 +571,7 @@
           if (!viewer.dataSources.contains(dataSourceOSBuffer)) {
               viewer.dataSources.add(dataSourceOSBuffer);
               viewer.zoomTo(dataSourceOSBuffer);
-              document.getElementById("working_layer").innerHTML = "buildings_tq2580"; // add table name
+              document.getElementById("working_layer").innerHTML = "ucl_os"; // add table name
           }
         } else {
             viewer.dataSources.remove(dataSourceOSBuffer);
