@@ -384,7 +384,12 @@
             <label>
               <input id="Checkbox_OS_buffer" type="checkbox" />
               <span>OS Buffer Layer</span>
-            </label>          
+            </label><br>
+
+            <label>
+              <input id="Checkbox_Rot_gml" type="checkbox" />
+              <span>Rotterdam GML Ground Surface Layer</span>
+            </label>         
           </p>
         </div>
       </div>
@@ -608,6 +613,7 @@
         if (checkboxRotGml.checked) {
           // Show if not shown.
           if (!viewer.dataSources.contains(dataSourceRotGml)) {
+              dataSourceRotGml.height = -43;
               viewer.dataSources.add(dataSourceRotGml);
               viewer.zoomTo(dataSourceRotGml);
               document.getElementById("working_layer").innerHTML = "ground_surface"; // add table name
