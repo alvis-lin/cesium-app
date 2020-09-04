@@ -386,10 +386,11 @@
               <span>OS Buffer Layer</span>
             </label><br>
 
+            <!-- CityGML demo
             <label>
               <input id="Checkbox_Rot_gml" type="checkbox" />
               <span>Rotterdam GML Ground Surface Layer</span>
-            </label>         
+            </label>    -->      
           </p>
         </div>
       </div>
@@ -452,7 +453,9 @@
       dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/geom/4326');
       dataSourceModelBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/buffer/4326');
       dataSourceOSBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_os/buffer/4326');
-      dataSourceRotGml.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ground_surface/geom/4326');
+      
+      //CityGML Demo
+      //dataSourceRotGml.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ground_surface/geom/4326');
     }
 
 
@@ -600,29 +603,29 @@
 
 
 
+    // CityGML file demo
 
     // TO LOAD DATA FROM RotGml LAYER
-    var dataSourceRotGml = new Cesium.GeoJsonDataSource();
-    dataSourceRotGml.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ground_surface/geom/4326');
+    // var dataSourceRotGml = new Cesium.GeoJsonDataSource();
+    // dataSourceRotGml.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ground_surface/geom/4326');
 
-    // TO TOGGLE ROT LAYER
-    var checkboxRotGml = document.getElementById('Checkbox_Rot_gml');
-    checkboxRotGml.addEventListener('change', function() {
+    // // TO TOGGLE ROT LAYER
+    // var checkboxRotGml = document.getElementById('Checkbox_Rot_gml');
+    // checkboxRotGml.addEventListener('change', function() {
 
-        // Checkbox state changed.
-        if (checkboxRotGml.checked) {
-          // Show if not shown.
-          if (!viewer.dataSources.contains(dataSourceRotGml)) {
-              dataSourceRotGml.height = -43;
-              viewer.dataSources.add(dataSourceRotGml);
-              viewer.zoomTo(dataSourceRotGml);
-              document.getElementById("working_layer").innerHTML = "ground_surface"; // add table name
-          }
-        } else {
-            viewer.dataSources.remove(dataSourceRotGml);
-            document.getElementById("working_layer").innerHTML = ""; // remove table name
-        }
-    }, false);
+    //     // Checkbox state changed.
+    //     if (checkboxRotGml.checked) {
+    //       // Show if not shown.
+    //       if (!viewer.dataSources.contains(dataSourceRotGml)) {
+    //           viewer.dataSources.add(dataSourceRotGml);
+    //           viewer.zoomTo(dataSourceRotGml);
+    //           document.getElementById("working_layer").innerHTML = "ground_surface"; // add table name
+    //       }
+    //     } else {
+    //         viewer.dataSources.remove(dataSourceRotGml);
+    //         document.getElementById("working_layer").innerHTML = ""; // remove table name
+    //     }
+    // }, false);
 
 
 
