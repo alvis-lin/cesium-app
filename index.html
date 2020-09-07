@@ -377,6 +377,11 @@
             </label><br>
 
             <label>
+              <input id="Checkbox_CityJSON" type="checkbox" />
+              <span>CityJSON Layer</span>
+            </label><br>
+
+            <label>
               <input id="Checkbox_model_buffer" type="checkbox" />
               <span>Model Buffer Layer</span>
             </label><br/>
@@ -456,6 +461,7 @@
       dataSourceModel.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/geom/4326');
       dataSourceOS.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_os/geom/4326');
       dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/geom/4326');
+      dataSourceCityJSON.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/building_json/geom/4326');
       dataSourceModelBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/buffer/4326');
       dataSourceOSBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_os/buffer/4326');
       dataSourceOSMBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/buffer/4326');
@@ -525,8 +531,8 @@
 
     // TO LOAD DATA FROM OSM LAYER
     var dataSourceOSM = new Cesium.GeoJsonDataSource();
-    //dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/geom/4326');
-    dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/building_json/geom/4326');
+    dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/geom/4326');
+
 
     // TO TOGGLE OS LAYER
     var checkboxOSM = document.getElementById('Checkbox_OSM');
@@ -545,6 +551,38 @@
             document.getElementById("working_layer").innerHTML = ""; // remove table name
         }
     }, false);
+
+
+
+
+
+    // TO LOAD DATA FROM CityJSON LAYER
+    var dataSourceCityJSON = new Cesium.GeoJsonDataSource();
+    dataSourceCityJSON.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/building_json/geom/4326');
+    //dataSourceCityJSON.height = dataSourceCityJSON.height - 43;
+
+    // TO TOGGLE CityJSON LAYER
+    var checkboxCityJSON = document.getElementById('Checkbox_CityJSON');
+    checkboxCityJSON.addEventListener('change', function() {
+
+
+
+        // Checkbox state changed.
+        if (checkboxCityJSON.checked) {
+          // Show if not shown.
+          if (!viewer.dataSources.contains(dataSourceCityJSON)) {
+              viewer.dataSources.add(dataSourceCityJSON);
+              viewer.dataSources.clampToGround=true;
+              viewer.zoomTo(dataSourceCityJSON);
+              document.getElementById("working_layer").innerHTML = "building_json"; // add table name
+          }
+        } else {
+            viewer.dataSources.remove(dataSourceCityJSON);
+            document.getElementById("working_layer").innerHTML = ""; // remove table name
+        }
+    }, false);
+
+
 
 
 
