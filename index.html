@@ -525,7 +525,8 @@
 
     // TO LOAD DATA FROM OSM LAYER
     var dataSourceOSM = new Cesium.GeoJsonDataSource();
-    dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/geom/4326');
+    //dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/geom/4326');
+    dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/building_json/geom/4326');
 
     // TO TOGGLE OS LAYER
     var checkboxOSM = document.getElementById('Checkbox_OSM');
