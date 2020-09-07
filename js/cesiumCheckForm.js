@@ -683,15 +683,6 @@ function editHeightDataUploaded(data) {
 
 
 
-
-
-
-
-
-
-
-
-
 // CODE TO ROTATE MODEL BY DEGREE
 
 function submitRotateClick() {
@@ -798,8 +789,13 @@ function submitBufferClick() {
     }
 
     // tick os buffer layer in control panel to show buffer
-    else if (document.getElementById("working_layer").innerHTML == "buildings_tq2580" && !checkboxOSBuffer.checked) {
+    else if (document.getElementById("working_layer").innerHTML == "ucl_os" && !checkboxOSBuffer.checked) {
       document.getElementById('Checkbox_OS_buffer').click();
+    }
+
+    // tick os buffer layer in control panel to show buffer
+    else if (document.getElementById("working_layer").innerHTML == "ucl_osm" && !checkboxOSMBuffer.checked) {
+      document.getElementById('Checkbox_OSM_buffer').click();
     }
     return true;
   } else {

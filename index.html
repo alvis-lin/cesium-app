@@ -386,6 +386,11 @@
               <span>OS Buffer Layer</span>
             </label><br>
 
+            <label>
+              <input id="Checkbox_OSM_buffer" type="checkbox" />
+              <span>OSM Buffer Layer</span>
+            </label><br>
+
             <!-- CityGML demo
             <label>
               <input id="Checkbox_Rot_gml" type="checkbox" />
@@ -453,6 +458,7 @@
       dataSourceOSM.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/geom/4326');
       dataSourceModelBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/models/buffer/4326');
       dataSourceOSBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_os/buffer/4326');
+      dataSourceOSMBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/buffer/4326');
       
       //CityGML Demo
       //dataSourceRotGml.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ground_surface/geom/4326');
@@ -584,6 +590,31 @@
           }
         } else {
             viewer.dataSources.remove(dataSourceOSBuffer);
+            document.getElementById("working_layer").innerHTML = ""; // remove table name
+        }
+    }, false);
+
+
+
+
+    // TO LOAD DATA FROM OSM-buffer LAYER
+    var dataSourceOSMBuffer = new Cesium.GeoJsonDataSource();
+    dataSourceOSMBuffer.load('https://developer.cege.ucl.ac.uk:30281/getGeoJSON/ucl_osm/buffer/4326');
+
+    // TO TOGGLE OS LAYER
+    var checkboxOSMBuffer = document.getElementById('Checkbox_OSM_buffer');
+    checkboxOSMBuffer.addEventListener('change', function() {
+
+        // Checkbox state changed.
+        if (checkboxOSMBuffer.checked) {
+          // Show if not shown.
+          if (!viewer.dataSources.contains(dataSourceOSMBuffer)) {
+              viewer.dataSources.add(dataSourceOSMBuffer);
+              viewer.zoomTo(dataSourceOSMBuffer);
+              document.getElementById("working_layer").innerHTML = "ucl_osm"; // add table name
+          }
+        } else {
+            viewer.dataSources.remove(dataSourceOSMBuffer);
             document.getElementById("working_layer").innerHTML = ""; // remove table name
         }
     }, false);
